@@ -1,0 +1,29 @@
+.doctors{
+    background-color: #f0f0f0;
+}
+.doctors-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3% 10% 2%;   
+}
+
+.doctors h1 {
+  font-size: 3rem;
+  font-weight: 780;
+  color: #0f1b3d;
+  line-height: 1.2;
+  max-width: 90%;
+  margin-bottom: 15px;
+}
+
+.doctors-header p {
+  font-size: 1rem;
+  color: #3a3a5c;
+  width: 900px;
+  line-height: 1.7;
+  margin-bottom: 0;    
+opacity:80%;
+}

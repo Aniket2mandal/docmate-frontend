@@ -1,0 +1,53 @@
+
+.doctor-list-container{
+    padding: 0% 10% 8%;
+    overflow: hidden; 
+}
+
+.doctor-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 5% 0% 8%;
+    flex-direction: row;
+    overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  justify-content: flex-start;
+}
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* position: relative; */
+    overflow: hidden; 
+}
+
+
+
+.doctor-list::-webkit-scrollbar {
+  display: none; /* hides scrollbar on Chrome */
+}
+
+.slider-btn {
+  background-color: #1a6ef5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  margin-left:4px;
+  margin-right:2px;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(26, 110, 245, 0.35);
+}
+
+.slider-btn:hover {
+  background-color: #0f5de0;
+  transform: scale(1.08);
+}
