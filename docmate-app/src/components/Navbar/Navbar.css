@@ -1,0 +1,57 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    padding: 20px 40px;
+    /* margin-left:-30px; */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+       /* box-shadow: 6px 0 15px rgba(0,0,0,0.12); */
+}
+
+.logo-nav{
+    color:#2f80ed;
+    margin-left:10px;
+}
+
+.search {
+    width: 300px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile-img{
+    border-radius: 100%;
+}
+
+.theme-toggle{
+  font-size: 25px; /* increase from 20px to 28px */
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s;
+  color:#2f80ed;
+}
+
+.theme-toggle:hover {
+  color: black; /* optional hover effect */
+}
+
+.notification-icon {
+  font-size: 28px; /* increase from 20px to 28px */
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s;
+  color:#2f80ed;
+}
+
+.notification-icon:hover {
+  color: black; /* optional hover effect */
+}

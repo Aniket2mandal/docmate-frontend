@@ -11,7 +11,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
-.navbar {
+.navbar-landing {
   display: flex;
   justify-content: space-between;
   align-items: center;

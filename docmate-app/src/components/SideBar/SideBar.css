@@ -1,0 +1,94 @@
+.sidebar{
+    width:300px;
+    background:#f5f7fb;
+    height:100vh;
+    padding:20px;
+    box-shadow: 6px 0 15px rgba(0,0,0,0.12);
+    position:relative;
+    z-index:10;
+}
+.logo{
+color:#2f80ed;
+margin-bottom:30px;
+}
+
+.menu{
+list-style:none;
+padding:0;
+height:300px;
+}
+
+.menu li{
+padding:12px;
+margin-bottom:10px;
+cursor:pointer;
+border-radius:8px;
+}
+
+.menu li:hover{
+background:#2f80ed;
+color:white;
+}
+
+.active{
+background:#2f80ed;
+color:white;
+}
+
+.sub{
+display:block;
+font-size:12px;
+opacity:0.8;
+}
+
+.dropdown{
+background:white;
+color:#2f80ed;
+border-radius:8px;
+padding:8px;
+margin-top:5px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.history{
+list-style:none;
+padding:0;
+margin-top:0px;
+}
+
+
+.history li{
+padding:12px;
+margin-bottom:10px;
+cursor:pointer;
+border-radius:8px;
+}
+
+.history li:hover{
+background:#2f80ed;
+color:white;
+}
+
+.historyHr{
+    margin-top:200px;
+    opacity: 30%;
+
+}
+
+.version{
+list-style:none;
+padding:0;
+margin-top:0px;
+opacity: 30%;
+}
+
+
+.version li{
+padding:12px;
+margin-bottom:10px;
+cursor:pointer;
+border-radius:8px;
+}
+.versionHr{
+    opacity: 30%;
+}

@@ -6,7 +6,7 @@ const Home = () => {
   return (
    
     <>
-     <nav className="navbar">
+     <nav className="navbar-landing">
       <h2 className="logo">Docmate</h2>
 
       <div className="nav-buttons">

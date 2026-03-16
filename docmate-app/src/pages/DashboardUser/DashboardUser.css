@@ -1,0 +1,36 @@
+.dashboard{
+display:flex;
+font-family: 'Segoe UI', sans-serif;
+}
+
+.main-content{
+flex:1;
+/* padding:30px; */
+background:#f7f9fc;
+}
+.bodyPart{
+    padding:30px;
+}
+
+.welcome{
+    display: flex;
+    gap:10px;
+    margin-left:20px;
+}
+
+.welcome-back{
+margin-bottom:20px;
+font-size: 30px;
+}
+
+.user-name{
+margin-bottom:20px;
+font-size: 30px;
+color:#2f80ed;
+}
+
+.bottom-section{
+display:flex;
+gap:20px;
+margin-top:30px;
+}
