@@ -1,0 +1,57 @@
+.enroll {
+  width: 100%;
+  background: #d5e4f6;
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main blue box */
+.enroll-box {
+  width: 900px;
+  background: linear-gradient(135deg, #2f80ed, #2a6fd6);
+  border-radius: 16px;
+  padding: 50px 40px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.enroll-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+/* Subtitle */
+.enroll-sub {
+  color: #e6ecf5;
+  font-size: 14px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Button */
+.enroll-btn {
+  background: #ffffff;
+  color: #2a6fd6;
+  border: none;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Arrow spacing */
+.enroll-btn span {
+  margin-left: 6px;
+}
+
+/* Hover effect */
+.enroll-btn:hover {
+  background: #f1f5ff;
+  transform: translateY(-2px);
+}

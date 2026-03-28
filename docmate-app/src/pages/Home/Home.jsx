@@ -2,6 +2,7 @@ import React from "react";
 import "./NavbarLanding.css"
 import Hero from "../../components/Hero/Hero";
 
+
 const Home = () => {
   return (
    
@@ -15,6 +16,7 @@ const Home = () => {
       </div>
     </nav>
       <Hero />
+    
     </>
   );
 };

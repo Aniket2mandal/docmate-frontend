@@ -1,7 +1,7 @@
 .sidebar{
     width:300px;
     background:#f5f7fb;
-    height:100vh;
+    height:110vh;
     padding:20px;
     box-shadow: 6px 0 15px rgba(0,0,0,0.12);
     position:relative;
@@ -53,7 +53,7 @@ box-shadow:0 2px 8px rgba(0,0,0,0.1);
 .history{
 list-style:none;
 padding:0;
-margin-top:0px;
+/* margin-top:60px; */
 }
 
 
@@ -70,9 +70,8 @@ color:white;
 }
 
 .historyHr{
-    margin-top:200px;
+    margin-top:270px;
     opacity: 30%;
-
 }
 
 .version{

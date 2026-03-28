@@ -5,6 +5,7 @@ import DashboardCards from "../../components/DashboardCard/DashboardCards";
 // import HistoryCard from "../../components/HistoryCard/HistoryCard";
 // import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import "./DashboardUser.css";
+import HistoryProfile from "../../components/HistoryProfileCard/HistoryProfile";
 
 const Dashboard = () => {
   return (
@@ -29,8 +30,7 @@ const Dashboard = () => {
         <DashboardCards />
 
         <div className="bottom-section">
-          {/* <HistoryCard />
-          <ProfileCard /> */}
+          <HistoryProfile/>
         </div>
 
       </div>

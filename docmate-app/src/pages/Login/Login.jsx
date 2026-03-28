@@ -1,0 +1,123 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import { loginUser } from "../../api/BackendApi";
+
+const Login = () => {
+
+  const [username, setEmail] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await loginUser(username, password);
+
+      console.log("Login response:", response.data);
+
+      // backend: { status, message, data }
+      if (response.data.status) {
+        setMessage("Login successful ✅");
+
+        // save token if exists
+        if (response.data.data?.token) {
+          localStorage.setItem("token", response.data.data.token);
+        }
+
+        // redirect
+        // window.location.href = "/dashboard";
+        navigate("/dashboard", { state: response.data });
+
+      } else {
+        setMessage(response.data.message || "Login failed ❌");
+      }
+
+    } catch (error) {
+      console.error(error);
+      setMessage("Server error ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className="login-page">
+      <div className="login-card">
+        <div className="login-left">
+          <h1 className="login-brand">Docmate</h1>
+          <h2 className="login-title">Welcome Back</h2>
+          <p className="login-subtitle">
+            Sign in to manage appointments, track records, and access your healthcare dashboard.
+          </p>
+
+          <form className="login-form" onSubmit={handleLogin}>
+            <div className="login-input-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter your email"
+                value={username}
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+
+            <div className="login-input-group">
+              <label>Password</label>
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)} />
+
+                <span onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? "Hide" : "Show"}
+                </span>
+              </div>
+            </div>
+
+
+            <div className="login-options">
+              <label className="remember-me">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+
+              <a href="/" className="forgot-link">
+                Forgot Password?
+              </a>
+            </div>
+
+            <button type="submit" className="login-btn2">
+              Login
+            </button>
+          </form>
+
+          <p className="login-footer-text">
+            Don’t have an account? <a href="/register">Sign Up</a>
+          </p>
+        </div>
+
+        <div className="login-right">
+          <div className="login-info-box">
+            <h3>Healthcare Made Simple</h3>
+            <p>
+              Book doctor appointments, manage your profile, and stay updated with
+              smart health reminders — all in one platform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Login;
