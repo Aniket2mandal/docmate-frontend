@@ -14,9 +14,9 @@ const Enroll = () => {
           appointment — all in one platform.
         </p>
 
-        <button className="enroll-btn">
+        <a className="enroll-btn" href="/register">
           Get Started Free <span>&gt;</span>
-        </button>
+        </a>
       </div>
     </section>
   );

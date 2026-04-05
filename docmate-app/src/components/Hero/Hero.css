@@ -75,6 +75,7 @@
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 20px rgba(26, 110, 245, 0.35);
+  text-decoration: none;
 }
 
 .hero-btn:hover {

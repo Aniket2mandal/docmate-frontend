@@ -11,8 +11,9 @@ const Home = () => {
       <h2 className="logo">Docmate</h2>
 
       <div className="nav-buttons">
-        <button className="login-btn">Login</button>
-        <button className="start-btn">Get Started</button>
+        <a className="login-btn" href="/login">Login</a>
+        {/* <button className="login-btn"><a href="/login">Login</a></button> */}
+        <a className="start-btn" href="/register">Get Started</a>
       </div>
     </nav>
       <Hero />

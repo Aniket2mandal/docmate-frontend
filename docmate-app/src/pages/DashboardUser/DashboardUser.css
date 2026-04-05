@@ -1,36 +1,140 @@
-.dashboard{
-display:flex;
-font-family: 'Segoe UI', sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.main-content{
-flex:1;
-/* padding:30px; */
-background:#f7f9fc;
-}
-.bodyPart{
-    padding:30px;
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.welcome{
-    display: flex;
-    gap:10px;
-    margin-left:20px;
+.dashboard {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f9fc;
+  overflow: hidden;
 }
 
-.welcome-back{
-margin-bottom:20px;
-font-size: 30px;
+.main-content {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9fc;
 }
 
-.user-name{
-margin-bottom:20px;
-font-size: 30px;
-color:#2f80ed;
+.bodyPart {
+  flex: 1;
+  width: 100%;
+  padding: 30px;
+  overflow-x: hidden;
 }
 
-.bottom-section{
-display:flex;
-gap:20px;
-margin-top:30px;
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.welcome-back {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.user-name {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2f80ed;
+  margin: 0;
+}
+
+.bottom-section {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* make direct children behave properly */
+.bottom-section > * {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+/* tablet */
+@media (max-width: 992px) {
+  .bodyPart {
+    padding: 22px;
+  }
+
+  .welcome-back,
+  .user-name {
+    font-size: 26px;
+  }
+
+  .bottom-section {
+    gap: 16px;
+    margin-top: 22px;
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .bodyPart {
+    padding: 18px 14px;
+  }
+
+  .welcome {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 18px;
+  }
+
+  .welcome-back,
+  .user-name {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .bottom-section {
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .bottom-section > * {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+/* small mobile */
+@media (max-width: 480px) {
+  .bodyPart {
+    padding: 14px 10px;
+  }
+
+  .welcome-back,
+  .user-name {
+    font-size: 20px;
+  }
 }

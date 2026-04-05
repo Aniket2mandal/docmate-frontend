@@ -31,6 +31,7 @@ import './App.css';
 import Home from './pages/Home/Home';
 import Doctors from './pages/Doctor/Doctors';
 import DashboardUser from './pages/DashboardUser/DashboardUser';
+import DashboardUserDoctors from './pages/DashboardUser/DashboardUserDoctors';
 import WhyChoose from "./pages/WhyChoose/WhyChoose";
 import Testimonial from "./pages/Testimonial/Testimonial";
 import Enroll from "./pages/Enroll/Enroll";
@@ -64,6 +65,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardUser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard/doctors" element={<DashboardUserDoctors />} />
 
       </Routes>
     </Router>

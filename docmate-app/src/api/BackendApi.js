@@ -10,3 +10,8 @@ export const loginUser = (username, password) => {
     password,
   });
 };
+
+export const registerUser = (userData) => {
+  return axiosInstance.post("auth/register-patient", userData);
+};
+

@@ -12,7 +12,7 @@ const DashboardCards = () => {
         </div>
         <h4>Find Doctors</h4>
         <p>Find best doctors near you</p>
-       <button className="doctor-card-button">Get Started <FaArrowRight /></button>
+       <a href="/dashboard/doctors"><button className="doctor-card-button">Get Started <FaArrowRight /></button></a>
       </div>
 
       <div className="card">

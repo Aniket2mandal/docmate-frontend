@@ -40,3 +40,48 @@
 .read-the-docs {
   color: #888;
 } */
+:root {
+  --bg-color: #f7f9fc;
+  --text-color: #1a1a1a;
+  --card-color: #ffffff;
+  --nav-color: #ffffff;
+  --sidebar-color: #ffffff;
+  --input-color: #ffffff;
+  --border-color: #d7e0ea;
+  --hover-color: #eef4ff;
+  --primary-color: #2f80ed;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+  --bg-color: #0f172a;
+  --text-color: #ffffff;
+  --card-color: #1e293b;
+  --nav-color: #1e293b;
+  --sidebar-color: #162033;
+  --input-color: #1e293b;
+  --border-color: #334155;
+  --hover-color: #263449;
+  --primary-color: #60a5fa;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.card,
+.dashboard-card,
+.history-card,
+.profile-card {
+  background: var(--card-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}

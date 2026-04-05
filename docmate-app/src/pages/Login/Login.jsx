@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { loginUser } from "../../api/BackendApi";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -28,7 +29,12 @@ const Login = () => {
 
       // backend: { status, message, data }
       if (response.data.status) {
-        setMessage("Login successful ✅");
+        await Swal.fire({
+          icon: "success",
+          title: "Login Successful ",
+          text: response.data.message || "Welcome!",
+          confirmButtonColor: "#3085d6"
+        });
 
         // save token if exists
         if (response.data.data?.token) {
@@ -39,13 +45,17 @@ const Login = () => {
         // window.location.href = "/dashboard";
         navigate("/dashboard", { state: response.data });
 
-      } else {
-        setMessage(response.data.message || "Login failed ❌");
       }
 
     } catch (error) {
       console.error(error);
-      setMessage("Server error ❌");
+
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.response?.data?.message || "Invalid credentials",
+        confirmButtonColor: "#d33"
+      });
     } finally {
       setLoading(false);
     }
