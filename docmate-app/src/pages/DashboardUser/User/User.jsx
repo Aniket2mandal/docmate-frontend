@@ -1,11 +1,11 @@
 import React from "react";
-import SideBar from "../../components/SideBar/SideBar";
-import Navbar from "../../components/Navbar/Navbar";
-import DashboardCards from "../../components/DashboardCard/DashboardCards";
+import SideBar from "../../../components/SideBar/SideBar";
+import Navbar from "../../../components/Navbar/Navbar";
+import DashboardCards from "../../../components/DashboardCard/DashboardCards";
 // import HistoryCard from "../../components/HistoryCard/HistoryCard";
 // import ProfileCard from "../../components/ProfileCard/ProfileCard";
-import "./DashboardUser.css";
-import HistoryProfile from "../../components/HistoryProfileCard/HistoryProfile";
+import "./User.css";
+import HistoryProfile from "../../../components/HistoryProfileCard/HistoryProfile";
 
 const Dashboard = () => {
   return (

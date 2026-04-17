@@ -61,7 +61,9 @@ const Navbar = () => {
 
             <div className="dropdown-item">
               <FaUser className="dropdown-icon" />
-              <span>Profile</span>
+              <span><a href="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                Profile
+              </a></span>
             </div>
 
             <div className="dropdown-item">

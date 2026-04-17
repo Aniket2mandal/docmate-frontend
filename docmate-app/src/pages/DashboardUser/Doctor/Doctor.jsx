@@ -1,11 +1,11 @@
 import React from "react";
-import SideBar from "../../components/SideBar/SideBar";
-import Navbar from "../../components/Navbar/Navbar";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import DoctorList from "../../components/DoctorList/DoctorList";
-import "./DashboardUserDoctor.css";
+import SideBar from "../../../components/SideBar/SideBar";
+import Navbar from "../../../components/Navbar/Navbar";
+import SearchBar from "../../../components/SearchBar/SearchBar";
+import DoctorList from "../../../components/DoctorList/DoctorList";
+import "./Doctor.css";
 
-const DashboardUserDoctors = ({ darkMode, toggleDarkMode }) => {
+const Doctor = ({ darkMode, toggleDarkMode }) => {
   return (
     <div className="dashboard-doctors-page">
       <SideBar />
@@ -32,4 +32,4 @@ const DashboardUserDoctors = ({ darkMode, toggleDarkMode }) => {
   );
 };
 
-export default DashboardUserDoctors;
+export default Doctor;

@@ -30,14 +30,19 @@ import './App.css';
 
 import Home from './pages/Home/Home';
 import Doctors from './pages/Doctor/Doctors';
-import DashboardUser from './pages/DashboardUser/DashboardUser';
-import DashboardUserDoctors from './pages/DashboardUser/DashboardUserDoctors';
+import User from './pages/DashboardUser/User/User';
+import Doctor from './pages/DashboardUser/Doctor/Doctor';
+import MedicalRecords from './pages/DashboardUser/MedicalRecord/MedicalRecords';
+import MedicineReports from './pages/DashboardUser/MedicineReport/MedicineReports';
 import WhyChoose from "./pages/WhyChoose/WhyChoose";
 import Testimonial from "./pages/Testimonial/Testimonial";
 import Enroll from "./pages/Enroll/Enroll";
 import Footer from "./pages/Footer/Footer";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Profile from "./pages/Profile/Profile";
+import UpcomingAppointments from "./pages/UpcomingAppointments/UpcomingAppointments";
+import PreviousAppointments from "./pages/PreviousAppointments/PreviousAppointment";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -60,13 +65,17 @@ function App() {
 
         {/* Landing page (all sections together) */}
         <Route path="/" element={<LandingPage />} />
-
-        {/* Separate page */}
-        <Route path="/dashboard" element={<DashboardUser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard/doctors" element={<DashboardUserDoctors />} />
 
+        {/* Separate page */}
+          <Route path="/dashboard/user" element={<User />} />
+          <Route path="/dashboard/doctors" element={<Doctor />} />
+          <Route path="/dashboard/medical-records" element={<MedicalRecords />} />
+          <Route path="/dashboard/medicine-reports" element={<MedicineReports />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/upcoming-appointments" element={<UpcomingAppointments />} />
+          <Route path="/previous-appointments" element={<PreviousAppointments />} />
       </Routes>
     </Router>
   );

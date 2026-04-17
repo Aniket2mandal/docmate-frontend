@@ -1,0 +1,150 @@
+.dashboard-profile-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dashboard-profile-main {
+  flex: 1;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dashboard-profile-content {
+  padding: 30px;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.profile-header {
+  margin-bottom: 24px;
+}
+
+.profile-header h1 {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  color: var(--text-color);
+}
+
+.profile-header p {
+  margin: 0;
+  color: #8a94a6;
+  font-size: 16px;
+}
+
+.profile-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.upload-image-btn {
+  border: none;
+  background: #2f80ed;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.upload-image-btn:hover {
+  background: #2563eb;
+}
+
+.profile-user-info h2 {
+  margin: 0 0 6px 0;
+  font-size: 24px;
+  color: #111827;
+}
+
+.profile-user-info p {
+  margin: 0 0 12px 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.profile-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.profile-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+.profile-row strong {
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .profile-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .profile-card {
+    max-width: 100%;
+  }
+}

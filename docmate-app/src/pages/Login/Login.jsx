@@ -43,7 +43,7 @@ const Login = () => {
 
         // redirect
         // window.location.href = "/dashboard";
-        navigate("/dashboard", { state: response.data });
+        navigate("/dashboard/user", { state: response.data });
 
       }
 

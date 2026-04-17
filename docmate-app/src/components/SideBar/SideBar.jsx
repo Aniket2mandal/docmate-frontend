@@ -27,7 +27,7 @@ const Sidebar = () => {
         <li className="active">
           <FaHome className="icon" />
           <div className="menu-text">
-            <a href="/dashboard" className="dashboard-link"><span>Dashboard</span></a>
+            <a href="/dashboard/user" className="dashboard-link"><span>Dashboard</span></a>
             <span className="sub">Overview and stats</span>
           </div>
         </li>
@@ -39,12 +39,12 @@ const Sidebar = () => {
 
         <li>
           <FaFileMedical className="icon" />
-          <a href="/dashboard/medical-record" className="dashboard-link"><span>Medical Record</span></a>
+          <a href="/dashboard/medical-records" className="dashboard-link"><span>Medical Record</span></a>
         </li>
 
         <li>
           <FaCapsules className="icon" />
-          <a href="/dashboard/medicine-report" className="dashboard-link"><span>Medicine Report</span></a>
+          <a href="/dashboard/medicine-reports" className="dashboard-link"><span>Medicine Report</span></a>
         </li>
 
         <li className="appointment" onClick={toggleDropdown}>
@@ -58,8 +58,8 @@ const Sidebar = () => {
 
           {open && (
             <div className="dropdown">
-              <p>Upcoming appointment</p>
-              <p>Previous appointment</p>
+              <p><a href="/upcoming-appointments" style={{ textDecoration: 'none', color: 'inherit' }}>Upcoming appointment</a></p>
+              <p><a href="/previous-appointments" style={{ textDecoration: 'none', color: 'inherit' }}>Previous appointment</a></p>
             </div>
           )}
         </li>
