@@ -41,6 +41,18 @@ const Login = () => {
           localStorage.setItem("token", response.data.data.token);
         }
 
+        if (response.data.data?.userId) {
+    localStorage.setItem("userId", response.data.data.userId);
+  }
+
+       if (response.data.data && response.data.data.role=="PATIENT") {
+    localStorage.setItem("patientId", response.data.data.patientId);
+  }
+
+        if (response.data.data && response.data.data.role=="DOCTOR") {
+    localStorage.setItem("doctorId", response.data.data.doctorId);
+  }
+
         // redirect
         // window.location.href = "/dashboard";
         navigate("/dashboard/user", { state: response.data });

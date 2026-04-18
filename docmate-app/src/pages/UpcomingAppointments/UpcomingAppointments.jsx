@@ -1,32 +1,40 @@
-import React from "react";
+import { useState,useEffect } from "react";
 import "./UpcomingAppointment.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
+import { getPatientUpcomingAppointments } from "../../api/BackendApi";
 
-const appointments = [
-  {
-    id: 1,
-    doctor: "Dr. Sarah Johnson",
-    hospital: "Docmate Care Center",
-    date: "20 March, 2026",
-  },
-  {
-    id: 2,
-    doctor: "Dr. Michael Lee",
-    hospital: "Docmate Eye Clinic",
-    date: "22 March, 2026",
-  },
-  {
-    id: 3,
-    doctor: "Dr. Emily Brown",
-    hospital: "Docmate Clinic",
-    date: "25 March, 2026",
-  },
-];
 
 const UpcomingAppointments = () => {
+
+ const [appointments, setAppointments] = useState([]);
+ const [loading, setLoading] = useState(true);
+
+  const patientId = localStorage.getItem("patientId"); 
+
+    useEffect(() => {
+
+       console.log("Calling API...");
+      
+    const fetchAppointments = async () => {
+      try {
+        const res = await getPatientUpcomingAppointments(patientId);
+        setAppointments(res.data.data || []);
+      } catch (err) {
+        console.error("Error fetching appointments", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (patientId) {
+      console.log("Calling API 2nd...");
+      fetchAppointments();
+    }
+  }, [patientId]);
+
   return (
-    <div className="dashboard-upcoming-page">
+     <div className="dashboard-upcoming-page">
       <SideBar />
 
       <div className="dashboard-upcoming-main">
@@ -39,29 +47,44 @@ const UpcomingAppointments = () => {
           </div>
 
           <div className="table-card">
-            <table className="upcoming-table">
-              <thead>
-                <tr>
-                  <th>Doctor</th>
-                  <th>Hospital</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {appointments.map((appt) => (
-                  <tr key={appt.id}>
-                    <td>{appt.doctor}</td>
-                    <td>{appt.hospital}</td>
-                    <td>{appt.date}</td>
-                    <td>
-                      <button className="view-btn">View Details</button>
-                    </td>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <table className="upcoming-table">
+                <thead>
+                  <tr>
+                    <th>S.N.</th>
+                    <th>Doctor</th>
+                    <th>Hospital</th>
+                    <th>Date</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                  {appointments.length > 0 ? (
+                    appointments.map((appt,index) => (
+                      <tr key={appt.id}>
+                        <td>{index+1}</td>
+                        <td>{appt.doctor?.user?.firstName} {appt.doctor?.user?.lastName}</td>
+                        <td>{appt.hospitalName}</td>
+                        <td>{appt.appointmentDateTime}</td>
+
+                        <td>
+                          <a href="/appointment-detail" style={{ textDecoration: 'none', color: 'inherit' }}><button className="view-btn">
+                            View Details
+                          </button></a>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4">No upcoming appointments</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            )}
           </div>
 
         </div>
