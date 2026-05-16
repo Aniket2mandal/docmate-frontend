@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { FaBell, FaSun, FaMoon, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import "./Navbar.css";
+import { logoutUser } from "../../api/BackendApi";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
+
+    const userEmail = localStorage.getItem("email") || "User";
+
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -14,6 +21,29 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+    const handleLogout = async () => {
+    try {
+      await logoutUser();
+
+      localStorage.clear();
+
+      await Swal.fire({
+        icon: "success",
+        title: "Logged out",
+        text: "You have been logged out successfully.",
+        confirmButtonColor: "#3085d6"
+      });
+
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout error", err);
+
+      localStorage.clear();
+
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
@@ -57,7 +87,7 @@ const Navbar = () => {
 
         {menuOpen && (
           <div className="profile-dropdown">
-            <div className="dropdown-header">aniketmandal778@gmail.com</div>
+            <div className="dropdown-header">{userEmail}</div>
 
             <div className="dropdown-item">
               <FaUser className="dropdown-icon" />
@@ -73,7 +103,7 @@ const Navbar = () => {
 
             <div className="dropdown-divider"></div>
 
-            <div className="dropdown-item logout">
+            <div className="dropdown-item logout" onClick={handleLogout}>
               <FaSignOutAlt className="dropdown-icon" />
               <span>Logout</span>
             </div>

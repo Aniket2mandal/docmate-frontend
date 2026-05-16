@@ -45,6 +45,8 @@ import UpcomingAppointments from "./pages/UpcomingAppointments/UpcomingAppointme
 import PreviousAppointments from "./pages/PreviousAppointments/PreviousAppointment";
 import AppointmentDetail from "./pages/AppointmentDetail/AppointmentDetail";
 import DoctorDashboard from "./pages/DashboardDoctor/Doctor/DoctorDashboard";
+import DoctorDetail from "./pages/DoctorDetail/DoctorDetail";
+import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -54,7 +56,7 @@ const LandingPage = () => {
       <Doctors />
       <WhyChoose />
       <Testimonial />
-      <Enroll/>
+      <Enroll />
       <Footer />
     </>
   );
@@ -67,20 +69,85 @@ function App() {
 
         {/* Landing page (all sections together) */}
         <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/doctor-detail/:doctorId" element={<DoctorDetail />} />
 
         {/* Separate page */}
-          <Route path="/dashboard/user" element={<User />} />
-          <Route path="/dashboard/doctors" element={<Doctor />} />
-          <Route path="/dashboard/medical-records" element={<MedicalRecords />} />
-          <Route path="/dashboard/medicine-reports" element={<MedicineReports />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/upcoming-appointments" element={<UpcomingAppointments />} />
-          <Route path="/previous-appointments" element={<PreviousAppointments />} />
-          <Route path="/appointment-detail" element={<AppointmentDetail/>}/>
+        <Route
+          path="/dashboard/user"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <User />
+            </ProtectedRoute>
+          }
+        />
 
-           <Route path="/dashboard/doctor" element={<DoctorDashboard />}/>
+        <Route
+          path="/dashboard/find-doctors"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <Doctor />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/medical-records"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <MedicalRecords />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/medicine-reports"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <MedicineReports />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/upcoming-appointments"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <UpcomingAppointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/previous-appointments"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <PreviousAppointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/appointment-detail/:appointmentId"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <AppointmentDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/dashboard/doctor" element={<DoctorDashboard />} />
       </Routes>
     </Router>
   );

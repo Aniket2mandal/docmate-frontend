@@ -1,4 +1,5 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./PreviousAppointment.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
@@ -7,15 +8,15 @@ import { getPatientPreviousAppointments } from "../../api/BackendApi";
 
 const PreviousAppointments = () => {
 
-   const [appointments, setAppointments] = useState([]);
- const [loading, setLoading] = useState(true);
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const patientId = localStorage.getItem("patientId"); 
+  const patientId = localStorage.getItem("patientId");
 
-    useEffect(() => {
+  useEffect(() => {
 
-       console.log("Calling API...");
-      
+    console.log("Calling API...");
+
     const fetchAppointments = async () => {
       try {
         const res = await getPatientPreviousAppointments(patientId);
@@ -46,7 +47,7 @@ const PreviousAppointments = () => {
             <p>Your scheduled previous visits</p>
           </div>
 
-         <div className="table-card">
+          <div className="table-card">
             {loading ? (
               <p>Loading...</p>
             ) : (
@@ -63,20 +64,36 @@ const PreviousAppointments = () => {
 
                 <tbody>
                   {appointments.length > 0 ? (
-                    appointments.map((appt,index) => (
-                      <tr key={appt.id}>
-                        <td>{index+1}</td>
-                        <td>{appt.doctor?.user?.firstName} {appt.doctor?.user?.lastName}</td>
-                        <td>{appt.hospitalName}</td>
-                        <td>{appt.appointmentDateTime}</td>
+                    appointments.map((appt, index) => {
+                      console.log("appt full object:", appt);
+                      console.log("appt id:", appt.appointmentId);
+                      return (
 
-                        <td>
-                           <a href="/appointment-detail" style={{ textDecoration: 'none', color: 'inherit' }}><button className="view-btn">
+                        <tr key={appt.id}>
+                          <td>{index + 1}</td>
+                          <td>{appt.doctor?.user?.firstName} {appt.doctor?.user?.lastName}</td>
+                          <td>{appt.hospitalName}</td>
+                          <td>{appt.appointmentDateTime}</td>
+
+                          <td>
+                            {/* <a href="/appointment-detail" style={{ textDecoration: 'none', color: 'inherit' }}><button className="view-btn">
                             View Details
-                          </button></a>
-                        </td>
-                      </tr>
-                    ))
+                          </button></a> */}
+                            <Link
+                              to={`/appointment-detail/${appt.appointmentId}`}
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              <button className="view-btn">
+                                View Details
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      )
+                    })
                   ) : (
                     <tr>
                       <td colSpan="4">No previous appointments</td>

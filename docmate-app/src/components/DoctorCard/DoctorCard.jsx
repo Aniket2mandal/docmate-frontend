@@ -1,9 +1,17 @@
 import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 import "./DoctorCard.css";
 import doctorImg from "../../assets/doctor.png";
+import BookAppointmentModal from "../BookModal/BookAppointmentModal";
 
 const DoctorCard = ({ doctor }) => {
-     const fullName = `${doctor.user.firstName} ${doctor.user.lastName}`;
+    console.log("Doctor in DoctorCard:", doctor);
+
+    const [showBookingModal, setShowBookingModal] = useState(false);
+
+    const fullName = `${doctor.user.firstName} ${doctor.user.lastName}`;
     return (
 
         <div className="doctor-card">
@@ -19,11 +27,31 @@ const DoctorCard = ({ doctor }) => {
             </p>
 
             <div className="doctorbtn-container">
-                <button className="doctorexp-btn">Explore now <i className="fas fa-arrow-right"></i></button>
-                <button className="doctorexp-btn2">Book now</button>
+
+                <Link
+                    to={`/doctor-detail/${doctor.doctorId}`}
+                    style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                    }}
+                >
+                    <button className="doctorexp-btn">Explore now <FaArrowRight /></button>
+                </Link>
+                <button className="doctorexp-btn2" onClick={() => setShowBookingModal(true)}>
+                    Book now
+                </button>
+
+            
             </div>
+            <BookAppointmentModal
+                    isOpen={showBookingModal}
+                    onClose={() => setShowBookingModal(false)}
+                    doctorId={doctor?.doctorId}
+                    doctorName={`Dr. ${fullName}`}
+                />
 
         </div>
+        
     );
 };
 

@@ -34,7 +34,7 @@ const Sidebar = () => {
 
         <li>
           <FaUserMd className="icon" />
-          <a href="/dashboard/doctors" className="dashboard-link"><span>Doctors</span></a>
+          <a href="/dashboard/find-doctors" className="dashboard-link"><span>Find Doctors</span></a>
         </li>
 
         <li>

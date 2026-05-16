@@ -12,6 +12,32 @@ export const getPatientPreviousAppointments = (patientId) => {
   return axiosInstance.get(`/appointment/get-patient-previous-appointment/${patientId}`);
 };
 
+export const getAppointmentDetails = (appointmentId) => {
+  return axiosInstance.get(`/appointment/get-appointment-details/${appointmentId}`);
+};
+
+export const getDoctorDetails = (doctorId) => {
+  return axiosInstance.get(`/public/get-doctor-details/${doctorId}`);
+};
+
+export const bookAppointment = (appointmentData) => {
+  return axiosInstance.post("/appointment/book", appointmentData);
+};
+
+// NOT USED YET
+export const getAllSchedule = (doctorId) => {
+  return axiosInstance.get(`/doctor/get-all-schedule/${doctorId}`);
+};
+
+
+export const getAvailableSlots = (doctorId) => {
+  return axiosInstance.get(`/doctor/get-available-slots/${doctorId}`);
+};
+
+export const logoutUser = () => {
+  return axiosInstance.post("/auth/logout");
+};
+
 export const loginUser = (username, password) => {
   return axiosInstance.post("/auth/login-user", {
     username,

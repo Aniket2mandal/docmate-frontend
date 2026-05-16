@@ -37,21 +37,33 @@ const Login = () => {
         });
 
         // save token if exists
-        if (response.data.data?.token) {
-          localStorage.setItem("token", response.data.data.token);
+        if (response.data.data?.accessToken) {
+          localStorage.setItem("token", response.data.data.accessToken);
+        }
+
+        if(response.data.data?.refreshToken) {
+          localStorage.setItem("refreshToken", response.data.data.refreshToken);
+        }
+
+        if (response.data.data?.role) {
+          localStorage.setItem("role", response.data.data.role);
         }
 
         if (response.data.data?.userId) {
-    localStorage.setItem("userId", response.data.data.userId);
-  }
+          localStorage.setItem("userId", response.data.data.userId);
+        }
 
-       if (response.data.data && response.data.data.role=="PATIENT") {
-    localStorage.setItem("patientId", response.data.data.patientId);
-  }
+         if (response.data.data?.email) {
+          localStorage.setItem("email", response.data.data.email);
+        }
 
-        if (response.data.data && response.data.data.role=="DOCTOR") {
-    localStorage.setItem("doctorId", response.data.data.doctorId);
-  }
+        if (response.data.data && response.data.data.role == "PATIENT") {
+          localStorage.setItem("patientId", response.data.data.patientId);
+        }
+
+        if (response.data.data && response.data.data.role == "DOCTOR") {
+          localStorage.setItem("doctorId", response.data.data.doctorId);
+        }
 
         // redirect
         // window.location.href = "/dashboard";

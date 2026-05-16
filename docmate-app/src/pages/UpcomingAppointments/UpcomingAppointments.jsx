@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./UpcomingAppointment.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
@@ -71,9 +72,17 @@ const UpcomingAppointments = () => {
                         <td>{appt.appointmentDateTime}</td>
 
                         <td>
-                          <a href="/appointment-detail" style={{ textDecoration: 'none', color: 'inherit' }}><button className="view-btn">
-                            View Details
-                          </button></a>
+                        <Link
+                              to={`/appointment-detail/${appt.appointmentId}`}
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              <button className="view-btn">
+                                View Details
+                              </button>
+                            </Link>
                         </td>
                       </tr>
                     ))
