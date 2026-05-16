@@ -44,6 +44,7 @@ import Profile from "./pages/Profile/Profile";
 import UpcomingAppointments from "./pages/UpcomingAppointments/UpcomingAppointments";
 import PreviousAppointments from "./pages/PreviousAppointments/PreviousAppointment";
 import AppointmentDetail from "./pages/AppointmentDetail/AppointmentDetail";
+import DoctorDashboard from "./pages/DashboardDoctor/Doctor/DoctorDashboard";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -78,6 +79,8 @@ function App() {
           <Route path="/upcoming-appointments" element={<UpcomingAppointments />} />
           <Route path="/previous-appointments" element={<PreviousAppointments />} />
           <Route path="/appointment-detail" element={<AppointmentDetail/>}/>
+
+           <Route path="/dashboard/doctor" element={<DoctorDashboard />}/>
       </Routes>
     </Router>
   );
