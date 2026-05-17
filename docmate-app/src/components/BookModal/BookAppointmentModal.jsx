@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
     const [appointmentDate, setAppointmentDate] = useState("");
     const [appointmentTime, setAppointmentTime] = useState("");
+    const [appointmentEndTime, setAppointmentEndTime] = useState("");
     const [reasonForVisit, setReasonForVisit] = useState("");
     const [schedules, setSchedules] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -44,6 +45,22 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
         return null;
     }
 
+    const handleDateChange = (e) => {
+        setAppointmentDate(e.target.value);
+
+        // Date can be changed, but time must come from selected slot only
+        setAppointmentTime("");
+        setAppointmentEndTime("");
+        setError("");
+    };
+
+    const handleSlotClick = (schedule) => {
+        setAppointmentDate(schedule.startDate);
+        setAppointmentTime(schedule.startTime?.slice(0, 5));
+        setAppointmentEndTime(schedule.endTime?.slice(0, 5));
+        setError("");
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -56,8 +73,8 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                 return;
             }
 
-            if (!appointmentDate || !appointmentTime) {
-                setError("Please select appointment date and time.");
+            if (!appointmentDate || !appointmentTime || !appointmentEndTime) {
+                setError("Please select an available appointment slot.");
                 return;
             }
 
@@ -72,25 +89,25 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
             };
 
             const response = await bookAppointment(requestData);
-            onClose();
+                onClose();
+                
             if (response.data?.status === true) {
-                // alert(response.data?.message || "Appointment booked successfully");
                 await Swal.fire({
                     icon: "success",
-                    title: "Appointment booked successfully ",
+                    title: "Appointment booked successfully",
                     text: response.data?.message,
-                    confirmButtonColor: "#3085d6"
+                    confirmButtonColor: "#3085d6",
                 });
 
                 setAppointmentDate("");
                 setAppointmentTime("");
+                setAppointmentEndTime("");
                 setReasonForVisit("");
                 setError("");
 
-
+             
             } else {
                 setError(response.data?.message || "Failed to book appointment");
-
             }
         } catch (err) {
             console.error("Booking appointment error", err);
@@ -117,6 +134,15 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                 {error && <p className="booking-error">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="booking-form">
+                    <div className="booking-form-group">
+                        <label>Appointment Date</label>
+                        <input
+                            type="date"
+                            value={appointmentDate}
+                            onChange={handleDateChange}
+                        />
+                    </div>
+
                     <div className="available-slots-section">
                         <h4>Available Slots</h4>
 
@@ -130,22 +156,16 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                                         key={schedule.id}
                                         className={
                                             appointmentDate === schedule.startDate &&
-                                                appointmentTime === schedule.startTime?.slice(0, 5)
+                                            appointmentTime === schedule.startTime?.slice(0, 5) &&
+                                            appointmentEndTime === schedule.endTime?.slice(0, 5)
                                                 ? "slot-card selected"
                                                 : "slot-card"
                                         }
-                                        onClick={() => {
-                                            setAppointmentDate(schedule.startDate);
-                                            setAppointmentTime(schedule.startTime?.slice(0, 5));
-                                        }}
+                                        onClick={() => handleSlotClick(schedule)}
                                     >
                                         <strong>{schedule.availableDay}</strong>
 
-                                        <span>
-                                            {schedule.startDate}
-                                            {schedule.startDate !== schedule.endDate &&
-                                                ` - ${schedule.endDate}`}
-                                        </span>
+                                        <span>{schedule.startDate}</span>
 
                                         <span>
                                             {schedule.startTime?.slice(0, 5)} -{" "}
@@ -159,22 +179,26 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                         )}
                     </div>
 
-                    <div className="booking-form-group">
-                        <label>Appointment Date</label>
-                        <input
-                            type="date"
-                            value={appointmentDate}
-                            onChange={(e) => setAppointmentDate(e.target.value)}
-                        />
-                    </div>
+                    <div className="time-field-row">
+                        <div className="booking-form-group">
+                            <label>Start Time</label>
+                            <input
+                                type="text"
+                                value={appointmentTime}
+                                placeholder="Select a slot"
+                                readOnly
+                            />
+                        </div>
 
-                    <div className="booking-form-group">
-                        <label>Appointment Time</label>
-                        <input
-                            type="time"
-                            value={appointmentTime}
-                            onChange={(e) => setAppointmentTime(e.target.value)}
-                        />
+                        <div className="booking-form-group">
+                            <label>End Time</label>
+                            <input
+                                type="text"
+                                value={appointmentEndTime}
+                                placeholder="Select a slot"
+                                readOnly
+                            />
+                        </div>
                     </div>
 
                     <div className="booking-form-group">
