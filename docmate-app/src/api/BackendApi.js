@@ -34,6 +34,21 @@ export const getAvailableSlots = (doctorId) => {
   return axiosInstance.get(`/doctor/get-available-slots/${doctorId}`);
 };
 
+export const getUserProfile = () => {
+  return axiosInstance.get("/auth/user-profile");
+};
+
+export const uploadUserImage = (userId, file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  return axiosInstance.post(`/auth/upload-user-image/${userId}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
 export const logoutUser = () => {
   return axiosInstance.post("/auth/logout");
 };

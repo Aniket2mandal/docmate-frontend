@@ -2,16 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaBell, FaSun, FaMoon, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import "./Navbar.css";
-import { logoutUser } from "../../api/BackendApi";
+import { logoutUser,getUserProfile } from "../../api/BackendApi";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profile, setProfile] = useState(null);
   const menuRef = useRef(null);
   const navigate = useNavigate();
 
-    const userEmail = localStorage.getItem("email") || "User";
+  const userEmail = localStorage.getItem("email") || "User";
 
 
   const toggleDarkMode = () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
-    const handleLogout = async () => {
+  const handleLogout = async () => {
     try {
       await logoutUser();
 
@@ -47,6 +48,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    fetchProfile();
+
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
@@ -57,7 +60,29 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+
   }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await getUserProfile();
+
+      if (response.data?.status === true) {
+        // console.log("Profile data:", response.data.data);
+        setProfile(response.data.data);
+       
+      }
+    } catch (error) {
+      console.error("Profile fetch error:", error);
+    }
+  };
+
+  const role = localStorage.getItem("role")?.toUpperCase();
+  console.log(profile);
+  const profileImage =
+    role === "DOCTOR"
+      ? profile?.doctorCore?.user?.imageUrl
+      : profile?.patientCore?.user?.imageUrl;
 
 
   return (
@@ -79,7 +104,7 @@ const Navbar = () => {
         <FaBell className="notification-icon" />
         <img
           className="profile-img"
-          src="https://i.pravatar.cc/40"
+          src={profileImage}
           alt="profile"
           onClick={toggleMenu}
         />
