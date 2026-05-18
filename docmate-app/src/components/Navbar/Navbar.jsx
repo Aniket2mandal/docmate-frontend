@@ -37,7 +37,7 @@ const Navbar = () => {
         confirmButtonColor: "#3085d6"
       });
 
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       console.error("Logout error", err);
 

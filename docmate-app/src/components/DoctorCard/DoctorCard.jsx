@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import "./DoctorCard.css";
 import doctorImg from "../../assets/doctor.png";
@@ -28,6 +28,17 @@ const DoctorCard = ({ doctor }) => {
         setShowBookingModal(true);
     };
 
+    const handleExploreNow = () => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            navigate("/login");
+            return;
+        }
+
+        navigate(`/doctor-detail/${doctor.doctorId}`);
+    };
+
     return (
 
         <div className="doctor-card">
@@ -44,16 +55,10 @@ const DoctorCard = ({ doctor }) => {
 
             <div className="doctorbtn-container">
 
-                <Link
-                    to={`/doctor-detail/${doctor.doctorId}`}
-                    style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                    }}
-                >
-                    <button className="doctorexp-btn">Explore now <FaArrowRight /></button>\
+                <button className="doctorexp-btn" onClick={handleExploreNow}>
+                    Explore now <FaArrowRight />
+                </button>
 
-                </Link>
                 <button className="doctorexp-btn2" onClick={() => handleBookNow()}>
                     Book now
                 </button>
