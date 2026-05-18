@@ -1,0 +1,164 @@
+.doctor-schedule-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f6f8fc;
+  color: #111827;
+}
+
+.doctor-schedule-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f6f8fc;
+}
+
+.doctor-schedule-content {
+  padding: 32px 42px;
+}
+
+.doctor-schedule-header {
+  margin-bottom: 24px;
+}
+
+.doctor-schedule-header h2 {
+  margin: 0 0 8px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.doctor-schedule-header p {
+  margin: 0;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.doctor-schedule-card {
+  max-width: 850px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 28px;
+  border: 1px solid #e8eefc;
+  box-shadow: 0 14px 38px rgba(15, 23, 42, 0.06);
+}
+
+.doctor-schedule-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.doctor-schedule-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-schedule-input-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.doctor-schedule-input-group input {
+  height: 52px;
+  border: 1px solid #dbe5f5;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 15px;
+  outline: none;
+  background: #fbfdff;
+  color: #111827;
+}
+
+.doctor-schedule-input-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.doctor-schedule-error {
+  margin-top: 20px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.doctor-schedule-success {
+  margin-top: 20px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.doctor-schedule-submit-btn {
+  margin-top: 26px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 26px;
+  border-radius: 14px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
+}
+
+.doctor-schedule-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.doctor-schedule-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* dark mode */
+body.dark-mode .doctor-schedule-page,
+body.dark-mode .doctor-schedule-main {
+  background: #0f172a;
+}
+
+body.dark-mode .doctor-schedule-header h2,
+body.dark-mode .doctor-schedule-input-group label {
+  color: #f8fafc;
+}
+
+body.dark-mode .doctor-schedule-header p {
+  color: #cbd5e1;
+}
+
+body.dark-mode .doctor-schedule-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark-mode .doctor-schedule-input-group input {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+/* responsive */
+@media (max-width: 700px) {
+  .doctor-schedule-content {
+    padding: 22px 16px;
+  }
+
+  .doctor-schedule-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-schedule-card {
+    padding: 22px 16px;
+  }
+
+  .doctor-schedule-submit-btn {
+    width: 100%;
+  }
+}

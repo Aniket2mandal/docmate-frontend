@@ -67,7 +67,11 @@ const Login = () => {
 
         // redirect
         // window.location.href = "/dashboard";
+        if(response.data.data.role === "DOCTOR") {
+          navigate("/dashboard/doctor", { state: response.data });
+        } else if(response.data.data.role === "PATIENT") {
         navigate("/dashboard/user", { state: response.data });
+        }
 
       }
 

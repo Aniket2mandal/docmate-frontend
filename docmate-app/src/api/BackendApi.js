@@ -49,6 +49,16 @@ export const uploadUserImage = (userId, file) => {
   });
 };
 
+export const recommendDoctorsBySymptoms = (symptoms) => {
+  return axiosInstance.post("/recommendation/doctors-by-symptoms", {
+    symptoms: symptoms,
+  });
+};
+
+export const createDoctorSchedule = (scheduleData) => {
+  return axiosInstance.post("doctor/create-schedule", scheduleData);
+};
+
 export const logoutUser = () => {
   return axiosInstance.post("/auth/logout");
 };

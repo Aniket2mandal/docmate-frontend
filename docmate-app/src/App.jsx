@@ -47,6 +47,7 @@ import AppointmentDetail from "./pages/AppointmentDetail/AppointmentDetail";
 import DoctorDashboard from "./pages/DashboardDoctor/Doctor/DoctorDashboard";
 import DoctorDetail from "./pages/DoctorDetail/DoctorDetail";
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
+import CreateSchedule from "./pages/DashboardDoctor/CreateSchedule/CreateSchedule";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -147,7 +148,23 @@ function App() {
           }
         />
 
-        <Route path="/dashboard/doctor" element={<DoctorDashboard />} />
+        <Route
+          path="/dashboard/doctor"
+          element={
+            <ProtectedRoute allowedRoles={["DOCTOR"]}>
+              <DoctorDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+          <Route
+          path="/dashboard/doctor/schedule"
+          element={
+            <ProtectedRoute allowedRoles={["DOCTOR"]}>
+              <CreateSchedule />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
