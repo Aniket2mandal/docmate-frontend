@@ -8,7 +8,9 @@ import {
   FaHistory,
   FaCog,
   FaChevronDown,
-  FaChevronUp
+  FaChevronUp,
+  FaCalendarPlus,
+  
 } from "react-icons/fa";
 import "./Sidebar.css";
 
@@ -115,10 +117,17 @@ const Sidebar = () => {
               </div>
             </li>
 
-                <li>
-              <FaUserMd className="icon" />
+            <li>
+              <FaCalendarPlus className="icon" />
               <a href="/dashboard/doctor/schedule" className="dashboard-link">
                 <span>Create Schedule</span>
+              </a>
+            </li>
+
+            <li>
+              <FaCalendarAlt className="icon" />
+              <a href="/dashboard/doctor/schedule-list" className="dashboard-link">
+                <span>View Schedule</span>
               </a>
             </li>
           </>

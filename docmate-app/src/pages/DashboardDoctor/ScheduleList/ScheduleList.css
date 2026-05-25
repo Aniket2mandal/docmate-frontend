@@ -1,0 +1,179 @@
+.schedule-list-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.schedule-list-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.schedule-list-content {
+  padding: 32px 34px 60px;
+}
+
+.schedule-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.schedule-list-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.schedule-list-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.schedule-list-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.all-schedule-btn,
+.available-slot-btn {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.all-schedule-btn {
+  background: #eef2f7;
+  color: #111827;
+}
+
+.available-slot-btn {
+  background: #2f80ed;
+  color: #ffffff;
+}
+
+.schedule-list-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.schedule-list-card-header {
+  margin-bottom: 18px;
+}
+
+.schedule-list-card-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #111827;
+}
+
+.schedule-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+}
+
+.schedule-table thead {
+  background: #f1f6ff;
+}
+
+.schedule-table th {
+  text-align: left;
+  padding: 14px 16px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 800;
+  border-bottom: 1px solid #dbe7f4;
+}
+
+.schedule-table td {
+  padding: 15px 16px;
+  color: #111827;
+  font-size: 14px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.schedule-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-badge.available {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.booked {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.schedule-loading,
+.schedule-empty {
+  color: #7b8797;
+  font-size: 15px;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 800px) {
+  .schedule-list-content {
+    padding: 24px 18px 40px;
+  }
+
+  .schedule-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .schedule-list-actions {
+    width: 100%;
+  }
+
+  .all-schedule-btn,
+  .available-slot-btn {
+    width: 100%;
+  }
+}
+.create-consultation-btn {
+  border: none;
+  background: #2f80ed;
+  color: #ffffff;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-consultation-btn:hover {
+  background: #1f6fd6;
+}
+
+.create-consultation-btn:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
