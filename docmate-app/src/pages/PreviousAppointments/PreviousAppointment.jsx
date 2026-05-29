@@ -80,7 +80,7 @@ const PreviousAppointments = () => {
                             View Details
                           </button></a> */}
                             <Link
-                              to={`/appointment-detail/${appt.appointmentId}`}
+                              to={`/dashboard/user/appointment-detail/${appt.appointmentId}`}
                               style={{
                                 textDecoration: "none",
                                 color: "inherit",

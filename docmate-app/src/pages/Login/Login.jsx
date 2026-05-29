@@ -65,6 +65,10 @@ const Login = () => {
           localStorage.setItem("doctorId", response.data.data.doctorId);
         }
 
+        if(response.data.data?.name) {
+          localStorage.setItem("name", response.data.data.name);
+        }
+
         // redirect
         // window.location.href = "/dashboard";
         if(response.data.data.role === "DOCTOR") {

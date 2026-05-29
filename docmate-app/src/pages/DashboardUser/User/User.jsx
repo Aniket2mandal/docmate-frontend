@@ -8,6 +8,9 @@ import "./User.css";
 import HistoryProfile from "../../../components/HistoryProfileCard/HistoryProfile";
 
 const Dashboard = () => {
+
+  const name = localStorage.getItem("name") || "User";
+
   return (
     <div className="dashboard">
 
@@ -23,7 +26,7 @@ const Dashboard = () => {
           Welcome back,
         </h2>
         <h2 className="user-name">
-          Linda Subedi 👋
+          {name} 👋
         </h2>
         </div>
 

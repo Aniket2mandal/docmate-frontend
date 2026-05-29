@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaUserMd, FaArrowRight, FaFileMedical, FaPrescriptionBottleAlt } from "react-icons/fa";
 import "./HistoryProfile.css";
 
@@ -43,7 +44,16 @@ const HistoryProfile = () => {
                     <span className="label">Member since</span>
                     <span className="text-muted">March, 2026</span>
                 </div>
+
+                 <Link
+                    to={`/profile`}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
                 <button className="profile-card-button">View Profile <FaArrowRight /></button>
+                </Link>
             </div>
         </div>
     );

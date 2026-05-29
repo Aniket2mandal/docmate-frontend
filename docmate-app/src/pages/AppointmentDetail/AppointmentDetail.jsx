@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import "./AppointmentDetail.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
@@ -13,7 +13,7 @@ const AppointmentDetail = () => {
   const [appt, setAppt] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
   const appointmentId =
     appointmentIdFromParams ||
@@ -157,17 +157,34 @@ const AppointmentDetail = () => {
                   {/* <button className="primary-btn">Book Again</button> */}
 
                   <button className="primary-btn" onClick={() => setShowBookingModal(true)}>
-                   Book Again
+                    Book Again
                   </button>
                   <BookAppointmentModal
                     isOpen={showBookingModal}
                     onClose={() => setShowBookingModal(false)}
                     doctorId={appt?.doctor?.doctorId}
                     doctorName={`Dr. ${fullName}`}
-                />
+                  />
 
-                  <button className="secondary-btn">Medical Record</button>
-                  <button className="secondary-btn">Medication</button>
+                  <Link
+                    to={`/dashboard/user/medical-records`}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
+                    <button className="secondary-btn">Medical Record</button>
+                  </Link>
+
+                  <Link
+                    to={`/dashboard/user/medicine-reports`}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
+                    <button className="secondary-btn">Medication</button>
+                  </Link>
                 </div>
               </div>
 

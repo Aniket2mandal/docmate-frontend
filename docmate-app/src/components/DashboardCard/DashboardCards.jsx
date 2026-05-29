@@ -14,7 +14,7 @@ const DashboardCards = () => {
         <h4>Find Doctors</h4>
         <p>Find best doctors near you</p>
         <Link
-          to={`/dashboard/find-doctors`}
+          to={`/dashboard/user/find-doctors`}
           style={{
             textDecoration: "none",
             color: "inherit",
@@ -29,7 +29,7 @@ const DashboardCards = () => {
         <h4>Medical Records</h4>
         <p>View your medical history</p>
         <Link
-          to={`/dashboard/medical-records`}
+          to={`/dashboard/user/medical-records`}
           style={{
             textDecoration: "none",
             color: "inherit",
@@ -46,7 +46,7 @@ const DashboardCards = () => {
         <h4>Medicine Reports</h4>
         <p>Check your prescriptions</p>
         <Link
-          to={`/dashboard/medicine-reports`}
+          to={`/dashboard/user/medicine-reports`}
           style={{
             textDecoration: "none",
             color: "inherit",

@@ -6,6 +6,9 @@ import Navbar from "../../../components/Navbar/Navbar";
 import "./DoctorDashboard.css";
 
 const DoctorDashboard = () => {
+
+  const name = localStorage.getItem("name") || "User";
+
   return (
     <div className="dashboard">
 
@@ -21,7 +24,7 @@ const DoctorDashboard = () => {
               Welcome back,
             </h2>
             <h2 className="user-name">
-              Dr. Linda Subedi 👋
+              Dr. {name} 👋
             </h2>
           </div>
 
