@@ -10,7 +10,7 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaCalendarPlus,
-  
+
 } from "react-icons/fa";
 import "./Sidebar.css";
 
@@ -47,21 +47,21 @@ const Sidebar = () => {
 
             <li>
               <FaUserMd className="icon" />
-              <a href="/dashboard/find-doctors" className="dashboard-link">
+              <a href="/dashboard/user/find-doctors" className="dashboard-link">
                 <span>Find Doctors</span>
               </a>
             </li>
 
             <li>
               <FaFileMedical className="icon" />
-              <a href="/dashboard/medical-records" className="dashboard-link">
+              <a href="/dashboard/user/medical-records" className="dashboard-link">
                 <span>Medical Record</span>
               </a>
             </li>
 
             <li>
               <FaCapsules className="icon" />
-              <a href="/dashboard/medicine-reports" className="dashboard-link">
+              <a href="/dashboard/user/medicine-reports" className="dashboard-link">
                 <span>Medicine Report</span>
               </a>
             </li>
@@ -84,7 +84,7 @@ const Sidebar = () => {
                 <div className="dropdown">
                   <p>
                     <a
-                      href="/upcoming-appointments"
+                      href="/dashboard/user/upcoming-appointments"
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       Upcoming appointment
@@ -93,7 +93,7 @@ const Sidebar = () => {
 
                   <p>
                     <a
-                      href="/previous-appointments"
+                      href="/dashboard/user/previous-appointments"
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       Previous appointment

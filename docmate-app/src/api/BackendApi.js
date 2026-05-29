@@ -34,6 +34,10 @@ export const getAvailableSlots = (doctorId) => {
   return axiosInstance.get(`/doctor/get-available-slots/${doctorId}`);
 };
 
+export const deleteScheduleApi = (scheduleId) => {
+  return axiosInstance.delete(`/doctor/delete-schedule/${scheduleId}`);
+};
+
 export const getUserProfile = () => {
   return axiosInstance.get("/auth/user-profile");
 };
@@ -49,6 +53,10 @@ export const uploadUserImage = (userId, file) => {
   });
 };
 
+export const getAllMedicalRecordsApi = () => {
+  return axiosInstance.get("/medical-record/medical-records");
+};
+
 export const recommendDoctorsBySymptoms = (symptoms) => {
   return axiosInstance.post("/recommendation/doctors-by-symptoms", {
     symptoms: symptoms,
@@ -62,6 +70,39 @@ export const createDoctorSchedule = (scheduleData) => {
 export const logoutUser = () => {
   return axiosInstance.post("/auth/logout");
 };
+
+
+export const createMedicalRecord = (medicalRecordRequest, testReports) => {
+  const formData = new FormData();
+
+  formData.append(
+    "medicalRecordRequest",
+    new Blob([JSON.stringify(medicalRecordRequest)], {
+      type: "application/json",
+    })
+  );
+
+  if (testReports && testReports.length > 0) {
+    Array.from(testReports).forEach((file) => {
+      formData.append("testReports", file);
+    });
+  }
+
+  return axiosInstance.post("/medical-record/create", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const getMedicalRecordByAppointmentId = (appointmentId) => {
+  return axiosInstance.get(`/medical-record/appointment-medical-record/${appointmentId}`);
+};
+
+export const getMedicalRecordByIdApi = (medicalRecordId) => {
+  return axiosInstance.get(`/medical-record/${medicalRecordId}`);
+};
+
 
 export const loginUser = (username, password) => {
   return axiosInstance.post("/auth/login-user", {

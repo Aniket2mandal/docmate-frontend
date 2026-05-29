@@ -49,6 +49,8 @@ import DoctorDetail from "./pages/DoctorDetail/DoctorDetail";
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 import CreateSchedule from "./pages/DashboardDoctor/CreateSchedule/CreateSchedule";
 import ScheduleList from "./pages/DashboardDoctor/ScheduleList/ScheduleList";
+import CreateMedicalRecord from "./pages/DashboardDoctor/CreateMedicalRecord/CreateMedicalRecord";
+import MedicalRecordDetail from "./pages/DashboardUser/MedicalRecordDetail/MedicalRecordDetail";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -87,7 +89,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/find-doctors"
+          path="/dashboard/user/find-doctors"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <Doctor />
@@ -96,7 +98,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/medical-records"
+          path="/dashboard/user/medical-records"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <MedicalRecords />
@@ -105,7 +107,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/medicine-reports"
+          path="/dashboard/user/medicine-reports"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <MedicineReports />
@@ -123,7 +125,7 @@ function App() {
         />
 
         <Route
-          path="/upcoming-appointments"
+          path="/dashboard/user/upcoming-appointments"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <UpcomingAppointments />
@@ -132,7 +134,7 @@ function App() {
         />
 
         <Route
-          path="/previous-appointments"
+          path="/dashboard/user/previous-appointments"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <PreviousAppointments />
@@ -141,10 +143,19 @@ function App() {
         />
 
         <Route
-          path="/appointment-detail/:appointmentId"
+          path="/dashboard/user/appointment-detail/:appointmentId"
           element={
             <ProtectedRoute allowedRoles={["PATIENT"]}>
               <AppointmentDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/user/medical-record-detail/:medicalRecordId"
+          element={
+            <ProtectedRoute allowedRoles={["PATIENT"]}>
+              <MedicalRecordDetail />
             </ProtectedRoute>
           }
         />
@@ -172,6 +183,16 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["DOCTOR"]}>
               <ScheduleList />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/dashboard/doctor/create-medical-record/:appointmentId"
+          element={
+            <ProtectedRoute allowedRoles={["DOCTOR"]}>
+              <CreateMedicalRecord />
             </ProtectedRoute>
           }
         />

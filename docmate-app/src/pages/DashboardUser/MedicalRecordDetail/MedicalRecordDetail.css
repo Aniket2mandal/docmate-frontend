@@ -1,0 +1,251 @@
+.medical-detail-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.medical-detail-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.medical-detail-content {
+  padding: 32px 34px 60px;
+}
+
+.medical-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.medical-detail-header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  color: #061226;
+}
+
+.medical-detail-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.back-btn {
+  border: none;
+  background: #eef2f7;
+  color: #111827;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.medical-detail-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.doctor-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #f8fbff;
+  border: 1px solid #e1ebf7;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.doctor-summary-card img {
+  width: 82px;
+  height: 82px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #dbeafe;
+}
+
+.doctor-summary-card h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #061226;
+}
+
+.doctor-summary-card p {
+  margin: 6px 0;
+  color: #2f80ed;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.doctor-summary-card span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.visit-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.visit-info-box {
+  background: #f8fbff;
+  border: 1px solid #e1ebf7;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.visit-info-box span {
+  display: block;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.visit-info-box strong {
+  color: #061226;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.detail-section {
+  margin-top: 28px;
+}
+
+.detail-section h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #061226;
+}
+
+.detail-section p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.medicine-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.medicine-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.medicine-table thead {
+  background: #f1f6ff;
+}
+
+.medicine-table th,
+.medicine-table td {
+  padding: 14px 15px;
+  border-bottom: 1px solid #e5eaf1;
+  text-align: left;
+  font-size: 14px;
+}
+
+.medicine-table th {
+  color: #374151;
+  font-weight: 800;
+}
+
+.medicine-table td {
+  color: #111827;
+}
+
+.medicine-status {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.report-card {
+  border: 1px solid #e1ebf7;
+  border-radius: 18px;
+  background: #f8fbff;
+  overflow: hidden;
+}
+
+.report-preview {
+  height: 160px;
+  background: #eaf3ff;
+}
+
+.report-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.report-card-bottom {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-card-bottom span {
+  font-weight: 800;
+  color: #061226;
+}
+
+.report-card-bottom button {
+  border: none;
+  background: #2f80ed;
+  color: #ffffff;
+  padding: 9px 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.medical-detail-loading {
+  font-size: 17px;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .medical-detail-content {
+    padding: 24px 18px 40px;
+  }
+
+  .medical-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .visit-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-summary-card {
+    align-items: flex-start;
+  }
+}

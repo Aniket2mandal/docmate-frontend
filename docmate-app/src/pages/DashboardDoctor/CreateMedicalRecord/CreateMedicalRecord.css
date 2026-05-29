@@ -1,0 +1,270 @@
+.consultation-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.consultation-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.consultation-content {
+  padding: 32px 34px 60px;
+}
+
+.consultation-header {
+  margin-bottom: 24px;
+}
+
+.consultation-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.consultation-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.consultation-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.consultation-section {
+  margin-bottom: 32px;
+}
+
+.consultation-section h3 {
+  margin: 0 0 18px;
+  font-size: 23px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.consultation-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.consultation-form-group label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.consultation-form-group input,
+.consultation-form-group textarea,
+.consultation-form-group select {
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  outline: none;
+  background: #ffffff;
+}
+
+.consultation-form-group input:focus,
+.consultation-form-group textarea:focus,
+.consultation-form-group select:focus {
+  border-color: #2f80ed;
+}
+
+.consultation-form-group input[readonly] {
+  background: #f8fafc;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.consultation-form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.medication-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.medication-title-row h3 {
+  margin: 0;
+}
+
+.medication-title-row p {
+  margin: 6px 0 0;
+  color: #7b8797;
+  font-size: 15px;
+}
+
+.add-medication-btn {
+  border: none;
+  background: #2f80ed;
+  color: #ffffff;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.medication-card {
+  border: 1px solid #dbe7f4;
+  background: #f8fbff;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.medication-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.medication-card-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+}
+
+.remove-medication-btn {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 8px 13px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.medication-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.consultation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.consultation-cancel-btn {
+  border: none;
+  background: #eef2f7;
+  color: #111827;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.consultation-submit-btn {
+  border: none;
+  background: #2f80ed;
+  color: #ffffff;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.consultation-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+  .consultation-content {
+    padding: 24px 18px 40px;
+  }
+
+  .consultation-card {
+    padding: 20px;
+  }
+
+  .medication-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .medication-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consultation-actions {
+    flex-direction: column;
+  }
+
+  .consultation-cancel-btn,
+  .consultation-submit-btn {
+    width: 100%;
+  }
+}
+
+.test-report-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.test-report-preview-card {
+  position: relative;
+  border: 1px solid #dbe7f4;
+  border-radius: 14px;
+  background: #f8fbff;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.test-report-preview-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.test-report-preview-card p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove-report-preview-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  background: #ef4444;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+  z-index: 2;
+}
