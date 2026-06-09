@@ -24,7 +24,7 @@ const DoctorDashboard = () => {
               Welcome back,
             </h2>
             <h2 className="user-name">
-              Dr. {name} 👋 hello
+              Dr. {name} 👋
             </h2>
           </div>
 
