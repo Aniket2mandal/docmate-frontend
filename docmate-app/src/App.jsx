@@ -51,6 +51,8 @@ import CreateSchedule from "./pages/DashboardDoctor/CreateSchedule/CreateSchedul
 import ScheduleList from "./pages/DashboardDoctor/ScheduleList/ScheduleList";
 import CreateMedicalRecord from "./pages/DashboardDoctor/CreateMedicalRecord/CreateMedicalRecord";
 import MedicalRecordDetail from "./pages/DashboardUser/MedicalRecordDetail/MedicalRecordDetail";
+import AdminDashboard from "./pages/AdminDashboard/Admin/AdminDashboard";
+import AdminPatient from "./pages/AdminDashboard/AdminPatient/AdminPatient";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -193,6 +195,25 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["DOCTOR"]}>
               <CreateMedicalRecord />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/dashboard/admin"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/admin/patients"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <AdminPatient />
             </ProtectedRoute>
           }
         />

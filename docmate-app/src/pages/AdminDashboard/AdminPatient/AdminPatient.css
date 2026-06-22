@@ -1,0 +1,235 @@
+.admin-patient-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.admin-patient-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.admin-patient-content {
+  padding: 32px 34px 60px;
+}
+
+.admin-patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.admin-patient-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.admin-patient-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.admin-patient-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.create-patient-btn {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2f80ed;
+  color: #ffffff;
+}
+
+.create-patient-btn:hover {
+  background: #1f6fd6;
+}
+
+.admin-patient-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.admin-patient-card-header {
+  margin-bottom: 18px;
+}
+
+.admin-patient-card-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #111827;
+}
+
+.patient-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1150px;
+}
+
+.patient-table thead {
+  background: #f1f6ff;
+}
+
+.patient-table th {
+  text-align: left;
+  padding: 14px 16px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 800;
+  border-bottom: 1px solid #dbe7f4;
+  white-space: nowrap;
+}
+
+.patient-table td {
+  padding: 15px 16px;
+  color: #111827;
+  font-size: 14px;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.patient-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.patient-table-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #dbeafe;
+}
+
+.patient-table-placeholder {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Single status toggle button */
+.patient-status-toggle {
+  border: none;
+  width: 90px;
+  height: 36px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.patient-status-toggle.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.patient-status-toggle.active:hover {
+  background: #bbf7d0;
+}
+
+.patient-status-toggle.inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.patient-status-toggle.inactive:hover {
+  background: #fecaca;
+}
+
+/* Action buttons */
+.patient-action-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-patient-btn,
+.delete-patient-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-patient-btn {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.edit-patient-btn:hover {
+  background: #bfdbfe;
+}
+
+.delete-patient-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.delete-patient-btn:hover {
+  background: #fecaca;
+}
+
+.patient-loading,
+.patient-empty {
+  color: #7b8797;
+  font-size: 15px;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 800px) {
+  .admin-patient-content {
+    padding: 24px 18px 40px;
+  }
+
+  .admin-patient-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-patient-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .create-patient-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

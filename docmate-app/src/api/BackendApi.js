@@ -103,6 +103,10 @@ export const getMedicalRecordByIdApi = (medicalRecordId) => {
   return axiosInstance.get(`/medical-record/${medicalRecordId}`);
 };
 
+export const getAllPatientApi = () => {
+  return axiosInstance.get("/admin/get-all-patient");
+};
+
 
 export const loginUser = (username, password) => {
   return axiosInstance.post("/auth/login-user", {

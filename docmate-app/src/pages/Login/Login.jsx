@@ -75,6 +75,8 @@ const Login = () => {
           navigate("/dashboard/doctor", { state: response.data });
         } else if(response.data.data.role === "PATIENT") {
         navigate("/dashboard/user", { state: response.data });
+        }else if(response.data.data.role === "ADMIN"){
+          navigate("/dashboard/admin",{state: response.data});
         }
 
       }
