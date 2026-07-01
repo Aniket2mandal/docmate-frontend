@@ -79,10 +79,7 @@ const Navbar = () => {
 
   const role = localStorage.getItem("role")?.toUpperCase();
   console.log(profile);
-  const profileImage =
-    role === "DOCTOR"
-      ? profile?.doctorCore?.user?.imageUrl
-      : profile?.patientCore?.user?.imageUrl;
+  const profileImage =profile?.imageUrl;
 
 
   return (

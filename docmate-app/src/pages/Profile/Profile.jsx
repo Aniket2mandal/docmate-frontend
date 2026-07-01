@@ -46,10 +46,10 @@ const Profile = () => {
 
   const fullName = `${profile.firstName || ""} ${profile.lastName || ""}`;
 
-  const profileImage =
-    role === "DOCTOR"
-      ? profile.doctorCore?.user?.imageUrl
-      : profile.patientCore?.user?.imageUrl;
+  const profileImage =profile?.imageUrl;
+    // role === "DOCTOR"
+    //   ? profile.doctorCore?.user?.imageUrl
+    //   : profile.patientCore?.user?.imageUrl;
 
   const firstLetter = profile.firstName
     ? profile.firstName.charAt(0).toUpperCase()

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
-import { getAllPatientApi } from "../../../api/BackendApi";
+import { getAllPatientApi,changeUserStatusApi,deletePatientApi } from "../../../api/BackendApi";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "./AdminPatient.css";
@@ -57,25 +57,25 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
     navigate("/dashboard/admin/patients/create");
   };
 
-  const handleEditPatient = (patient) => {
-    const userId = patient?.user?.id;
+  // const handleEditPatient = (patient) => {
+  //   const userId = patient?.user?.id;
 
-    if (!userId) {
-      Swal.fire({
-        icon: "error",
-        title: "Patient not found",
-        text: "Patient user id is missing.",
-      });
-      return;
-    }
+  //   if (!userId) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Patient not found",
+  //       text: "Patient user id is missing.",
+  //     });
+  //     return;
+  //   }
 
-    navigate(`/dashboard/admin/patients/edit/${userId}`);
-  };
+  //   navigate(`/dashboard/admin/patients/edit/${userId}`);
+  // };
 
   const handleDeletePatient = async (patient) => {
-    const userId = patient?.user?.id;
+    const patientId = patient?.patientId;
 
-    if (!userId) {
+    if (!patientId) {
       Swal.fire({
         icon: "error",
         title: "Patient not found",
@@ -100,7 +100,7 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
 
     try {
       // connect delete API later
-      // await deletePatientApi(userId);
+      await deletePatientApi(patientId);
 
       Swal.fire({
         icon: "success",
@@ -124,6 +124,7 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
   const handlePatientStatusToggle = async (patient) => {
     const userId = patient?.user?.id;
     const currentStatus = getStatus(patient);
+
     const newStatus = currentStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE";
 
     if (!userId) {
@@ -150,19 +151,19 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
     }
 
     try {
-      // connect status API later
-      // await changePatientStatusApi(userId, newStatus);
+     
+      await changeUserStatusApi(userId, newStatus);
 
       setPatients((prevPatients) =>
         prevPatients.map((p) =>
           p?.user?.id === userId
             ? {
-                ...p,
-                user: {
-                  ...p.user,
-                  status: newStatus,
-                },
-              }
+              ...p,
+              user: {
+                ...p.user,
+                status: newStatus,
+              },
+            }
             : p
         )
       );
@@ -174,6 +175,11 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
         confirmButtonColor: "#2f80ed",
       });
     } catch (error) {
+
+       console.log("Full Error:", error);
+  console.log("Response Data:", error.response?.data);
+  console.log("Status Code:", error.response?.status);
+
       Swal.fire({
         icon: "error",
         title: "Status update failed",
@@ -279,12 +285,12 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
 
                           <td>
                             <div className="patient-action-buttons">
-                              <button
+                              {/* <button
                                 className="edit-patient-btn"
                                 onClick={() => handleEditPatient(patient)}
                               >
                                 <FaEdit />
-                              </button>
+                              </button> */}
 
                               <button
                                 className="delete-patient-btn"

@@ -4,6 +4,10 @@ export const getAllDoctors = (page = 0, size = 9) => {
   return axiosInstance.get(`/public/get-all-doctor?page=${page}&size=${size}`);
 };
 
+export const getAllDoctorsAdmin = (page = 0, size = 9) => {
+  return axiosInstance.get(`/admin/get-all-doctor?page=${page}&size=${size}`);
+};
+
 export const getPatientUpcomingAppointments = (patientId) => {
   return axiosInstance.get(`/appointment/get-patient-upcoming-appointment/${patientId}`);
 };
@@ -105,6 +109,24 @@ export const getMedicalRecordByIdApi = (medicalRecordId) => {
 
 export const getAllPatientApi = () => {
   return axiosInstance.get("/admin/get-all-patient");
+};
+
+export const createDoctorApi = (doctorRequest) => {
+  return axiosInstance.post("/admin/create-doctor", doctorRequest);
+};
+
+export const deleteDoctorApi = (doctorId) => {
+  return axiosInstance.delete(`/admin/delete-doctor/${doctorId}`);
+};
+
+export const deletePatientApi = (patientId) => {
+  return axiosInstance.delete(`/admin/delete-patient/${patientId}`);
+};
+
+export const changeUserStatusApi = (userId, status) => {
+  return axiosInstance.put(`/admin/change-status/${userId}`, {
+    status: status,
+  });
 };
 
 

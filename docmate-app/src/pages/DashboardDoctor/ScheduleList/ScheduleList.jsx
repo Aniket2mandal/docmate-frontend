@@ -105,7 +105,7 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
     };
 
     const handleDeleteSchedule = async (schedule) => {
-        const scheduleId = schedule.id || schedule.scheduleId;
+        const scheduleId = schedule.id;
 
         if (!scheduleId) {
             Swal.fire({
