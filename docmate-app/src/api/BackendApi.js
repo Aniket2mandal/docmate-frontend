@@ -115,6 +115,13 @@ export const createDoctorApi = (doctorRequest) => {
   return axiosInstance.post("/admin/create-doctor", doctorRequest);
 };
 
+export const updateDoctorApi = (doctorId, data) => {
+  return axiosInstance.put(
+    `/admin/update-doctor/${doctorId}`,
+    data
+  );
+};
+
 export const deleteDoctorApi = (doctorId) => {
   return axiosInstance.delete(`/admin/delete-doctor/${doctorId}`);
 };

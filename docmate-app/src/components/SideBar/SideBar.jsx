@@ -160,26 +160,26 @@ const Sidebar = () => {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <FaCalendarAlt className="icon" />
               <a href="/dashboard/admin/appointments" className="dashboard-link">
                 <span>Appointments</span>
               </a>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <FaFileMedical className="icon" />
               <a href="/dashboard/admin/medical-records" className="dashboard-link">
                 <span>Medical Records</span>
               </a>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <FaClipboardList className="icon" />
               <a href="/dashboard/admin/reports" className="dashboard-link">
-                <span>Reports</span>
+                <span>Users</span>
               </a>
-            </li>
+            </li> */}
 
             <li>
               <FaUsers className="icon" />
