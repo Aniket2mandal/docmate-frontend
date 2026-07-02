@@ -251,6 +251,13 @@
   line-height: 1.7;
 }
 
+.doctor-btn-grp{
+    display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
 .rating-box {
   display: flex;
   flex-direction: column;
@@ -279,4 +286,29 @@
   .doctor-about-rating-card {
     grid-template-columns: 1fr;
   }
+}
+
+.doctor-button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.rate-btn {
+    background: #f59e0b;
+    color: white;
+
+    border: none;
+
+    padding: 12px 24px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.rate-btn:hover {
+    background: #d97706;
 }

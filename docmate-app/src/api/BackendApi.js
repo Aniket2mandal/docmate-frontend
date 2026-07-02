@@ -136,6 +136,9 @@ export const changeUserStatusApi = (userId, status) => {
   });
 };
 
+export const rateDoctorApi = (data) => {
+    return axiosInstance.post("/patient/rate-doctor", data);
+};
 
 export const loginUser = (username, password) => {
   return axiosInstance.post("/auth/login-user", {

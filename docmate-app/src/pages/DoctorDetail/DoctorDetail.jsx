@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { getDoctorDetails } from "../../api/BackendApi";
 import "./DoctorDetail.css";
 import BookAppointmentModal from "../../components/BookModal/BookAppointmentModal";
+import RateDoctorModal from "../../components/RateDoctorModal/RateDoctorModal";
 
 const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     const { doctorId: doctorIdFromParams } = useParams();
@@ -17,6 +18,7 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [showBookingModal, setShowBookingModal] = useState(false);
+    const [showRatingModal, setShowRatingModal] = useState(false);
 
     const getImageUrl = (imageUrl) => {
         if (!imageUrl) {
@@ -29,6 +31,18 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
 
         const baseUrl = import.meta.env.VITE_BASE_URL?.replace(/\/$/, "");
         return `${baseUrl}/${imageUrl}`;
+    };
+
+    const renderStars = (rating = 0) => {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        return (
+            "★".repeat(fullStars) +
+            (halfStar ? "⯨" : "") +
+            "☆".repeat(emptyStars)
+        );
     };
 
     useEffect(() => {
@@ -146,9 +160,16 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                                 Book Appointment
                             </button> */}
 
-                            <button className="book-btn" onClick={() => setShowBookingModal(true)}>
-                                Book Appointment
-                            </button>
+                            <div className="doctor-btn-grp">
+                                <button className="book-btn" onClick={() => setShowBookingModal(true)}>
+                                    Book Appointment
+                                </button>
+
+                                <button className="rate-btn" onClick={() => setShowRatingModal(true)}>
+                                    Rate Doctor
+                                </button>
+                            </div>
+
                             <BookAppointmentModal
                                 isOpen={showBookingModal}
                                 onClose={() => setShowBookingModal(false)}
@@ -156,6 +177,15 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                                 doctorName={`Dr. ${fullName}`}
                             />
 
+                            <RateDoctorModal
+                                isOpen={showRatingModal}
+                                onClose={() => setShowRatingModal(false)}
+                                doctorId={doctor?.doctorId}
+                                onSuccess={() => {
+                                    setShowRatingModal(false);
+                                    // window.location.reload();
+                                }}
+                            />
 
                         </div>
                     </div>
@@ -173,9 +203,14 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                             <h3>Rating</h3>
 
                             <div className="rating-box">
-                                <span className="rating-number">{doctor?.rating || 0}</span>
-                                <span className="rating-stars">★★★★★</span>
-                                <p>{doctor?.ratingCount || 0} reviews</p>
+                                <span className="rating-number">
+                                    {doctor?.rating?.toFixed(1) || "0.0"}
+                                </span>
+
+                                <span className="rating-stars">
+                                    {renderStars(doctor?.rating)}
+                                </span>
+                                <p>{doctor?.ratingCount || 0} patient rated</p>
                             </div>
                         </div>
                     </div>

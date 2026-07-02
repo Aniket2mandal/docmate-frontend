@@ -1,0 +1,100 @@
+.rating-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 99999;
+}
+
+.rating-modal-box {
+  width: 450px;
+  max-width: 90vw;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 30px;
+}
+
+.rating-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.rating-modal-header h2 {
+  margin: 0;
+}
+
+.rating-close-btn {
+  border: none;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: #f1f5f9;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+}
+
+.star-container {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.star {
+  font-size: 45px;
+
+  color: #d1d5db;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.star.active {
+  color: #f59e0b;
+}
+
+.submit-rating-btn {
+  border: none;
+
+  background: #2f80ed;
+
+  color: white;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.submit-rating-btn:disabled {
+  opacity: 0.7;
+}
