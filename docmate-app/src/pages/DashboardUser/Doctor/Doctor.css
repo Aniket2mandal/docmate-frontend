@@ -277,6 +277,45 @@
   text-transform: capitalize;
 }
 
+
+.doctor-specialization {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 6px 0 14px;
+}
+
+.doctor-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 10px;
+}
+
+.doctor-rating {
+  background: #fff7ed;
+  color: #d97706;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.doctor-rating span {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.doctor-fee {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
 /* card buttons */
 .doctor-pro-action-row {
   display: grid;

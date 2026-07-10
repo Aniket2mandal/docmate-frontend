@@ -297,7 +297,21 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
 
                         <div className="doctor-pro-card-body">
                           <h4>{fullName || "Doctor"}</h4>
-                          <p>{doctor?.specialization || "Specialist"}</p>
+
+                          <p className="doctor-specialization">
+                            {doctor?.specialization || "Specialist"}
+                          </p>
+
+                          <div className="doctor-card-info">
+                            <div className="doctor-rating">
+                              ⭐ {doctor?.rating?.toFixed(1) ?? "0.0"}
+                              {/* <span> ({doctor?.ratingCount || 0})</span> */}
+                            </div>
+
+                            <div className="doctor-fee">
+                              Rs. {doctor?.consultation_fee || "0"}
+                            </div>
+                          </div>
                         </div>
 
                         <div className="doctor-pro-action-row">

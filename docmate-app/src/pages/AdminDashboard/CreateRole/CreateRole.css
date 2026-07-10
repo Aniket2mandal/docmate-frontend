@@ -1,0 +1,176 @@
+.create-role-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.create-role-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.create-role-content {
+  padding: 32px 34px 60px;
+}
+
+.create-role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.create-role-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.create-role-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.back-role-btn {
+  border: none;
+  background: #eef2f7;
+  color: #111827;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-role-btn:hover {
+  background: #dbe4ee;
+}
+
+.create-role-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.form-section-title {
+  margin-bottom: 20px;
+}
+
+.form-section-title h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.create-role-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  height: 46px;
+  border: 1px solid #dbe7f4;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.12);
+}
+
+.create-role-submit-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cancel-role-btn,
+.submit-role-btn {
+  border: none;
+  padding: 13px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancel-role-btn {
+  background: #eef2f7;
+  color: #111827;
+}
+
+.cancel-role-btn:hover {
+  background: #dbe4ee;
+}
+
+.submit-role-btn {
+  background: #2f80ed;
+  color: #ffffff;
+}
+
+.submit-role-btn:hover {
+  background: #1f6fd6;
+}
+
+.submit-role-btn:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  .create-role-content {
+    padding: 24px 18px 40px;
+  }
+
+  .create-role-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .create-role-submit-row {
+    flex-direction: column;
+  }
+
+  .cancel-role-btn,
+  .submit-role-btn,
+  .back-role-btn {
+    width: 100%;
+  }
+}

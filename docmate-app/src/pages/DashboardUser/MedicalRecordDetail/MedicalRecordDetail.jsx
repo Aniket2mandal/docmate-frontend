@@ -9,6 +9,8 @@ import {
 } from "../../../api/BackendApi";
 import Swal from "sweetalert2";
 import doctorImg from "../../../assets/doctor.png";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const MedicalRecordDetail = () => {
   const { medicalRecordId } = useParams();
@@ -95,6 +97,57 @@ const MedicalRecordDetail = () => {
     window.open(reportUrl, "_blank");
   };
 
+  const downloadMedicalRecord = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(20);
+    doc.text("Medical Record", 14, 18);
+
+    doc.setFontSize(12);
+
+    doc.text(`Doctor: ${getDoctorName()}`, 14, 35);
+    doc.text(`Specialization: ${record.doctor?.specialization || "-"}`, 14, 43);
+    doc.text(`Qualification: ${record.doctor?.qualification || "-"}`, 14, 51);
+
+    doc.text(`Appointment Date: ${formatDate(appointmentDate)}`, 14, 63);
+    doc.text(`Appointment Time: ${formatTime(appointmentTime)}`, 14, 71);
+    doc.text(`Status: ${appointmentStatus || "-"}`, 14, 79);
+
+    doc.text("Reason For Visit:", 14, 92);
+    doc.text(reasonForVisit || "-", 14, 100);
+
+    doc.text("Diagnosis:", 14, 116);
+    doc.text(record.diagnosis || "-", 14, 124);
+
+    doc.text("Doctor Notes:", 14, 142);
+    doc.text(record.notes || "-", 14, 150);
+
+    autoTable(doc, {
+      startY: 165,
+      head: [[
+        "Medicine",
+        "Dosage",
+        "Frequency",
+        "Time",
+        "Start",
+        "End",
+        "Status"
+      ]],
+      body:
+        record.medications?.map((m) => [
+          m.medicineName,
+          m.dosage,
+          m.frequency,
+          m.timeSchedule,
+          formatDate(m.startDate),
+          formatDate(m.endDate),
+          m.status,
+        ]) || [],
+    });
+
+    doc.save("Medical_Record.pdf");
+  };
+
   const appointmentDate =
     appointment?.appointmentDate || record?.appointmentDate;
 
@@ -153,12 +206,21 @@ const MedicalRecordDetail = () => {
               <p>View consultation summary, prescription and test reports.</p>
             </div>
 
-            <button
-              className="back-btn"
-              onClick={() => navigate("/dashboard/user/medical-records")}
-            >
-              Back
-            </button>
+            <div className="header-buttons">
+              <button
+                className="download-btn"
+                onClick={downloadMedicalRecord}
+              >
+                Download PDF
+              </button>
+
+              <button
+                className="back-btn-report"
+                onClick={() => navigate("/dashboard/user/medical-records")}
+              >
+                Back
+              </button>
+            </div>
           </div>
 
           <div className="medical-detail-card">

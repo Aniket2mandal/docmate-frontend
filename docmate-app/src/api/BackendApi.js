@@ -140,6 +140,18 @@ export const rateDoctorApi = (data) => {
     return axiosInstance.post("/patient/rate-doctor", data);
 };
 
+export const createRoleApi = (data) => {
+  return axiosInstance.post("/admin/create-role", data);
+};
+
+export const getAllRoleApi = () => {
+  return axiosInstance.get("/admin/get-all/role");
+};
+
+export const deleteRoleApi = (roleId) => {
+  return axiosInstance.delete(`/delete/role/${roleId}`);
+};
+
 export const loginUser = (username, password) => {
   return axiosInstance.post("/auth/login-user", {
     username,

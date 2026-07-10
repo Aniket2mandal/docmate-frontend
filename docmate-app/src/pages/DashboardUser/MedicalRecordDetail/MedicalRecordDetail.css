@@ -34,14 +34,59 @@
   font-size: 16px;
 }
 
-.back-btn {
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.download-btn,
+.back-btn-report {
+  height: 46px;
+  min-width: 140px;
+  padding: 0 22px;
   border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.download-btn {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.download-btn:hover {
+  background: #15803d;
+}
+
+.back-btn-report {
   background: #eef2f7;
   color: #111827;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-weight: 800;
-  cursor: pointer;
+}
+
+.back-btn-report:hover {
+  background: #dbe4ee;
+}
+
+@media (max-width: 900px) {
+  .header-buttons {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .download-btn,
+  .back-btn-report {
+    flex: 1;
+    min-width: 140px;
+  }
 }
 
 .medical-detail-card {
