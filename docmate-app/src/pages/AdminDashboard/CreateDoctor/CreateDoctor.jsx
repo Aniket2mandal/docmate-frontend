@@ -245,7 +245,30 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
               </div>
 
               <div className="create-doctor-form-grid">
+
+
                 <div className="form-group">
+                  <label>Specialization</label>
+                  <select
+                    name="specialization"
+                    value={formData.specialization}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Specialization</option>
+                    <option value="General Physician">General Physician</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Orthopedic">Orthopedic</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                    <option value="Psychiatrist">Psychiatrist</option>
+                    <option value="ENT Specialist">ENT Specialist</option>
+                    <option value="Ophthalmologist">Ophthalmologist</option>
+                  </select>
+                </div>
+
+                {/* <div className="form-group">
                   <label>Specialization</label>
                   <input
                     type="text"
@@ -254,7 +277,7 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="e.g. Cardiologist"
                   />
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <label>Experience</label>

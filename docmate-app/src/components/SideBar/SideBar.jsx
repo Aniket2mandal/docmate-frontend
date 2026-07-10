@@ -13,6 +13,7 @@ import {
   FaUsers,
   FaUserInjured,
   FaClipboardList,
+  FaAward
 } from "react-icons/fa";
 import "./Sidebar.css";
 
@@ -160,12 +161,12 @@ const Sidebar = () => {
               </a>
             </li>
 
-            {/* <li>
-              <FaCalendarAlt className="icon" />
-              <a href="/dashboard/admin/appointments" className="dashboard-link">
-                <span>Appointments</span>
+            <li>
+              <FaAward className="icon" />
+              <a href="#" className="dashboard-link">
+                <span>Specialization</span>
               </a>
-            </li> */}
+            </li>
 
             {/* <li>
               <FaFileMedical className="icon" />

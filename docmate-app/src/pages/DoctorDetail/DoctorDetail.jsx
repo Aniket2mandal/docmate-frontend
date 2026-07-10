@@ -74,6 +74,11 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
         fetchDoctorDetails();
     }, [doctorId]);
 
+    const availableSchedules =
+        doctor?.schedules?.filter(
+            (schedule) => schedule.available === "AVAILABLE"
+        ) || [];
+
     if (loading) {
         return (
             <div className="doctor-detail-page">
@@ -179,7 +184,11 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
 
                             <RateDoctorModal
                                 isOpen={showRatingModal}
-                                onClose={() => setShowRatingModal(false)}
+                                onClose={() => {
+                                    setShowRatingModal(false);
+                                    window.location.reload();
+                                }
+                                }
                                 doctorId={doctor?.doctorId}
                                 onSuccess={() => {
                                     setShowRatingModal(false);
@@ -244,18 +253,20 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                             <h3>Available Schedule</h3>
 
                             <div className="schedule-days">
-                                {doctor?.schedules?.length > 0 ? (
-                                    doctor.schedules.map((schedule) => (
+                                {availableSchedules.length > 0 ? (
+                                    availableSchedules.map((schedule) => (
                                         <div key={schedule.id} className="schedule-chip">
                                             <strong>{schedule.availableDay}</strong>
 
                                             <p>
                                                 {schedule.startDate}
-                                                {schedule.startDate !== schedule.endDate && ` - ${schedule.endDate}`}
+                                                {schedule.startDate !== schedule.endDate &&
+                                                    ` - ${schedule.endDate}`}
                                             </p>
 
                                             <p>
-                                                {schedule.startTime?.slice(0, 5)} - {schedule.endTime?.slice(0, 5)}
+                                                {schedule.startTime?.slice(0, 5)} -{" "}
+                                                {schedule.endTime?.slice(0, 5)}
                                             </p>
                                         </div>
                                     ))
