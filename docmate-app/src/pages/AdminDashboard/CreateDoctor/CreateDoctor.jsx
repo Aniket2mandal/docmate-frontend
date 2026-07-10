@@ -24,7 +24,13 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
     consultation_fee: "",
   });
 
+  const [fieldErrors, setFieldErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
+  // Maps backend validation keys (e.g. "user.firstName") to formData field names
+  const mapBackendKeyToField = (key) => {
+    return key.startsWith("user.") ? key.replace("user.", "") : key;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,37 +39,19 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
       ...prev,
       [name]: value,
     }));
-  };
 
-  const validateForm = () => {
-    if (!formData.firstName.trim()) return "First name is required.";
-    if (!formData.lastName.trim()) return "Last name is required.";
-    if (!formData.email.trim()) return "Email is required.";
-    if (!formData.password.trim()) return "Password is required.";
-    if (!formData.gender) return "Gender is required.";
-    if (!formData.phone.trim()) return "Phone is required.";
-    if (!formData.address.trim()) return "Address is required.";
-    if (!formData.specialization.trim()) return "Specialization is required.";
-    if (!formData.experience) return "Experience is required.";
-    if (!formData.qualification.trim()) return "Qualification is required.";
-    if (!formData.consultation_fee.trim()) return "Consultation fee is required.";
-
-    return null;
+    // Clear the error for this field as soon as the user edits it
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => {
+        const updated = { ...prev };
+        delete updated[name];
+        return updated;
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const validationMessage = validateForm();
-
-    // if (validationMessage) {
-    //   Swal.fire({
-    //     icon: "warning",
-    //     title: "Validation Error",
-    //     text: validationMessage,
-    //   });
-    //   return;
-    // }
 
     const doctorRequest = {
       user: {
@@ -84,6 +72,7 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
 
     try {
       setLoading(true);
+      setFieldErrors({});
 
       const response = await createDoctorApi(doctorRequest);
 
@@ -96,6 +85,15 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
         });
 
         navigate("/dashboard/admin/doctors");
+      } else if (response.data?.validationErrMap) {
+        // Field-level validation errors -> show inline,
+        const mappedErrors = {};
+        Object.entries(response.data.validationErrMap).forEach(
+          ([key, msg]) => {
+            mappedErrors[mapBackendKeyToField(key)] = msg;
+          }
+        );
+        setFieldErrors(mappedErrors);
       } else {
         Swal.fire({
           icon: "error",
@@ -106,13 +104,21 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
     } catch (error) {
       console.error("Create doctor error:", error);
 
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text:
-          error.response?.data?.message ||
-          "Something went wrong while creating doctor.",
-      });
+      const errData = error.response?.data;
+
+      if (errData?.validationErrMap) {
+        const mappedErrors = {};
+        Object.entries(errData.validationErrMap).forEach(([key, msg]) => {
+          mappedErrors[mapBackendKeyToField(key)] = msg;
+        });
+        setFieldErrors(mappedErrors);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: errData?.message || "Something went wrong while creating doctor.",
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -156,6 +162,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter first name"
                   />
+                  {fieldErrors.firstName && (
+                    <span className="field-error">{fieldErrors.firstName}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -167,6 +176,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter last name"
                   />
+                  {fieldErrors.lastName && (
+                    <span className="field-error">{fieldErrors.lastName}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -178,6 +190,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter email"
                   />
+                  {fieldErrors.email && (
+                    <span className="field-error">{fieldErrors.email}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -189,6 +204,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter password"
                   />
+                  {fieldErrors.password && (
+                    <span className="field-error">{fieldErrors.password}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -203,6 +221,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     <option value="FEMALE">Female</option>
                     <option value="OTHER">Other</option>
                   </select>
+                  {fieldErrors.gender && (
+                    <span className="field-error">{fieldErrors.gender}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -214,6 +235,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter phone number"
                   />
+                  {fieldErrors.phone && (
+                    <span className="field-error">{fieldErrors.phone}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -237,6 +261,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="Enter address"
                   />
+                  {fieldErrors.address && (
+                    <span className="field-error">{fieldErrors.address}</span>
+                  )}
                 </div>
               </div>
 
@@ -245,8 +272,6 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
               </div>
 
               <div className="create-doctor-form-grid">
-
-
                 <div className="form-group">
                   <label>Specialization</label>
                   <select
@@ -266,18 +291,12 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     <option value="ENT Specialist">ENT Specialist</option>
                     <option value="Ophthalmologist">Ophthalmologist</option>
                   </select>
+                  {fieldErrors.specialization && (
+                    <span className="field-error">
+                      {fieldErrors.specialization}
+                    </span>
+                  )}
                 </div>
-
-                {/* <div className="form-group">
-                  <label>Specialization</label>
-                  <input
-                    type="text"
-                    name="specialization"
-                    value={formData.specialization}
-                    onChange={handleChange}
-                    placeholder="e.g. Cardiologist"
-                  />
-                </div> */}
 
                 <div className="form-group">
                   <label>Experience</label>
@@ -290,6 +309,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     min="0"
                     step="0.5"
                   />
+                  {fieldErrors.experience && (
+                    <span className="field-error">{fieldErrors.experience}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -301,6 +323,11 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="e.g. MBBS MD"
                   />
+                  {fieldErrors.qualification && (
+                    <span className="field-error">
+                      {fieldErrors.qualification}
+                    </span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -312,6 +339,11 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     onChange={handleChange}
                     placeholder="e.g. 2000"
                   />
+                  {fieldErrors.consultation_fee && (
+                    <span className="field-error">
+                      {fieldErrors.consultation_fee}
+                    </span>
+                  )}
                 </div>
               </div>
 

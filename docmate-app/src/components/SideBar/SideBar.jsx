@@ -164,7 +164,7 @@ const Sidebar = () => {
             <li>
               <FaAward className="icon" />
               <a href="#" className="dashboard-link">
-                <span>Specialization</span>
+                <span>Role</span>
               </a>
             </li>
 

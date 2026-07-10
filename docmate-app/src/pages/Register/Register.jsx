@@ -16,36 +16,36 @@ const Register = () => {
         address: "",
         age: "",
         weight: "",
-        height: ""
+        height: "",
+        status: "ACTIVE"
     });
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    const [fieldErrors, setFieldErrors] = useState({});
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         });
+
+        if (fieldErrors[name]) {
+            setFieldErrors((prev) => {
+                const updated = { ...prev };
+                delete updated[name];
+                return updated;
+            });
+        }
     };
 
-    const requestBody = {
-        user: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            password: formData.password,
-            gender: formData.gender,
-            phone: formData.phone,
-            address: formData.address
-        },
-        age: Number(formData.age),
-        height: Number(formData.height),
-        weight: Number(formData.weight)
+    // Maps backend keys like "user.firstName" -> "firstName", leaves top-level keys as-is
+    const mapBackendKeyToField = (key) => {
+        return key.startsWith("user.") ? key.replace("user.", "") : key;
     };
 
     const [loading, setLoading] = useState(false);
@@ -58,6 +58,23 @@ const Register = () => {
 
         setLoading(true);
         setMessage("");
+        setFieldErrors({});
+
+        const requestBody = {
+            user: {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password,
+                gender: formData.gender,
+                phone: formData.phone,
+                address: formData.address,
+                status: formData.status
+            },
+            age: Number(formData.age),
+            height: Number(formData.height),
+            weight: Number(formData.weight)
+        };
 
         try {
             const response = await registerUser(requestBody);
@@ -73,26 +90,48 @@ const Register = () => {
                     confirmButtonColor: "#3085d6"
                 });
 
-                // save token if exists
                 if (response.data.data?.token) {
                     localStorage.setItem("token", response.data.data.token);
                 }
 
-                // redirect
-                // window.location.href = "/dashboard";
                 navigate("/dashboard/user", { state: response.data });
 
+            } else if (response.data.validationErrMap) {
+                const mappedErrors = {};
+                Object.entries(response.data.validationErrMap).forEach(
+                    ([key, msg]) => {
+                        mappedErrors[mapBackendKeyToField(key)] = msg;
+                    }
+                );
+                setFieldErrors(mappedErrors);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Registration Failed",
+                    text: response.data.message || "Something went wrong.",
+                    confirmButtonColor: "#d33"
+                });
             }
 
         } catch (error) {
             console.error(error);
 
-            Swal.fire({
-                icon: "error",
-                title: "Login Failed",
-                text: error.response?.data?.message || "Invalid credentials",
-                confirmButtonColor: "#d33"
-            });
+            const errData = error.response?.data;
+
+            if (errData?.validationErrMap) {
+                const mappedErrors = {};
+                Object.entries(errData.validationErrMap).forEach(([key, msg]) => {
+                    mappedErrors[mapBackendKeyToField(key)] = msg;
+                });
+                setFieldErrors(mappedErrors);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Registration Failed",
+                    text: errData?.message || "Invalid credentials",
+                    confirmButtonColor: "#d33"
+                });
+            }
         } finally {
             setLoading(false);
         }
@@ -113,25 +152,35 @@ const Register = () => {
                             <div className="register-input-group">
                                 <label>First Name</label>
                                 <input type="text" name="firstName" placeholder="Enter first name" onChange={handleChange} />
+                                {fieldErrors.firstName && (
+                                    <span className="field-error">{fieldErrors.firstName}</span>
+                                )}
                             </div>
 
                             <div className="register-input-group">
                                 <label>Last Name</label>
                                 <input type="text" name="lastName" placeholder="Enter last name" onChange={handleChange} />
+                                {fieldErrors.lastName && (
+                                    <span className="field-error">{fieldErrors.lastName}</span>
+                                )}
                             </div>
                         </div>
-
-
 
                         <div className="register-row">
                             {/* Age */}
                             <div className="register-input-group">
                                 <label>Age</label>
                                 <input name="age" type="number" placeholder="Age" onChange={handleChange} />
+                                {fieldErrors.age && (
+                                    <span className="field-error">{fieldErrors.age}</span>
+                                )}
                             </div>
                             <div className="register-input-group">
                                 <label>Phone</label>
                                 <input name="phone" placeholder="Phone" onChange={handleChange} />
+                                {fieldErrors.phone && (
+                                    <span className="field-error">{fieldErrors.phone}</span>
+                                )}
                             </div>
                         </div>
 
@@ -140,37 +189,52 @@ const Register = () => {
                             <div className="register-input-group">
                                 <label>Weight</label>
                                 <input name="weight" type="number" placeholder="Weight (kg)" onChange={handleChange} />
+                                {fieldErrors.weight && (
+                                    <span className="field-error">{fieldErrors.weight}</span>
+                                )}
                             </div>
                             {/* Height */}
                             <div className="register-input-group">
                                 <label>Height</label>
                                 <input name="height" type="text" placeholder="Height (cm)" onChange={handleChange} />
+                                {fieldErrors.height && (
+                                    <span className="field-error">{fieldErrors.height}</span>
+                                )}
                             </div>
                         </div>
 
                         <div className="register-input-group">
                             <label>Email Address</label>
                             <input type="email" name="email" placeholder="Enter your email" onChange={handleChange} />
+                            {fieldErrors.email && (
+                                <span className="field-error">{fieldErrors.email}</span>
+                            )}
                         </div>
 
                         {/* Address */}
                         <div className="register-input-group">
                             <label>Address</label>
                             <input name="address" placeholder="Address" onChange={handleChange} />
+                            {fieldErrors.address && (
+                                <span className="field-error">{fieldErrors.address}</span>
+                            )}
                         </div>
 
                         <div className="register-input-group">
                             <label>Gender</label>
                             <select
                                 name="gender"
-                                value={formData.gender}      // controlled input
-                                onChange={handleChange}      // update formData
+                                value={formData.gender}
+                                onChange={handleChange}
                             >
-                                <option value="">Select Gender</option> {/* placeholder */}
+                                <option value="">Select Gender</option>
                                 <option value="MALE">Male</option>
                                 <option value="FEMALE">Female</option>
                                 <option value="OTHER">Other</option>
                             </select>
+                            {fieldErrors.gender && (
+                                <span className="field-error">{fieldErrors.gender}</span>
+                            )}
                         </div>
 
                         <div className="register-input-group">
@@ -181,17 +245,17 @@ const Register = () => {
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter your password"
-                                    // value={password}
-                                    // onChange={(e) => setPassword(e.target.value)}
                                     value={formData.password}
                                     onChange={handleChange}
-
                                 />
 
                                 <span onClick={() => setShowPassword(!showPassword)}>
                                     {showPassword ? "Hide" : "Show"}
                                 </span>
                             </div>
+                            {fieldErrors.password && (
+                                <span className="field-error">{fieldErrors.password}</span>
+                            )}
                         </div>
 
                         <div className="register-input-group">
@@ -218,8 +282,8 @@ const Register = () => {
                             </label>
                         </div>
 
-                        <button type="submit" className="register-btn">
-                            Create Account
+                        <button type="submit" className="register-btn" disabled={loading}>
+                            {loading ? "Creating..." : "Create Account"}
                         </button>
                     </form>
 

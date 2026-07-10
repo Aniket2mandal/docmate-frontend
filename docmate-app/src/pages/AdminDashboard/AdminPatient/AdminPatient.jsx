@@ -205,9 +205,9 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
             </div>
 
             <div className="admin-patient-actions">
-              <button className="create-patient-btn" onClick={handleCreatePatient}>
+              {/* <button className="create-patient-btn" onClick={handleCreatePatient}>
                 <FaPlus /> Create Patient
-              </button>
+              </button> */}
             </div>
           </div>
 
