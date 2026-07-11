@@ -58,6 +58,7 @@ import CreateDoctor from "./pages/AdminDashboard/CreateDoctor/CreateDoctor";
 import UpdateDoctor from "./pages/AdminDashboard/UpdateDoctor/UpdateDoctor";
 import AdminRole from "./pages/AdminDashboard/AdminRole/AdminRole";
 import CreateRole from "./pages/AdminDashboard/CreateRole/CreateRole";
+import DoctorRequest from "./pages/DoctorRequest/DoctorRequest";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -82,8 +83,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/doctor-request" element={<DoctorRequest/>} />
 
         <Route path="/doctor-detail/:doctorId" element={<DoctorDetail />} />
+        
 
         {/* Separate page */}
         <Route

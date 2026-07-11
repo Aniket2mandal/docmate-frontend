@@ -139,6 +139,18 @@ export const deleteDoctorApi = (doctorId) => {
   return axiosInstance.delete(`/admin/delete-doctor/${doctorId}`);
 };
 
+export const requestDoctorApi = (formData) => {
+  return axiosInstance.post(
+    "/public/apply-for-doctor",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+};
+
 export const deletePatientApi = (patientId) => {
   return axiosInstance.delete(`/admin/delete-patient/${patientId}`);
 };
