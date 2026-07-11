@@ -17,11 +17,17 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
     gender: "",
     phone: "",
     address: "",
+    province: "",
     status: "ACTIVE",
     specialization: "",
     experience: "",
     qualification: "",
     consultation_fee: "",
+
+    citizenshipFront: null,
+    citizenshipBack: null,
+    doctorLicense: null,
+    educationCertificate: null,
   });
 
   const [fieldErrors, setFieldErrors] = useState({});
@@ -53,75 +59,112 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const doctorRequest = {
-      user: {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        gender: formData.gender,
-        phone: formData.phone,
-        address: formData.address,
-        status: formData.status,
-      },
-      specialization: formData.specialization,
-      experience: Number(formData.experience),
-      qualification: formData.qualification,
-      consultation_fee: formData.consultation_fee,
-    };
-
     try {
       setLoading(true);
       setFieldErrors({});
 
-      const response = await createDoctorApi(doctorRequest);
+      const formDataToSend = new FormData();
 
-      if (response.data?.status === true) {
+      // JSON request
+      const doctorRequest = {
+        user: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          gender: formData.gender,
+          phone: formData.phone,
+          address: formData.address,
+          province: formData.province,
+          status: formData.status,
+        },
+        specialization: formData.specialization,
+        experience: Number(formData.experience),
+        qualification: formData.qualification,
+        consultation_fee: formData.consultation_fee,
+      };
+
+      formDataToSend.append(
+        "doctorRequest",
+        new Blob([JSON.stringify(doctorRequest)], {
+          type: "application/json",
+        })
+      );
+
+      if (formData.citizenshipFront) {
+        formDataToSend.append(
+          "citizenshipFront",
+          formData.citizenshipFront
+        );
+      }
+
+      if (formData.citizenshipBack) {
+        formDataToSend.append(
+          "citizenshipBack",
+          formData.citizenshipBack
+        );
+      }
+
+      if (formData.doctorLicense) {
+        formDataToSend.append(
+          "doctorLicense",
+          formData.doctorLicense
+        );
+      }
+
+      if (formData.educationCertificate) {
+        formDataToSend.append(
+          "educationCertificate",
+          formData.educationCertificate
+        );
+      }
+
+      const response = await createDoctorApi(formDataToSend);
+
+      if (response.data.status) {
         Swal.fire({
           icon: "success",
           title: "Doctor Created",
-          text: response.data?.message || "Doctor created successfully.",
-          confirmButtonColor: "#2f80ed",
+          text: response.data.message,
         });
 
         navigate("/dashboard/admin/doctors");
-      } else if (response.data?.validationErrMap) {
-        // Field-level validation errors -> show inline,
-        const mappedErrors = {};
-        Object.entries(response.data.validationErrMap).forEach(
-          ([key, msg]) => {
-            mappedErrors[mapBackendKeyToField(key)] = msg;
-          }
-        );
-        setFieldErrors(mappedErrors);
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          text: response.data?.message || "Doctor creation failed.",
-        });
       }
+
     } catch (error) {
-      console.error("Create doctor error:", error);
+      console.error(error);
 
       const errData = error.response?.data;
 
       if (errData?.validationErrMap) {
+
         const mappedErrors = {};
+
         Object.entries(errData.validationErrMap).forEach(([key, msg]) => {
           mappedErrors[mapBackendKeyToField(key)] = msg;
         });
+
         setFieldErrors(mappedErrors);
+
       } else {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: errData?.message || "Something went wrong while creating doctor.",
+          text: errData?.message || "Something went wrong",
         });
       }
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files[0],
+    }));
   };
 
   return (
@@ -252,6 +295,29 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                   </select>
                 </div>
 
+                <div className="form-group">
+                  <label>Province</label>
+                  <select
+                    name="province"
+                    value={formData.province}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled>Province</option>
+                    <option value="Koshi">Koshi Province</option>
+                    <option value="Madhesh">Madhesh Province</option>
+                    <option value="Bagmati">Bagmati Province</option>
+                    <option value="Gandaki">Gandaki Province</option>
+                    <option value="Lumbini">Lumbini Province</option>
+                    <option value="Karnali">Karnali Province</option>
+                    <option value="Sudurpashchim">Sudurpashchim Province</option>
+                  </select>
+                  {fieldErrors.specialization && (
+                    <span className="field-error">
+                      {fieldErrors.specialization}
+                    </span>
+                  )}
+                </div>
+
                 <div className="form-group full-width">
                   <label>Address</label>
                   <input
@@ -265,6 +331,9 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     <span className="field-error">{fieldErrors.address}</span>
                   )}
                 </div>
+
+
+
               </div>
 
               <div className="form-section-title doctor-info-title">
@@ -279,8 +348,8 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     value={formData.specialization}
                     onChange={handleChange}
                   >
-                    <option value="">Select Specialization</option>
-                    <option value="General Physician">General Physician</option>
+                    <option value="" disabled>Specialization</option>
+                    <option value="Physician">Physician</option>
                     <option value="Cardiologist">Cardiologist</option>
                     <option value="Dermatologist">Dermatologist</option>
                     <option value="Neurologist">Neurologist</option>
@@ -289,6 +358,7 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     <option value="Gynecologist">Gynecologist</option>
                     <option value="Psychiatrist">Psychiatrist</option>
                     <option value="ENT Specialist">ENT Specialist</option>
+                    <option value="Dentist">Dentist</option>
                     <option value="Ophthalmologist">Ophthalmologist</option>
                   </select>
                   {fieldErrors.specialization && (
@@ -345,6 +415,74 @@ const CreateDoctor = ({ darkMode, toggleDarkMode }) => {
                     </span>
                   )}
                 </div>
+              </div>
+
+              <div className="form-section-title doctor-info-title">
+                <h3>Verification Documents</h3>
+              </div>
+
+              <div className="create-doctor-form-grid">
+
+                <div className="form-group">
+                  <label>Citizenship Front</label>
+                  <input
+                    type="file"
+                    name="citizenshipFront"
+                    accept="image/*,.pdf"
+                    onChange={handleFileChange}
+                  />
+                  {fieldErrors.citizenshipFront && (
+                    <span className="field-error">
+                      {fieldErrors.citizenshipFront}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label>Citizenship Back</label>
+                  <input
+                    type="file"
+                    name="citizenshipBack"
+                    accept="image/*,.pdf"
+                    onChange={handleFileChange}
+                  />
+                  {fieldErrors.citizenshipBack && (
+                    <span className="field-error">
+                      {fieldErrors.citizenshipBack}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label>Medical License</label>
+                  <input
+                    type="file"
+                    name="doctorLicense"
+                    accept="image/*,.pdf"
+                    onChange={handleFileChange}
+                  />
+                  {fieldErrors.doctorLicense && (
+                    <span className="field-error">
+                      {fieldErrors.doctorLicense}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label>Higher Education Certificate</label>
+                  <input
+                    type="file"
+                    name="educationCertificate"
+                    accept="image/*,.pdf"
+                    onChange={handleFileChange}
+                  />
+                  {fieldErrors.educationCertificate && (
+                    <span className="field-error">
+                      {fieldErrors.educationCertificate}
+                    </span>
+                  )}
+                </div>
+
               </div>
 
               <div className="create-doctor-submit-row">

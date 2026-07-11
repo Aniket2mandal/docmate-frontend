@@ -5,6 +5,8 @@ import {
   FaRobot,
   FaSearch,
   FaRedoAlt,
+  FaChevronLeft,
+  FaChevronRight, 
 } from "react-icons/fa";
 
 import SideBar from "../../../components/SideBar/SideBar";
@@ -15,6 +17,7 @@ import BookAppointmentModal from "../../../components/BookModal/BookAppointmentM
 import {
   getAllDoctors,
   recommendDoctorsBySymptoms,
+  searchDoctorApi,
 } from "../../../api/BackendApi";
 
 import doctorImg from "../../../assets/doctor.png";
@@ -23,14 +26,16 @@ import "./Doctor.css";
 const Doctor = ({ darkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
 
-  const PAGE_SIZE = 9;
+  const PAGE_SIZE = 3;
 
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [pageNo, setPageNo] = useState(0);
-  const [hasMoreDoctors, setHasMoreDoctors] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const [paginationInfo, setPaginationInfo] = useState(null);
+  const [searchMode, setSearchMode] = useState(false);
+  const [province, setProvince] = useState("");
+  const [specialization, setSpecialization] = useState("");
 
   const [symptoms, setSymptoms] = useState("");
   const [aiLoading, setAiLoading] = useState(false);
@@ -44,70 +49,31 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
     fetchAllDoctors(0, true);
   }, []);
 
-  const fetchAllDoctors = async (page = 0, reset = true) => {
+  const fetchAllDoctors = async (page = 0) => {
     try {
-      if (reset) {
-        setLoading(true);
-      } else {
-        setLoadingMore(true);
-      }
+      setLoading(true);
 
       setAiMessage("");
       setAiResultMode(false);
 
       const response = await getAllDoctors(page, PAGE_SIZE);
 
-      const data = response?.data?.data;
+      setDoctors(response.data.data.data);
+      setPaginationInfo(response.data.data.paginationInfo);
+      setPageNo(page);
 
-      /*
-        This supports both possible backend responses:
-
-        1. If backend returns normal list:
-           data: [doctor1, doctor2]
-
-        2. If backend returns Page object:
-           data: {
-             content: [doctor1, doctor2],
-             last: false,
-             totalElements: 20
-           }
-      */
-
-      const doctorList = Array.isArray(data)
-        ? data
-        : data?.content || data?.doctors || data?.doctorResponses || [];
-
-      if (reset) {
-        setDoctors(doctorList);
-        setPageNo(0);
-      } else {
-        setDoctors((prevDoctors) => [...prevDoctors, ...doctorList]);
-        setPageNo(page);
-      }
-
-      if (data?.last === true) {
-        setHasMoreDoctors(false);
-      } else if (doctorList.length < PAGE_SIZE) {
-        setHasMoreDoctors(false);
-      } else {
-        setHasMoreDoctors(true);
-      }
     } catch (error) {
-      console.error("Error fetching doctors:", error);
-
-      if (reset) {
-        setDoctors([]);
-      }
+      console.error(error);
+      setDoctors([]);
     } finally {
       setLoading(false);
-      setLoadingMore(false);
     }
   };
 
-  const handleLoadMoreDoctors = () => {
-    const nextPage = pageNo + 1;
-    fetchAllDoctors(nextPage, false);
-  };
+  // const handleLoadMoreDoctors = () => {
+  //   const nextPage = pageNo + 1;
+  //   fetchAllDoctors(nextPage, false);
+  // };
 
   const handleAiRecommendation = async () => {
     if (!symptoms.trim()) {
@@ -146,9 +112,12 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
     setSymptoms("");
     setAiMessage("");
     setAiResultMode(false);
-    setPageNo(0);
-    setHasMoreDoctors(true);
-    fetchAllDoctors(0, true);
+
+    setSearchMode(false);
+    setProvince("");
+    setSpecialization("");
+
+    fetchAllDoctors(0);
   };
 
   const getFullName = (doctor) => {
@@ -181,6 +150,66 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
     setShowBookingModal(true);
   };
 
+  const handlePageChange = async (page) => {
+
+    if (searchMode) {
+
+      try {
+        setLoading(true);
+
+        const response = await searchDoctorApi(
+          {
+            province,
+            specialization,
+          },
+          page,
+          PAGE_SIZE
+        );
+
+        setDoctors(response.data.data.data);
+        setPaginationInfo(response.data.data.paginationInfo);
+        setPageNo(page);
+
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+
+    } else {
+      fetchAllDoctors(page);
+    }
+  };
+
+  const handleDoctorSearch = async (province, specialization) => {
+    try {
+      setLoading(true);
+
+      setSearchMode(true);
+      setProvince(province);
+      setSpecialization(specialization);
+
+      const response = await searchDoctorApi(
+        {
+          province,
+          specialization,
+        },
+        0,
+        PAGE_SIZE
+      );
+
+      setDoctors(response.data.data.data);
+      setPaginationInfo(response.data.data.paginationInfo);
+      setPageNo(0);
+
+    } catch (error) {
+      console.error(error);
+      setDoctors([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="doctor-pro-page">
       <SideBar />
@@ -197,7 +226,7 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
           </div>
 
           <div className="doctor-pro-search-box">
-            <SearchBar />
+            <SearchBar onSearch={handleDoctorSearch} />
           </div>
 
           <div className="doctor-ai-section">
@@ -336,7 +365,7 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
                   })}
                 </div>
 
-                {!aiResultMode && hasMoreDoctors && (
+                {/* {!aiResultMode && hasMoreDoctors && (
                   <div className="doctor-load-more-area">
                     <button
                       type="button"
@@ -347,7 +376,41 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
                       {loadingMore ? "Loading..." : "Load More Doctors"}
                     </button>
                   </div>
+                )} */}
+
+                {!aiResultMode && paginationInfo && (
+                  <div className="doctor-pagination">
+
+                    <button
+                      disabled={pageNo === 0}
+                      onClick={() => handlePageChange(pageNo - 1)}
+                    >
+                      <FaChevronLeft />
+                    </button>
+
+                    {Array.from(
+                      { length: paginationInfo.totalPages },
+                      (_, index) => (
+                        <button
+                          key={index}
+                          className={pageNo === index ? "active-page" : ""}
+                          onClick={() => handlePageChange(index)}
+                        >
+                          {index + 1}
+                        </button>
+                      )
+                    )}
+
+                    <button
+                      disabled={pageNo === paginationInfo.totalPages - 1}
+                      onClick={() => handlePageChange(pageNo + 1)}
+                    >
+                      <FaChevronRight />
+                    </button>
+
+                  </div>
                 )}
+
               </>
             )}
           </div>

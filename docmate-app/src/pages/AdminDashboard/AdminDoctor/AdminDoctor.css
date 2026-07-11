@@ -259,3 +259,35 @@
 .view-doctor-btn:hover {
   background: #bae6fd;
 }
+
+.doctor-pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.doctor-pagination button{
+    padding:8px 16px;
+    border:none;
+    border-radius:6px;
+    background:#f1f5f9;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.doctor-pagination button:hover:not(:disabled){
+    background:#2563eb;
+    color:#fff;
+}
+
+.doctor-pagination .active-page{
+    background:#2563eb;
+    color:#fff;
+}
+
+.doctor-pagination button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}

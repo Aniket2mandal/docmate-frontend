@@ -13,7 +13,8 @@ import {
   FaUsers,
   FaUserInjured,
   FaClipboardList,
-  FaAward
+  FaAward,
+  FaHourglassHalf
 } from "react-icons/fa";
 import "./Sidebar.css";
 
@@ -158,6 +159,13 @@ const Sidebar = () => {
               <FaUserMd className="icon" />
               <a href="/dashboard/admin/doctors" className="dashboard-link">
                 <span>Doctors</span>
+              </a>
+            </li>
+
+              <li>
+              <FaHourglassHalf className="icon" />
+              <a href="#" className="dashboard-link">
+                <span>Doctor Request</span>
               </a>
             </li>
 

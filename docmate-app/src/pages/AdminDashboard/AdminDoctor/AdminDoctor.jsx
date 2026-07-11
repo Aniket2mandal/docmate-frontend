@@ -2,34 +2,41 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
-import { getAllDoctorsAdmin,changeUserStatusApi,deleteDoctorApi } from "../../../api/BackendApi";
-import { FaEdit, FaTrash, FaPlus, FaEye } from "react-icons/fa";
+import { getAllDoctorsAdmin, changeUserStatusApi, deleteDoctorApi } from "../../../api/BackendApi";
+import { FaEdit, FaTrash, FaPlus, FaEye, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "./AdminDoctor.css";
 
 const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
     const [doctors, setDoctors] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [pageNo, setPageNo] = useState(0);
+    const [paginationInfo, setPaginationInfo] = useState(null);
+
+    const PAGE_SIZE = 5;
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchDoctors();
+        fetchDoctors(0);
     }, []);
 
-    const fetchDoctors = async () => {
+    const fetchDoctors = async (page = 0) => {
         try {
             setLoading(true);
 
-            const response = await getAllDoctorsAdmin();
+            const response = await getAllDoctorsAdmin(page, PAGE_SIZE);
 
-            if (response.data?.status === true) {
-                setDoctors(response.data.data || []);
+            if (response.data?.status) {
+                setDoctors(response.data.data.data);
+                setPaginationInfo(response.data.data.paginationInfo);
+                setPageNo(page);
             } else {
                 setDoctors([]);
             }
+
         } catch (error) {
-            console.error("Doctor fetch error:", error);
+            console.error(error);
 
             Swal.fire({
                 icon: "error",
@@ -151,7 +158,7 @@ const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
 
         try {
             // connect status API later
-           await changeUserStatusApi(userId, newStatus);
+            await changeUserStatusApi(userId, newStatus);
 
             setDoctors((prevDoctors) =>
                 prevDoctors.map((d) =>
@@ -182,6 +189,16 @@ const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
                     "Something went wrong while updating status.",
             });
         }
+    };
+
+    const handleViewDoctorDetails=(doctor)=>{
+         const doctorId = doctor?.doctorId;
+
+         navigate(`/doctor-detail/${doctorId}`);
+    }
+
+    const handlePageChange = (page) => {
+        fetchDoctors(page);
     };
 
     return (
@@ -236,7 +253,7 @@ const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
 
                                             return (
                                                 <tr key={doctorId || index}>
-                                                    <td>{index + 1}</td>
+                                                    <td>{pageNo * PAGE_SIZE + index + 1}</td>
 
                                                     <td>
                                                         {doctor?.user?.imageUrl ? (
@@ -253,7 +270,7 @@ const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
                                                     </td>
 
                                                     <td>{getFullName(doctor)}</td>
-                                                     <td>{doctor?.user?.email}</td>
+                                                    <td>{doctor?.user?.email}</td>
 
                                                     <td>{doctor?.specialization || "-"}</td>
 
@@ -311,7 +328,42 @@ const AdminDoctor = ({ darkMode, toggleDarkMode }) => {
                         ) : (
                             <p className="doctor-empty">No doctor found.</p>
                         )}
+
+                        {paginationInfo && (
+                            <div className="doctor-pagination">
+
+                                <button
+                                    disabled={pageNo === 0}
+                                    onClick={() => handlePageChange(pageNo - 1)}
+                                >
+                                      <FaChevronLeft />
+                                </button>
+
+                                {Array.from(
+                                    { length: paginationInfo.totalPages },
+                                    (_, index) => (
+                                        <button
+                                            key={index}
+                                            className={pageNo === index ? "active-page" : ""}
+                                            onClick={() => handlePageChange(index)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    )
+                                )}
+
+                                <button
+                                    disabled={pageNo === paginationInfo.totalPages - 1}
+                                    onClick={() => handlePageChange(pageNo + 1)}
+                                >
+                                    <FaChevronRight />
+                                </button>
+
+                            </div>
+                        )}
+
                     </div>
+
                 </div>
             </div>
         </div>

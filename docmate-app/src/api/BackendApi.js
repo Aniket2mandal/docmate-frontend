@@ -111,14 +111,27 @@ export const getAllPatientApi = () => {
   return axiosInstance.get("/admin/get-all-patient");
 };
 
-export const createDoctorApi = (doctorRequest) => {
-  return axiosInstance.post("/admin/create-doctor", doctorRequest);
+export const createDoctorApi = (formData) => {
+  return axiosInstance.post(
+    "/admin/create-doctor",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
 };
 
-export const updateDoctorApi = (doctorId, data) => {
+export const updateDoctorApi = (doctorId, formData) => {
   return axiosInstance.put(
     `/admin/update-doctor/${doctorId}`,
-    data
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 };
 
@@ -150,6 +163,13 @@ export const getAllRoleApi = () => {
 
 export const deleteRoleApi = (roleId) => {
   return axiosInstance.delete(`/delete/role/${roleId}`);
+};
+
+export const searchDoctorApi = (data, page = 0, size = 9) => {
+  return axiosInstance.post(
+    `/public/search-doctor?page=${page}&size=${size}`,
+    data
+  );
 };
 
 export const loginUser = (username, password) => {

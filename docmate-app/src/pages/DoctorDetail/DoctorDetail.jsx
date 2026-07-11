@@ -20,6 +20,12 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     const [showBookingModal, setShowBookingModal] = useState(false);
     const [showRatingModal, setShowRatingModal] = useState(false);
 
+    const role = localStorage.getItem("role");
+
+    const isPatient = role === "PATIENT";
+    const isDoctor = role === "DOCTOR";
+    const isAdmin = role === "ADMIN";
+
     const getImageUrl = (imageUrl) => {
         if (!imageUrl) {
             return "/default-user.png";
@@ -166,13 +172,20 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                             </button> */}
 
                             <div className="doctor-btn-grp">
-                                <button className="book-btn" onClick={() => setShowBookingModal(true)}>
-                                    Book Appointment
-                                </button>
+                                {isPatient && (
+                                    <button
+                                        className="book-btn"
+                                        onClick={() => setShowBookingModal(true)}
+                                    >
+                                        Book Appointment
+                                    </button>
+                                )}
 
-                                <button className="rate-btn" onClick={() => setShowRatingModal(true)}>
-                                    Rate Doctor
-                                </button>
+                                {isPatient && (
+                                    <button className="rate-btn" onClick={() => setShowRatingModal(true)}>
+                                        Rate Doctor
+                                    </button>
+                                )}
                             </div>
 
                             <BookAppointmentModal
@@ -249,32 +262,118 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                             </div>
                         </div>
 
-                        <div className="doctor-info-card">
-                            <h3>Available Schedule</h3>
+                        {isAdmin && (
+                            <div className="doctor-info-card">
+                                <h3>Doctor Verification Documents</h3>
 
-                            <div className="schedule-days">
-                                {availableSchedules.length > 0 ? (
-                                    availableSchedules.map((schedule) => (
-                                        <div key={schedule.id} className="schedule-chip">
-                                            <strong>{schedule.availableDay}</strong>
+                                <div className="doctor-document-grid">
+                                    <div className="document-item">
+                                        <p>Citizenship Front</p>
+                                        {doctor?.citizenshipFrontUrl ? (
+                                            <a
+                                                href={doctor.citizenshipFrontUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={doctor.citizenshipFrontUrl}
+                                                    alt="Citizenship Front"
+                                                    className="doctor-document-image"
+                                                />
+                                            </a>
+                                        ) : (
+                                            <p>No document uploaded</p>
+                                        )}
+                                    </div>
 
-                                            <p>
-                                                {schedule.startDate}
-                                                {schedule.startDate !== schedule.endDate &&
-                                                    ` - ${schedule.endDate}`}
-                                            </p>
+                                    <div className="document-item">
+                                        <p>Citizenship Back</p>
+                                        {doctor?.citizenshipBackUrl ? (
+                                            <a
+                                                href={doctor.citizenshipBackUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={doctor.citizenshipBackUrl}
+                                                    alt="Citizenship Back"
+                                                    className="doctor-document-image"
+                                                />
+                                            </a>
+                                        ) : (
+                                            <p>No document uploaded</p>
+                                        )}
+                                    </div>
 
-                                            <p>
-                                                {schedule.startTime?.slice(0, 5)} -{" "}
-                                                {schedule.endTime?.slice(0, 5)}
-                                            </p>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p>No schedule available</p>
-                                )}
+                                    <div className="document-item">
+                                        <p>Medical License</p>
+                                        {doctor?.doctorLicenseUrl ? (
+                                            <a
+                                                href={doctor.doctorLicenseUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={doctor.doctorLicenseUrl}
+                                                    alt="Medical License"
+                                                    className="doctor-document-image"
+                                                />
+                                            </a>
+                                        ) : (
+                                            <p>No document uploaded</p>
+                                        )}
+                                    </div>
+
+                                    <div className="document-item">
+                                        <p>Education Certificate</p>
+                                        {doctor?.educationCertificateUrl ? (
+                                            <a
+                                                href={doctor.educationCertificateUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={doctor.educationCertificateUrl}
+                                                    alt="Education Certificate"
+                                                    className="doctor-document-image"
+                                                />
+                                            </a>
+                                        ) : (
+                                            <p>No document uploaded</p>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        )}
+
+                        {isPatient && (
+                            <div className="doctor-info-card">
+                                <h3>Available Schedule</h3>
+
+                                <div className="schedule-days">
+                                    {availableSchedules.length > 0 ? (
+                                        availableSchedules.map((schedule) => (
+                                            <div key={schedule.id} className="schedule-chip">
+                                                <strong>{schedule.availableDay}</strong>
+
+                                                <p>
+                                                    {schedule.startDate}
+                                                    {schedule.startDate !== schedule.endDate &&
+                                                        ` - ${schedule.endDate}`}
+                                                </p>
+
+                                                <p>
+                                                    {schedule.startTime?.slice(0, 5)} -{" "}
+                                                    {schedule.endTime?.slice(0, 5)}
+                                                </p>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No schedule available</p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
