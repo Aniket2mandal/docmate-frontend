@@ -511,7 +511,7 @@ const DoctorRequest = ({ darkMode, toggleDarkMode }) => {
                   className="submit-doctor-btn"
                   disabled={loading}
                 >
-                  {loading ? "Creating..." : "Request Doctor"}
+                  {loading ? "Requesting..." : "Request Doctor"}
                 </button>
               </div>
             </form>

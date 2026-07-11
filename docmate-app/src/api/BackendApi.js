@@ -162,7 +162,7 @@ export const changeUserStatusApi = (userId, status) => {
 };
 
 export const rateDoctorApi = (data) => {
-    return axiosInstance.post("/patient/rate-doctor", data);
+  return axiosInstance.post("/patient/rate-doctor", data);
 };
 
 export const createRoleApi = (data) => {
@@ -181,6 +181,32 @@ export const searchDoctorApi = (data, page = 0, size = 9) => {
   return axiosInstance.post(
     `/public/search-doctor?page=${page}&size=${size}`,
     data
+  );
+};
+
+export const getDoctorRequestsApi = (page = 0, size = 9) => {
+  return axiosInstance.get(
+    `/admin/get-doctor-requests?page=${page}&size=${size}`
+  );
+};
+
+export const getDoctorRequestDetailApi = (doctorRequestId) => {
+  return axiosInstance.get(`/admin/get-doctor-request/${doctorRequestId}`);
+};
+
+export const approveDoctorRequestApi = (doctorRequestId) => {
+  return axiosInstance.post(`/admin/approve-doctor-request/${doctorRequestId}`);
+};
+
+export const rejectDoctorRequestApi = (doctorRequestId, reason) => {
+  return axiosInstance.put(
+    `/admin/reject-doctor-request/${doctorRequestId}`,
+    reason,
+    {
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    }
   );
 };
 

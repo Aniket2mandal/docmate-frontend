@@ -164,7 +164,7 @@ const Sidebar = () => {
 
               <li>
               <FaHourglassHalf className="icon" />
-              <a href="#" className="dashboard-link">
+              <a href="/dashboard/admin/doctor-requests" className="dashboard-link">
                 <span>Doctor Request</span>
               </a>
             </li>

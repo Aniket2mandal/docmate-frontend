@@ -1,0 +1,25 @@
+.request-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 95px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.request-status.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.request-status.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.request-status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
