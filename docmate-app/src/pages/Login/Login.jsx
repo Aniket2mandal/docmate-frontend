@@ -140,8 +140,9 @@ const Login = () => {
               </a>
             </div>
 
-            <button type="submit" className="login-btn2">
-              Login
+            <button type="submit" className="login-btn2" disabled={loading}>
+              {/* Login */}
+               {loading ? "Login..." : "Login"}
             </button>
           </form>
 
