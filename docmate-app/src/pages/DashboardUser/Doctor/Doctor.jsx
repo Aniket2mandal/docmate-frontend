@@ -44,7 +44,7 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
 
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
-  const [hasMoreDoctors, setHasMoreDoctors] = useState(...);
+  const [hasMoreDoctors, setHasMoreDoctors] = useState(false);
 
   useEffect(() => {
     fetchAllDoctors(0, true);
