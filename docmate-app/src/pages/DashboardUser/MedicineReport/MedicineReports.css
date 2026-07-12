@@ -6,10 +6,14 @@
 
 .dashboard-medicine-main {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-medicine-content {
   padding: 30px;
+  overflow-x: hidden;
 }
 
 .medicine-header {
@@ -62,6 +66,8 @@
 .medicine-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   padding: 16px;
   border-radius: 14px;
 }
@@ -81,12 +87,158 @@
   font-weight: 600;
 }
 
-/* .active {
-  background: #dcfce7;
-  color: #15803d;
-} */
-
 .completed {
   background: #e5e7eb;
   color: #374151;
+}
+
+/* =======================
+   1200px
+======================= */
+
+@media (max-width:1200px){
+
+  .dashboard-medicine-content{
+    padding:24px;
+  }
+
+  .medicine-header h1{
+    font-size:30px;
+  }
+
+}
+
+/* =======================
+   992px
+======================= */
+
+@media (max-width:992px){
+
+  .dashboard-medicine-content{
+    padding:22px;
+  }
+
+  .medicine-summary{
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* =======================
+   768px
+======================= */
+
+@media (max-width:768px){
+
+  .dashboard-medicine-main{
+    flex:1;
+    min-width:0;
+  }
+
+  .dashboard-medicine-content{
+    padding:20px 16px;
+  }
+
+  .medicine-header{
+    margin-bottom:20px;
+  }
+
+  .medicine-header h1{
+    font-size:26px;
+  }
+
+  .medicine-header p{
+    font-size:15px;
+  }
+
+  .medicine-summary{
+    grid-template-columns:1fr;
+    gap:16px;
+    margin-bottom:22px;
+  }
+
+  .summary-card{
+    padding:18px;
+  }
+
+  .medicine-list-card{
+    padding:18px;
+  }
+
+  .medicine-item{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .medicine-item > *{
+    width:100%;
+  }
+
+  .status-badge{
+    align-self:flex-start;
+  }
+
+}
+
+/* =======================
+   576px
+======================= */
+
+@media (max-width:576px){
+
+  .dashboard-medicine-content{
+    padding:16px 12px;
+  }
+
+  .medicine-header h1{
+    font-size:22px;
+  }
+
+  .medicine-header p{
+    font-size:14px;
+  }
+
+  .summary-card{
+    padding:16px;
+  }
+
+  .medicine-list-card{
+    padding:16px;
+  }
+
+  .medicine-item{
+    padding:14px;
+  }
+
+  .medicine-item h3{
+    font-size:16px;
+  }
+
+  .medicine-item p,
+  .medicine-item span{
+    font-size:13px;
+  }
+
+  .status-badge{
+    font-size:12px;
+    padding:5px 12px;
+  }
+
+}
+
+/* =======================
+   400px
+======================= */
+
+@media (max-width:400px){
+
+  .dashboard-medicine-content{
+    padding:12px 10px;
+  }
+
+  .medicine-header h1{
+    font-size:20px;
+  }
+
 }

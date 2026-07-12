@@ -186,3 +186,162 @@
     min-width: 500px;
   }
 }
+
+/* ==========================
+   Laptop
+========================== */
+@media (max-width:1200px){
+
+  .admin-role-content{
+    padding:28px 24px 50px;
+  }
+
+  .admin-role-card{
+    padding:20px;
+  }
+
+  .role-table{
+    min-width:650px;
+  }
+
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width:992px){
+
+  .admin-role-content{
+    padding:24px 20px 40px;
+  }
+
+  .admin-role-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .admin-role-header h2{
+    font-size:28px;
+  }
+
+  .admin-role-header p{
+    font-size:15px;
+  }
+
+  .admin-role-actions{
+    width:100%;
+  }
+
+  .create-role-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+  .admin-role-card{
+    padding:18px;
+  }
+
+  .role-table{
+    min-width:600px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width:768px){
+
+  /* Keep sidebar on left */
+  .admin-role-page{
+    display:flex;
+  }
+
+  .admin-role-main{
+    flex:1;
+    width:100%;
+    min-width:0;
+  }
+
+  .admin-role-content{
+    padding:18px 14px 35px;
+  }
+
+  .admin-role-header h2{
+    font-size:24px;
+  }
+
+  .admin-role-header p{
+    font-size:14px;
+  }
+
+  .admin-role-card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .role-table-wrapper{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .role-table{
+    min-width:550px;
+  }
+
+  .role-table th,
+  .role-table td{
+    padding:12px;
+    font-size:13px;
+  }
+
+  .edit-role-btn,
+  .delete-role-btn{
+    width:34px;
+    height:34px;
+    font-size:13px;
+  }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+@media (max-width:480px){
+
+  .admin-role-content{
+    padding:15px 10px 25px;
+  }
+
+  .admin-role-header h2{
+    font-size:22px;
+  }
+
+  .admin-role-header p{
+    font-size:13px;
+  }
+
+  .admin-role-card{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .role-table{
+    min-width:500px;
+  }
+
+  .role-table th,
+  .role-table td{
+    padding:10px;
+    font-size:12px;
+  }
+
+  .edit-role-btn,
+  .delete-role-btn{
+    width:32px;
+    height:32px;
+    font-size:12px;
+  }
+
+}

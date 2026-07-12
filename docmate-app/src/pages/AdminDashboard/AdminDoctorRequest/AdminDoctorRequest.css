@@ -7,6 +7,7 @@
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .request-status.pending {
@@ -22,4 +23,30 @@
 .request-status.rejected {
   background: #fee2e2;
   color: #b91c1c;
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width:768px){
+
+  .request-status{
+    min-width:85px;
+    padding:6px 12px;
+    font-size:12px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width:480px){
+
+  .request-status{
+    min-width:75px;
+    padding:5px 10px;
+    font-size:11px;
+  }
+
 }

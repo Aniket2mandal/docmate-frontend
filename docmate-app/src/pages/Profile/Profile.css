@@ -227,3 +227,167 @@
     height: 200px;
   }
 }
+
+/* ===========================
+   Large Tablet
+=========================== */
+@media (max-width:1100px){
+
+  .dashboard-profile-content{
+    padding:28px 22px 40px;
+  }
+
+  .profile-card-new{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:24px;
+  }
+
+  .profile-left-section{
+    max-width:420px;
+    width:100%;
+    margin:auto;
+  }
+
+}
+
+/* ===========================
+   Tablet
+=========================== */
+@media (max-width:768px){
+
+  /* DON'T CHANGE FLEX DIRECTION */
+
+  .dashboard-profile-page{
+    display:flex;
+  }
+
+  .dashboard-profile-main{
+    flex:1;
+    min-width:0;
+  }
+
+  .dashboard-profile-content{
+    padding:20px 16px 30px;
+  }
+
+  .profile-page-header{
+    margin-bottom:20px;
+  }
+
+  .profile-page-header h1{
+    font-size:28px;
+  }
+
+  .profile-page-header p{
+    font-size:15px;
+  }
+
+  .profile-card-new{
+    grid-template-columns:1fr;
+    gap:22px;
+    padding:20px;
+    border-radius:18px;
+  }
+
+  .profile-left-section{
+    padding:20px;
+  }
+
+  .profile-image-box{
+    width:180px;
+    height:200px;
+  }
+
+  .profile-left-section h2{
+    font-size:22px;
+  }
+
+  .profile-section-title h2{
+    font-size:22px;
+  }
+
+  .profile-details-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .profile-detail-item{
+    padding:16px;
+  }
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+@media (max-width:480px){
+
+  .dashboard-profile-content{
+    padding:16px 12px 24px;
+  }
+
+  .profile-page-header h1{
+    font-size:24px;
+  }
+
+  .profile-page-header p{
+    font-size:13px;
+  }
+
+  .profile-card-new{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .profile-left-section{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .profile-image-box{
+    width:150px;
+    height:170px;
+    border-radius:18px;
+  }
+
+  .profile-image-placeholder{
+    font-size:52px;
+  }
+
+  .upload-image-btn{
+    width:100%;
+    padding:12px;
+    font-size:14px;
+  }
+
+  .profile-left-section h2{
+    font-size:20px;
+  }
+
+  .profile-role-badge{
+    font-size:12px;
+    padding:6px 12px;
+  }
+
+  .profile-section-title h2{
+    font-size:20px;
+  }
+
+  .profile-section-title p{
+    font-size:13px;
+  }
+
+  .profile-detail-item{
+    padding:14px;
+  }
+
+  .profile-detail-item span{
+    font-size:13px;
+  }
+
+  .profile-detail-item strong{
+    font-size:15px;
+  }
+
+}

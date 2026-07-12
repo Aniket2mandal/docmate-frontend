@@ -109,7 +109,7 @@ export const getMedicalRecordByIdApi = (medicalRecordId) => {
   return axiosInstance.get(`/medical-record/${medicalRecordId}`);
 };
 
-export const getAllPatientApi = () => {
+export const getAllPatientApi = (page, size) => {
   return axiosInstance.get(`/admin/get-all-patient?page=${page}&size=${size}`);
 };
 

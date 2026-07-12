@@ -189,3 +189,171 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+/* ==========================
+   Laptop
+========================== */
+@media (max-width:1200px){
+
+  .create-doctor-content{
+    padding:28px 24px 50px;
+  }
+
+  .create-doctor-card{
+    padding:22px;
+  }
+
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width:992px){
+
+  .create-doctor-content{
+    padding:24px 20px 40px;
+  }
+
+  .create-doctor-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .create-doctor-header h2{
+    font-size:28px;
+  }
+
+  .create-doctor-header p{
+    font-size:15px;
+  }
+
+  .back-doctor-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+  .create-doctor-card{
+    padding:20px;
+  }
+
+  .create-doctor-form-grid{
+    gap:18px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width:768px){
+
+  /* Keep sidebar on left */
+  .create-doctor-page{
+    display:flex;
+  }
+
+  .create-doctor-main{
+    flex:1;
+    width:100%;
+    min-width:0;
+  }
+
+  .create-doctor-content{
+    padding:18px 14px 35px;
+  }
+
+  .create-doctor-header h2{
+    font-size:24px;
+  }
+
+  .create-doctor-header p{
+    font-size:14px;
+  }
+
+  .create-doctor-card{
+    padding:18px;
+    border-radius:16px;
+  }
+
+  .create-doctor-form-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .full-width{
+    grid-column:span 1;
+  }
+
+  .form-group label{
+    font-size:13px;
+  }
+
+  .form-group input,
+  .form-group select{
+    height:44px;
+    font-size:13px;
+  }
+
+  .create-doctor-submit-row{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .cancel-doctor-btn,
+  .submit-doctor-btn,
+  .back-doctor-btn{
+    width:100%;
+  }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+@media (max-width:480px){
+
+  .create-doctor-content{
+    padding:15px 10px 25px;
+  }
+
+  .create-doctor-header h2{
+    font-size:22px;
+  }
+
+  .create-doctor-header p{
+    font-size:13px;
+  }
+
+  .create-doctor-card{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .form-section-title h3{
+    font-size:20px;
+  }
+
+  .form-group label{
+    font-size:12px;
+  }
+
+  .form-group input,
+  .form-group select{
+    height:42px;
+    font-size:12px;
+    padding:0 12px;
+  }
+
+  .cancel-doctor-btn,
+  .submit-doctor-btn,
+  .back-doctor-btn{
+    padding:12px;
+    font-size:13px;
+  }
+
+  .field-error{
+    font-size:11px;
+  }
+
+}

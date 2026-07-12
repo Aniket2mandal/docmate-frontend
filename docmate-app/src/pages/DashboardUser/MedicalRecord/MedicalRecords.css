@@ -7,7 +7,7 @@
 
 .dashboard-medical-main {
   flex: 1;
-  min-height: 100vh;
+  min-width: 0;
   background: #f5f8fc;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .medical-record-header p {
-  margin: 8px 0 0;
+  margin-top: 8px;
   color: #7b8797;
   font-size: 16px;
 }
@@ -38,7 +38,7 @@
   border-radius: 20px;
   padding: 22px 24px;
   margin-bottom: 24px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 28px rgba(15,23,42,.06);
   max-width: 320px;
 }
 
@@ -49,18 +49,17 @@
 }
 
 .medical-record-count-card h2 {
-  margin: 8px 0 0;
+  margin-top: 8px;
   font-size: 34px;
-  color: #061226;
   font-weight: 800;
 }
 
 .medical-record-list-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #dbe7f4;
   border-radius: 22px;
   padding: 24px;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 35px rgba(15,23,42,.08);
 }
 
 .section-top {
@@ -68,10 +67,8 @@
 }
 
 .section-top h2 {
-  margin: 0;
   font-size: 25px;
   font-weight: 800;
-  color: #061226;
 }
 
 .record-list {
@@ -106,17 +103,16 @@
 }
 
 .record-left h3 {
-  margin: 0;
   font-size: 18px;
   font-weight: 800;
-  color: #061226;
+  margin: 0;
 }
 
 .record-left p {
-  margin: 5px 0;
+  margin-top: 5px;
+  color: #2f80ed;
   font-size: 14px;
   font-weight: 700;
-  color: #2f80ed;
 }
 
 .record-date {
@@ -131,9 +127,8 @@
 }
 
 .record-middle p {
-  margin: 6px 0 0;
+  margin-top: 6px;
   font-size: 15px;
-  color: #111827;
   line-height: 1.5;
 }
 
@@ -146,9 +141,9 @@
 
 .record-small-info {
   min-width: 75px;
-  background: #ffffff;
   border: 1px solid #e1ebf7;
   border-radius: 14px;
+  background: white;
   padding: 10px;
   text-align: center;
 }
@@ -157,24 +152,22 @@
   display: block;
   font-size: 20px;
   font-weight: 800;
-  color: #061226;
 }
 
 .record-small-info p {
-  margin: 3px 0 0;
+  margin-top: 3px;
   font-size: 12px;
   color: #64748b;
-  font-weight: 700;
 }
 
 .record-view-btn {
   border: none;
   background: #2f80ed;
-  color: #ffffff;
-  padding: 12px 16px;
+  color: white;
+  padding: 12px 18px;
   border-radius: 12px;
-  font-weight: 800;
   cursor: pointer;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -185,55 +178,121 @@
 .medical-loading,
 .medical-empty {
   text-align: center;
-  padding: 42px 20px;
-  color: #64748b;
+  padding: 40px;
 }
 
-.medical-empty h3 {
-  margin: 0 0 8px;
-  color: #061226;
+/* Tablet */
+
+@media (max-width:1100px){
+
+  .dashboard-medical-content{
+      padding:24px;
+  }
+
+  .record-item{
+      grid-template-columns:1fr;
+  }
+
+  .record-right{
+      justify-content:flex-start;
+      flex-wrap:wrap;
+  }
+
+  .medical-record-count-card{
+      max-width:100%;
+  }
+
 }
 
-.medical-empty p {
-  margin: 0;
-  color: #7b8797;
+/* Mobile */
+
+@media (max-width:768px){
+
+  /* DON'T CHANGE dashboard-medical-page to column */
+
+  .dashboard-medical-content{
+      padding:20px 16px;
+  }
+
+  .medical-record-header h1{
+      font-size:28px;
+  }
+
+  .medical-record-list-card{
+      padding:18px;
+  }
+
+  .record-item{
+      grid-template-columns:1fr;
+      gap:18px;
+      padding:16px;
+  }
+
+  .record-left{
+      align-items:flex-start;
+  }
+
+  .record-right{
+      flex-direction:column;
+      align-items:stretch;
+  }
+
+  .record-small-info,
+  .record-view-btn{
+      width:100%;
+  }
+
 }
 
-@media (max-width: 1100px) {
-  .record-item {
-    grid-template-columns: 1fr;
-    align-items: flex-start;
+/* Small phones */
+
+@media (max-width:480px){
+
+  .dashboard-medical-content{
+      padding:15px 12px;
   }
 
-  .record-right {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 700px) {
-  .dashboard-medical-content {
-    padding: 24px 18px 40px;
+  .medical-record-header h1{
+      font-size:24px;
   }
 
-  .medical-record-header h1 {
-    font-size: 28px;
+  .medical-record-header p{
+      font-size:14px;
   }
 
-  .record-left {
-    align-items: flex-start;
+  .medical-record-count-card{
+      padding:16px;
   }
 
-  .record-right {
-    flex-direction: column;
-    align-items: stretch;
+  .medical-record-count-card h2{
+      font-size:28px;
   }
 
-  .record-small-info {
-    width: 100%;
+  .medical-record-list-card{
+      padding:14px;
   }
 
-  .record-view-btn {
-    width: 100%;
+  .record-item{
+      padding:14px;
   }
+
+  .record-left{
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+  }
+
+  .record-doctor-img{
+      width:56px;
+      height:56px;
+  }
+
+  .record-left h3{
+      font-size:16px;
+  }
+
+  .record-middle p{
+      font-size:14px;
+  }
+
 }

@@ -294,3 +294,205 @@
     align-items: flex-start;
   }
 }
+
+/* =====================================
+   Large Tablet (1024px)
+===================================== */
+@media (max-width: 1024px) {
+
+  .medical-detail-content {
+    padding: 24px;
+  }
+
+  .medical-detail-header {
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .header-buttons {
+    flex-wrap: wrap;
+  }
+
+  .medical-detail-card {
+    padding: 20px;
+  }
+
+  .doctor-summary-card {
+    flex-wrap: wrap;
+  }
+
+  .visit-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .medicine-table {
+    min-width: 700px;
+  }
+}
+
+/* =====================================
+   Tablet (768px)
+===================================== */
+@media (max-width: 768px) {
+
+  /* DON'T change .medical-detail-page to column */
+
+  .medical-detail-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .medical-detail-content {
+    padding: 20px 16px 35px;
+  }
+
+  .medical-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .medical-detail-header h1 {
+    font-size: 28px;
+  }
+
+  .medical-detail-header p {
+    font-size: 15px;
+  }
+
+  .header-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .download-btn,
+  .back-btn-report {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .medical-detail-card {
+    padding: 18px;
+  }
+
+  .doctor-summary-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .doctor-summary-card img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .doctor-summary-card h2 {
+    font-size: 21px;
+  }
+
+  .visit-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-section h3 {
+    font-size: 20px;
+  }
+
+  .medicine-table {
+    min-width: 650px;
+  }
+
+  .report-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* =====================================
+   Mobile (480px)
+===================================== */
+@media (max-width: 480px) {
+
+  .medical-detail-content {
+    padding: 15px 12px 30px;
+  }
+
+  .medical-detail-header h1 {
+    font-size: 24px;
+  }
+
+  .medical-detail-header p {
+    font-size: 14px;
+  }
+
+  .medical-detail-card {
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .doctor-summary-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .doctor-summary-card img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .doctor-summary-card h2 {
+    font-size: 18px;
+  }
+
+  .doctor-summary-card p,
+  .doctor-summary-card span {
+    font-size: 13px;
+  }
+
+  .visit-info-box {
+    padding: 14px;
+  }
+
+  .visit-info-box strong {
+    font-size: 15px;
+  }
+
+  .detail-section {
+    margin-top: 22px;
+  }
+
+  .detail-section h3 {
+    font-size: 18px;
+  }
+
+  .detail-section p {
+    font-size: 14px;
+  }
+
+  .download-btn,
+  .back-btn-report {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .medicine-table {
+    min-width: 600px;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-card-bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .report-card-bottom button {
+    width: 100%;
+  }
+}

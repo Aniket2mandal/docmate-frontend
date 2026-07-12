@@ -291,3 +291,209 @@
     opacity:.5;
     cursor:not-allowed;
 }
+
+/* ==========================
+   Laptop
+========================== */
+@media (max-width:1200px){
+
+  .admin-doctor-content{
+    padding:28px 24px 50px;
+  }
+
+  .admin-doctor-card{
+    padding:20px;
+  }
+
+  .doctor-table{
+    min-width:1000px;
+  }
+
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width:992px){
+
+  .admin-doctor-content{
+    padding:24px 20px 40px;
+  }
+
+  .admin-doctor-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .admin-doctor-header h2{
+    font-size:28px;
+  }
+
+  .admin-doctor-header p{
+    font-size:15px;
+  }
+
+  .admin-doctor-actions{
+    width:100%;
+  }
+
+  .create-doctor-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+  .admin-doctor-card{
+    padding:18px;
+  }
+
+  .doctor-table{
+    min-width:950px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width:768px){
+
+  /* Keep sidebar on left */
+  .admin-doctor-page{
+    display:flex;
+  }
+
+  .admin-doctor-main{
+    flex:1;
+    width:100%;
+    min-width:0;
+  }
+
+  .admin-doctor-content{
+    padding:18px 14px 35px;
+  }
+
+  .admin-doctor-header h2{
+    font-size:24px;
+  }
+
+  .admin-doctor-header p{
+    font-size:14px;
+  }
+
+  .admin-doctor-card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .doctor-table-wrapper{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .doctor-table{
+    min-width:900px;
+  }
+
+  .doctor-table th,
+  .doctor-table td{
+    padding:12px;
+    font-size:13px;
+  }
+
+  .doctor-table-img,
+  .doctor-table-placeholder{
+    width:42px;
+    height:42px;
+    font-size:16px;
+  }
+
+  .doctor-status-toggle{
+    width:80px;
+    height:34px;
+    font-size:12px;
+  }
+
+  .view-doctor-btn,
+  .edit-doctor-btn,
+  .delete-doctor-btn{
+    width:34px;
+    height:34px;
+    font-size:13px;
+  }
+
+  .doctor-pagination{
+    gap:6px;
+    flex-wrap:wrap;
+  }
+
+  .doctor-pagination button{
+    padding:7px 12px;
+    font-size:12px;
+  }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+@media (max-width:480px){
+
+  .admin-doctor-content{
+    padding:15px 10px 25px;
+  }
+
+  .admin-doctor-header h2{
+    font-size:22px;
+  }
+
+  .admin-doctor-header p{
+    font-size:13px;
+  }
+
+  .admin-doctor-card{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .doctor-table{
+    min-width:850px;
+  }
+
+  .doctor-table th,
+  .doctor-table td{
+    padding:10px;
+    font-size:12px;
+  }
+
+  .doctor-table-img,
+  .doctor-table-placeholder{
+    width:38px;
+    height:38px;
+    font-size:15px;
+  }
+
+  .doctor-status-toggle{
+    width:75px;
+    height:32px;
+    font-size:11px;
+  }
+
+  .view-doctor-btn,
+  .edit-doctor-btn,
+  .delete-doctor-btn{
+    width:32px;
+    height:32px;
+    font-size:12px;
+  }
+
+  .doctor-pagination{
+    gap:4px;
+  }
+
+  .doctor-pagination button{
+    padding:6px 10px;
+    font-size:11px;
+  }
+
+}

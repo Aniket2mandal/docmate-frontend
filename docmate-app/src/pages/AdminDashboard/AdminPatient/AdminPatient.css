@@ -233,3 +233,187 @@
     justify-content: center;
   }
 }
+
+/* ==========================
+   Laptop
+========================== */
+@media (max-width: 1200px) {
+
+  .admin-patient-content{
+    padding:28px 24px 50px;
+  }
+
+  .admin-patient-card{
+    padding:20px;
+  }
+
+  .patient-table{
+    min-width:1100px;
+  }
+
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width:992px){
+
+  .admin-patient-content{
+    padding:24px 20px 40px;
+  }
+
+  .admin-patient-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .admin-patient-header h2{
+    font-size:28px;
+  }
+
+  .admin-patient-header p{
+    font-size:15px;
+  }
+
+  .admin-patient-actions{
+    width:100%;
+  }
+
+  .create-patient-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+  .admin-patient-card{
+    padding:18px;
+  }
+
+  .patient-table{
+    min-width:1050px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width:768px){
+
+  /* DON'T change flex-direction */
+  .admin-patient-page{
+    display:flex;
+  }
+
+  .admin-patient-main{
+    flex:1;
+    width:100%;
+    min-width:0;
+  }
+
+  .admin-patient-content{
+    padding:18px 14px 35px;
+  }
+
+  .admin-patient-header h2{
+    font-size:24px;
+  }
+
+  .admin-patient-header p{
+    font-size:14px;
+  }
+
+  .admin-patient-card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .patient-table-wrapper{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .patient-table{
+    min-width:950px;
+  }
+
+  .patient-table th,
+  .patient-table td{
+    padding:12px;
+    font-size:13px;
+  }
+
+  .patient-table-img,
+  .patient-table-placeholder{
+    width:42px;
+    height:42px;
+  }
+
+  .patient-status-toggle{
+    width:80px;
+    height:34px;
+    font-size:12px;
+  }
+
+  .edit-patient-btn,
+  .delete-patient-btn{
+    width:34px;
+    height:34px;
+    font-size:13px;
+  }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+@media (max-width:480px){
+
+  .admin-patient-content{
+    padding:15px 10px 25px;
+  }
+
+  .admin-patient-header h2{
+    font-size:22px;
+  }
+
+  .admin-patient-header p{
+    font-size:13px;
+  }
+
+  .admin-patient-card{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .patient-table{
+    min-width:900px;
+  }
+
+  .patient-table th,
+  .patient-table td{
+    padding:10px;
+    font-size:12px;
+  }
+
+  .patient-table-img,
+  .patient-table-placeholder{
+    width:38px;
+    height:38px;
+    font-size:15px;
+  }
+
+  .patient-status-toggle{
+    width:75px;
+    height:32px;
+    font-size:11px;
+  }
+
+  .edit-patient-btn,
+  .delete-patient-btn{
+    width:32px;
+    height:32px;
+    font-size:12px;
+  }
+
+}
