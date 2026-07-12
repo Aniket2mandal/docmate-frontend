@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { bookAppointment, getAvailableSlots } from "../../api/BackendApi";
+import { bookAppointment, getAvailableSlots,getDoctorDetails } from "../../api/BackendApi";
 import "./BookAppointmentModal.css";
 import Swal from "sweetalert2";
 
@@ -23,10 +23,16 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
 
                 setScheduleLoading(true);
 
-                const response = await getAvailableSlots(doctorId);
+                const response = await getDoctorDetails(doctorId);
 
                 if (response.data?.status === true) {
-                    setSchedules(response.data.data || []);
+
+                    const availableSchedules =
+                        response.data.data?.schedules?.filter(
+                            (schedule) => schedule.available === "AVAILABLE"
+                        ) || [];
+
+                    setSchedules(availableSchedules || []);
                 } else {
                     setSchedules([]);
                 }
@@ -89,8 +95,8 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
             };
 
             const response = await bookAppointment(requestData);
-                onClose();
-                
+            onClose();
+
             if (response.data?.status === true) {
                 await Swal.fire({
                     icon: "success",
@@ -105,7 +111,7 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                 setReasonForVisit("");
                 setError("");
 
-             
+
             } else {
                 setError(response.data?.message || "Failed to book appointment");
             }
@@ -156,8 +162,8 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                                         key={schedule.id}
                                         className={
                                             appointmentDate === schedule.startDate &&
-                                            appointmentTime === schedule.startTime?.slice(0, 5) &&
-                                            appointmentEndTime === schedule.endTime?.slice(0, 5)
+                                                appointmentTime === schedule.startTime?.slice(0, 5) &&
+                                                appointmentEndTime === schedule.endTime?.slice(0, 5)
                                                 ? "slot-card selected"
                                                 : "slot-card"
                                         }

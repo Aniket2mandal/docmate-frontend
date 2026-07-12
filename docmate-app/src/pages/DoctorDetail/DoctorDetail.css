@@ -359,3 +359,269 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+  .doctor-detail-content {
+    padding: 40px 50px;
+  }
+
+  .doctor-profile-card,
+  .doctor-info-grid,
+  .doctor-about-rating-card {
+    max-width: 1150px;
+  }
+}
+
+
+/* Laptop / Tablet */
+@media (max-width: 1024px) {
+
+  .doctor-detail-content {
+    padding: 28px 24px;
+  }
+
+
+  .doctor-profile-card {
+    max-width: 100%;
+    gap: 24px;
+    padding: 22px;
+  }
+
+
+  .doctor-profile-left {
+    width: 240px;
+    height: 260px;
+  }
+
+
+  .doctor-profile-right h1 {
+    font-size: 30px;
+  }
+
+
+  .doctor-info-grid,
+  .doctor-about-rating-card {
+    max-width: 100%;
+  }
+
+}
+
+
+/* Tablet */
+@media (max-width: 768px) {
+
+
+  .doctor-detail-page {
+    flex-direction: row;
+  }
+
+
+  .doctor-detail-main {
+    width: calc(100% - 80px);
+    min-width: 0;
+  }
+
+
+  .doctor-detail-content {
+    padding: 20px 16px;
+  }
+
+
+  .back-btn {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+
+  .doctor-profile-card {
+    flex-direction: column;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+
+  .doctor-profile-left {
+    width: 100%;
+    height: 280px;
+  }
+
+
+  .doctor-profile-right {
+    width: 100%;
+  }
+
+
+  .doctor-profile-right h1 {
+    font-size: 26px;
+  }
+
+
+  .doctor-qualification {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+
+  .doctor-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+
+  .doctor-stats div {
+    padding: 12px;
+  }
+
+
+  .doctor-stats h3 {
+    font-size: 18px;
+  }
+
+
+  .doctor-stats p {
+    font-size: 12px;
+  }
+
+
+  .doctor-btn-grp,
+  .doctor-button-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+
+  .book-btn,
+  .rate-btn {
+    width: 100%;
+  }
+
+
+  .doctor-info-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+
+  .doctor-about-rating-card {
+    grid-template-columns: 1fr;
+  }
+
+
+  .doctor-info-card,
+  .doctor-about-section,
+  .doctor-rating-section {
+    padding: 18px;
+  }
+
+
+  .info-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+
+  .info-row p {
+    text-align: left;
+  }
+
+
+  .doctor-document-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* Mobile */
+@media (max-width: 480px) {
+
+
+  .doctor-detail-page {
+    flex-direction: row;
+  }
+
+
+  .doctor-detail-main {
+    width: calc(100% - 70px);
+  }
+
+
+  .doctor-detail-content {
+    padding: 16px 12px;
+  }
+
+
+  .doctor-profile-card {
+    padding: 14px;
+  }
+
+
+  .doctor-profile-left {
+    height: 220px;
+    border-radius: 14px;
+  }
+
+
+  .doctor-profile-right h1 {
+    font-size: 22px;
+  }
+
+
+  .doctor-specialization {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+
+  .doctor-stats {
+    grid-template-columns: 1fr;
+  }
+
+
+  .doctor-stats div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .doctor-info-card h3,
+  .doctor-about-section h3,
+  .doctor-rating-section h3 {
+    font-size: 18px;
+  }
+
+
+  .doctor-about-section p {
+    font-size: 14px;
+  }
+
+
+  .rating-number {
+    font-size: 28px;
+  }
+
+
+  .rating-stars {
+    font-size: 18px;
+  }
+
+
+  .doctor-document-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .document-item {
+    width: 100%;
+  }
+
+
+  .doctor-document-image,
+  .no-document {
+    height: 160px;
+  }
+
+}
