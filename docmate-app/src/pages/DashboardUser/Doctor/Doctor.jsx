@@ -6,7 +6,7 @@ import {
   FaSearch,
   FaRedoAlt,
   FaChevronLeft,
-  FaChevronRight, 
+  FaChevronRight,
 } from "react-icons/fa";
 
 import SideBar from "../../../components/SideBar/SideBar";
@@ -77,7 +77,9 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
   // };
 
   const handleAiRecommendation = async () => {
-    if (!symptoms.trim()) {
+    const trimmedSymptoms = symptoms.trim();
+
+    if (!trimmedSymptoms) {
       setAiMessage("Please enter your symptoms first.");
       return;
     }
@@ -88,7 +90,7 @@ const Doctor = ({ darkMode, toggleDarkMode }) => {
       setAiResultMode(true);
       setHasMoreDoctors(false);
 
-      const response = await recommendDoctorsBySymptoms(symptoms);
+      const response = await recommendDoctorsBySymptoms(trimmedSymptoms);
 
       const data = response?.data?.data;
 
