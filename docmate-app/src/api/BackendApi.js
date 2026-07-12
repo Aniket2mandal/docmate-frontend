@@ -29,13 +29,13 @@ export const bookAppointment = (appointmentData) => {
 };
 
 // NOT USED YET
-export const getAllSchedule = (doctorId) => {
-  return axiosInstance.get(`/doctor/get-all-schedule/${doctorId}`);
+export const getAllSchedule = (doctorId, page, size) => {
+  return axiosInstance.get(`/doctor/get-all-schedule/${doctorId}?page=${page}&size=${size}`);
 };
 
 
-export const getAvailableSlots = (doctorId) => {
-  return axiosInstance.get(`/doctor/get-available-slots/${doctorId}`);
+export const getAvailableSlots = (doctorId, page, size) => {
+  return axiosInstance.get(`/doctor/get-available-slots/${doctorId}?page=${page}&size=${size}`);
 };
 
 export const deleteScheduleApi = (scheduleId) => {
@@ -108,7 +108,7 @@ export const getMedicalRecordByIdApi = (medicalRecordId) => {
 };
 
 export const getAllPatientApi = () => {
-  return axiosInstance.get("/admin/get-all-patient");
+  return axiosInstance.get(`/admin/get-all-patient?page=${page}&size=${size}`);
 };
 
 export const createDoctorApi = (formData) => {

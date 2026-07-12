@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
 import { getAllSchedule, getAvailableSlots, deleteScheduleApi } from "../../../api/BackendApi";
-import { FaTrash } from "react-icons/fa";
+import {
+    FaTrash, FaChevronLeft,
+    FaChevronRight
+} from "react-icons/fa";
 import "./ScheduleList.css";
 import Swal from "sweetalert2";
 
@@ -12,14 +15,18 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
     const [loading, setLoading] = useState(false);
     const [listTitle, setListTitle] = useState("All Schedule");
     const navigate = useNavigate();
+    const [pageNo, setPageNo] = useState(0);
+    const [paginationInfo, setPaginationInfo] = useState(null);
+    const [showAvailableOnly, setShowAvailableOnly] = useState(false);
 
     const doctorId = localStorage.getItem("doctorId");
+    const PAGE_SIZE = 5;
 
     useEffect(() => {
-        fetchAllSchedule();
+        fetchAllSchedule(0);
     }, []);
 
-    const fetchAllSchedule = async () => {
+    const fetchAllSchedule = async (page = 0) => {
         try {
             setLoading(true);
 
@@ -32,10 +39,13 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                 return;
             }
 
-            const response = await getAllSchedule(doctorId);
+            const response = await getAllSchedule(doctorId, page, PAGE_SIZE);
 
             if (response.data?.status === true) {
-                setSchedules(response.data.data || []);
+                setSchedules(response.data.data.data);
+                setPaginationInfo(response.data.data.paginationInfo);
+                setPageNo(page);
+                setShowAvailableOnly(false);
                 setListTitle("All Schedule");
             } else {
                 setSchedules([]);
@@ -55,7 +65,7 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
         }
     };
 
-    const fetchAvailableSlots = async () => {
+    const fetchAvailableSlots = async (page = 0) => {
         try {
             setLoading(true);
 
@@ -68,10 +78,13 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                 return;
             }
 
-            const response = await getAvailableSlots(doctorId);
+            const response = await getAvailableSlots(doctorId, page, PAGE_SIZE);
 
             if (response.data?.status === true) {
-                setSchedules(response.data.data || []);
+                setSchedules(response.data.data.data);
+                setPaginationInfo(response.data.data.paginationInfo);
+                setPageNo(page);
+                setShowAvailableOnly(true);
                 setListTitle("Available Slots");
             } else {
                 setSchedules([]);
@@ -160,6 +173,14 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
         }
     };
 
+    const handlePageChange = (page) => {
+        if (showAvailableOnly) {
+            fetchAvailableSlots(page);
+        } else {
+            fetchAllSchedule(page);
+        }
+    };
+
     return (
         <div className="schedule-list-page">
             <SideBar />
@@ -234,31 +255,31 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                                                 </td>
 
                                                 <td>
-                                                     <div className="schedule-action-buttons">
-                                                    <button
-                                                        className={
-                                                            schedule.available === "COMPLETED"
-                                                                ? "view-consultation-btn"
-                                                                : "create-consultation-btn"
-                                                        }
-                                                        onClick={() => handleCreateConsultation(schedule)}
-                                                        disabled={schedule.available === "AVAILABLE" || schedule.available === "UNAVAILABLE"}
-                                                    >
-                                                        {schedule.available === "COMPLETED"
-                                                            ? "View Consultation"
-                                                            : "Create Consultation"}
-                                                    </button>
+                                                    <div className="schedule-action-buttons">
+                                                        <button
+                                                            className={
+                                                                schedule.available === "COMPLETED"
+                                                                    ? "view-consultation-btn"
+                                                                    : "create-consultation-btn"
+                                                            }
+                                                            onClick={() => handleCreateConsultation(schedule)}
+                                                            disabled={schedule.available === "AVAILABLE" || schedule.available === "UNAVAILABLE"}
+                                                        >
+                                                            {schedule.available === "COMPLETED"
+                                                                ? "View Consultation"
+                                                                : "Create Consultation"}
+                                                        </button>
 
-                                                    <button
-                                                        className="delete-schedule-btn"
-                                                        onClick={() => handleDeleteSchedule(schedule)}
-                                                        disabled={
-                                                            schedule.available === "BOOKED" ||
-                                                            schedule.available === "COMPLETED"
-                                                        }
-                                                    >
-                                                         <FaTrash />
-                                                    </button>
+                                                        <button
+                                                            className="delete-schedule-btn"
+                                                            onClick={() => handleDeleteSchedule(schedule)}
+                                                            disabled={
+                                                                schedule.available === "BOOKED" ||
+                                                                schedule.available === "COMPLETED"
+                                                            }
+                                                        >
+                                                            <FaTrash />
+                                                        </button>
                                                     </div>
                                                 </td>
 
@@ -270,6 +291,40 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                         ) : (
                             <p className="schedule-empty">No schedule found.</p>
                         )}
+
+                        {paginationInfo && (
+                            <div className="doctor-pagination">
+
+                                <button
+                                    disabled={pageNo === 0}
+                                    onClick={() => handlePageChange(pageNo - 1)}
+                                >
+                                    <FaChevronLeft />
+                                </button>
+
+                                {Array.from(
+                                    { length: paginationInfo.totalPages },
+                                    (_, index) => (
+                                        <button
+                                            key={index}
+                                            className={pageNo === index ? "active-page" : ""}
+                                            onClick={() => handlePageChange(index)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    )
+                                )}
+
+                                <button
+                                    disabled={pageNo === paginationInfo.totalPages - 1}
+                                    onClick={() => handlePageChange(pageNo + 1)}
+                                >
+                                    <FaChevronRight />
+                                </button>
+
+                            </div>
+                        )}
+
                     </div>
                 </div>
             </div>

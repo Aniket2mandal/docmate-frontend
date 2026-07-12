@@ -2,31 +2,41 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
-import { getAllPatientApi,changeUserStatusApi,deletePatientApi } from "../../../api/BackendApi";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { getAllPatientApi, changeUserStatusApi, deletePatientApi } from "../../../api/BackendApi";
+import {
+  FaEdit, FaTrash, FaPlus, FaChevronLeft,
+  FaChevronRight
+} from "react-icons/fa";
 import Swal from "sweetalert2";
 import "./AdminPatient.css";
 
 const AdminPatient = ({ darkMode, toggleDarkMode }) => {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(false);
+  const PAGE_SIZE = 9;
+
+  const [pageNo, setPageNo] = useState(0);
+  const [paginationInfo, setPaginationInfo] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchPatients();
+    fetchPatients(0);
   }, []);
 
-  const fetchPatients = async () => {
+  const fetchPatients = async (page = 0) => {
     try {
       setLoading(true);
 
-      const response = await getAllPatientApi();
+      const response = await getAllPatientApi(page, PAGE_SIZE);
 
       if (response.data?.status === true) {
-        setPatients(response.data.data || []);
+        setPatients(response.data.data.data);
+        setPaginationInfo(response.data.data.paginationInfo);
+        setPageNo(page);
       } else {
         setPatients([]);
+        setPaginationInfo(null);
       }
     } catch (error) {
       console.error("Patient fetch error:", error);
@@ -151,7 +161,7 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
     }
 
     try {
-     
+
       await changeUserStatusApi(userId, newStatus);
 
       setPatients((prevPatients) =>
@@ -176,9 +186,9 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
       });
     } catch (error) {
 
-       console.log("Full Error:", error);
-  console.log("Response Data:", error.response?.data);
-  console.log("Status Code:", error.response?.status);
+      console.log("Full Error:", error);
+      console.log("Response Data:", error.response?.data);
+      console.log("Status Code:", error.response?.status);
 
       Swal.fire({
         icon: "error",
@@ -188,6 +198,10 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
           "Something went wrong while updating status.",
       });
     }
+  };
+
+  const handlePageChange = (page) => {
+    fetchPatients(page);
   };
 
   return (
@@ -309,6 +323,40 @@ const AdminPatient = ({ darkMode, toggleDarkMode }) => {
             ) : (
               <p className="patient-empty">No patient found.</p>
             )}
+
+            {paginationInfo && (
+              <div className="doctor-pagination">
+
+                <button
+                  disabled={pageNo === 0}
+                  onClick={() => handlePageChange(pageNo - 1)}
+                >
+                  <FaChevronLeft />
+                </button>
+
+                {Array.from(
+                  { length: paginationInfo.totalPages },
+                  (_, index) => (
+                    <button
+                      key={index}
+                      className={pageNo === index ? "active-page" : ""}
+                      onClick={() => handlePageChange(index)}
+                    >
+                      {index + 1}
+                    </button>
+                  )
+                )}
+
+                <button
+                  disabled={pageNo === paginationInfo.totalPages - 1}
+                  onClick={() => handlePageChange(pageNo + 1)}
+                >
+                  <FaChevronRight />
+                </button>
+
+              </div>
+            )}
+
           </div>
         </div>
       </div>
