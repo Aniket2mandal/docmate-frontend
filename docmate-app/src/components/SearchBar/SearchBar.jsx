@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SearchBar.css";
+import "./Searchar.css";
 import { searchDoctorApi } from "../../api/BackendApi";
 
 const SearchBar = ({ setDoctors, setPageInfo, onSearch }) => {
