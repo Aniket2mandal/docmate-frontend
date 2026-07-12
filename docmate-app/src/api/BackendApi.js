@@ -35,6 +35,8 @@ export const getAllSchedule = (doctorId, page, size) => {
 
 
 export const getAvailableSlots = (doctorId, page, size) => {
+    console.log("API page =", page);
+            console.log("API typeof page =", typeof page);
   return axiosInstance.get(`/doctor/get-available-slots/${doctorId}?page=${page}&size=${size}`);
 };
 

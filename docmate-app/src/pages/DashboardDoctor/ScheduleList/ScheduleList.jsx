@@ -79,7 +79,8 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
             }
 
             const response = await getAvailableSlots(doctorId, page, PAGE_SIZE);
-
+            console.log("API page =", page);
+            console.log("API typeof page =", typeof page);
             if (response.data?.status === true) {
                 setSchedules(response.data.data.data);
                 setPaginationInfo(response.data.data.paginationInfo);
@@ -155,9 +156,9 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                 });
 
                 if (listTitle === "Available Slots") {
-                    fetchAvailableSlots();
+                    fetchAvailableSlots(pageNo);
                 } else {
-                    fetchAllSchedule();
+                    fetchAllSchedule(pageNo);
                 }
             }
         } catch (error) {
@@ -196,11 +197,17 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                         </div>
 
                         <div className="schedule-list-actions">
-                            <button className="all-schedule-btn" onClick={fetchAllSchedule}>
+                            <button
+                                className="all-schedule-btn"
+                                onClick={() => fetchAllSchedule(0)}
+                            >
                                 All Schedule
                             </button>
 
-                            <button className="available-slot-btn" onClick={fetchAvailableSlots}>
+                            <button
+                                className="available-slot-btn"
+                                onClick={() => fetchAvailableSlots(0)}
+                            >
                                 Available Slots
                             </button>
                         </div>
