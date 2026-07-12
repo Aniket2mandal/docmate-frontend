@@ -16,7 +16,7 @@ import {
   FaAward,
   FaHourglassHalf
 } from "react-icons/fa";
-import "./Sidebar.css";
+import "./SideBar.css";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
