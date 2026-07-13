@@ -245,3 +245,133 @@
   color: #9ca3af;
   cursor: not-allowed;
 }
+
+/* ===================================
+   DARK MODE
+=================================== */
+
+body.dark-mode .schedule-list-page,
+body.dark-mode .schedule-list-main {
+  background: #0f172a;
+}
+
+body.dark-mode .schedule-list-content {
+  background: transparent;
+}
+
+body.dark-mode .schedule-list-header h2,
+body.dark-mode .schedule-list-card-header h3 {
+  color: #f8fafc;
+}
+
+body.dark-mode .schedule-list-header p,
+body.dark-mode .schedule-loading,
+body.dark-mode .schedule-empty {
+  color: #cbd5e1;
+}
+
+body.dark-mode .schedule-list-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Table */
+
+body.dark-mode .schedule-table thead {
+  background: #0f172a;
+}
+
+body.dark-mode .schedule-table th {
+  color: #f8fafc;
+  border-bottom: 1px solid #334155;
+}
+
+body.dark-mode .schedule-table td {
+  color: #e2e8f0;
+  border-bottom: 1px solid #334155;
+}
+
+body.dark-mode .schedule-table tbody tr:hover {
+  background: #273449;
+}
+
+/* Header Buttons */
+
+body.dark-mode .all-schedule-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+
+body.dark-mode .all-schedule-btn:hover {
+  background: #475569;
+}
+
+body.dark-mode .available-slot-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .available-slot-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Status Badges */
+
+body.dark-mode .status-badge.available {
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+}
+
+body.dark-mode .status-badge.booked {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+}
+
+body.dark-mode .status-badge.unavailable {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+}
+
+body.dark-mode .status-badge.completed {
+  background: rgba(59, 130, 246, 0.18);
+  color: #60a5fa;
+}
+
+/* Action Buttons */
+
+body.dark-mode .create-consultation-btn {
+  background: #2563eb;
+}
+
+body.dark-mode .create-consultation-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .view-consultation-btn {
+  background: #1e40af;
+}
+
+body.dark-mode .view-consultation-btn:hover {
+  background: #1e3a8a;
+}
+
+body.dark-mode .create-consultation-btn:disabled,
+body.dark-mode .view-consultation-btn:disabled {
+  background: #475569;
+  color: #94a3b8;
+}
+
+body.dark-mode .delete-schedule-btn {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+}
+
+body.dark-mode .delete-schedule-btn:hover {
+  background: rgba(239, 68, 68, 0.28);
+}
+
+body.dark-mode .delete-schedule-btn:disabled {
+  background: #334155;
+  color: #64748b;
+}

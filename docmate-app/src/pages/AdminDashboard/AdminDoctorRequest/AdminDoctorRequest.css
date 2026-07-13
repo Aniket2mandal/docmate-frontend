@@ -50,3 +50,22 @@
   }
 
 }
+
+/* ==================================
+   DARK MODE
+================================== */
+
+body.dark-mode .request-status.pending {
+  background: #78350f;
+  color: #fde68a;
+}
+
+body.dark-mode .request-status.approved {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+body.dark-mode .request-status.rejected {
+  background: #7f1d1d;
+  color: #fecaca;
+}

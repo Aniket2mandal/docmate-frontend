@@ -268,3 +268,111 @@
   cursor: pointer;
   z-index: 2;
 }
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark-mode .consultation-page,
+body.dark-mode .consultation-main,
+body.dark-mode .consultation-content {
+  background: #111827;
+}
+
+body.dark-mode .consultation-header h2,
+body.dark-mode .consultation-section h3,
+body.dark-mode .medication-card-header h4,
+body.dark-mode .consultation-form-group label {
+  color: #f3f4f6;
+}
+
+body.dark-mode .consultation-header p,
+body.dark-mode .medication-title-row p {
+  color: #9ca3af;
+}
+
+body.dark-mode .consultation-card {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .consultation-form-group input,
+body.dark-mode .consultation-form-group textarea,
+body.dark-mode .consultation-form-group select {
+  background: #111827;
+  border: 1px solid #4b5563;
+  color: #f3f4f6;
+}
+
+body.dark-mode .consultation-form-group input::placeholder,
+body.dark-mode .consultation-form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+body.dark-mode .consultation-form-group input:focus,
+body.dark-mode .consultation-form-group textarea:focus,
+body.dark-mode .consultation-form-group select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+body.dark-mode .consultation-form-group input[readonly] {
+  background: #374151;
+  color: #d1d5db;
+}
+
+body.dark-mode .medication-card {
+  background: #111827;
+  border-color: #374151;
+}
+
+body.dark-mode .add-medication-btn,
+body.dark-mode .consultation-submit-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .add-medication-btn:hover,
+body.dark-mode .consultation-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .consultation-cancel-btn {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+body.dark-mode .consultation-cancel-btn:hover {
+  background: #4b5563;
+}
+
+body.dark-mode .remove-medication-btn {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .remove-medication-btn:hover {
+  background: #991b1b;
+}
+
+body.dark-mode .test-report-preview-card {
+  background: #111827;
+  border-color: #374151;
+}
+
+body.dark-mode .test-report-preview-card p {
+  color: #d1d5db;
+}
+
+body.dark-mode .test-report-preview-img {
+  border: 1px solid #374151;
+}
+
+body.dark-mode .remove-report-preview-btn {
+  background: #dc2626;
+}
+
+body.dark-mode .remove-report-preview-btn:hover {
+  background: #b91c1c;
+}

@@ -391,3 +391,69 @@
   }
 
 }
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+body.dark-mode .dashboard-profile-page,
+body.dark-mode .dashboard-profile-main {
+  background: #0f172a;
+}
+
+body.dark-mode .profile-page-header h1,
+body.dark-mode .profile-left-section h2,
+body.dark-mode .profile-section-title h2 {
+  color: #f8fafc;
+}
+
+body.dark-mode .profile-page-header p,
+body.dark-mode .profile-left-section p,
+body.dark-mode .profile-section-title p,
+body.dark-mode .profile-detail-item span,
+body.dark-mode .profile-loading {
+  color: #cbd5e1;
+}
+
+body.dark-mode .profile-card-new {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: none;
+}
+
+body.dark-mode .profile-left-section {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+body.dark-mode .profile-image-placeholder {
+  background: #1e3a8a;
+  color: #bfdbfe;
+}
+
+body.dark-mode .upload-image-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .upload-image-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .profile-role-badge {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+body.dark-mode .profile-detail-item {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+body.dark-mode .profile-detail-item strong {
+  color: #f8fafc;
+}
+
+body.dark-mode .profile-image-box {
+  box-shadow: 0 16px 35px rgba(37, 99, 235, 0.25);
+}

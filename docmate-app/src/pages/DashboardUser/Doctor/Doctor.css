@@ -551,3 +551,76 @@ body.dark-mode .doctor-pro-list-header span {
     opacity: .5;
     cursor: not-allowed;
 }
+
+/* ===================================
+   DARK MODE (Additional)
+=================================== */
+
+body.dark-mode .doctor-rating {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+}
+
+body.dark-mode .doctor-rating span {
+  color: #cbd5e1;
+}
+
+body.dark-mode .doctor-fee {
+  background: rgba(37, 99, 235, 0.18);
+  color: #60a5fa;
+}
+
+body.dark-mode .doctor-ai-reset-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+
+body.dark-mode .doctor-ai-reset-btn:hover {
+  background: #475569;
+}
+
+body.dark-mode .doctor-pro-explore-btn {
+  background: #334155;
+  color: #60a5fa;
+}
+
+body.dark-mode .doctor-pro-explore-btn:hover {
+  background: #475569;
+}
+
+body.dark-mode .doctor-pro-book-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .doctor-pro-book-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .doctor-ai-message {
+  color: #60a5fa;
+}
+
+body.dark-mode .doctor-pagination button {
+  background: #334155;
+  color: #f8fafc;
+}
+
+body.dark-mode .doctor-pagination button:hover:not(:disabled) {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .doctor-pagination button.active-page {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .doctor-pagination button:disabled {
+  background: #1e293b;
+  color: #64748b;
+}
+
+body.dark-mode .doctor-pro-card:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}

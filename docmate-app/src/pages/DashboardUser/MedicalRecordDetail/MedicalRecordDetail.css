@@ -496,3 +496,100 @@
     width: 100%;
   }
 }
+
+/* =====================================
+   Dark Mode
+===================================== */
+
+body.dark-mode .medical-detail-page,
+body.dark-mode .medical-detail-main {
+  background: #0f172a;
+}
+
+body.dark-mode .medical-detail-card,
+body.dark-mode .report-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark-mode .doctor-summary-card,
+body.dark-mode .visit-info-box {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+/* Headings */
+body.dark-mode .medical-detail-header h1,
+body.dark-mode .doctor-summary-card h2,
+body.dark-mode .detail-section h3,
+body.dark-mode .visit-info-box strong,
+body.dark-mode .report-card-bottom span {
+  color: #f8fafc;
+}
+
+/* Secondary text */
+body.dark-mode .medical-detail-header p,
+body.dark-mode .doctor-summary-card p,
+body.dark-mode .doctor-summary-card span,
+body.dark-mode .visit-info-box span,
+body.dark-mode .detail-section p,
+body.dark-mode .medical-detail-loading {
+  color: #cbd5e1;
+}
+
+/* Buttons */
+body.dark-mode .back-btn-report {
+  background: #334155;
+  color: #f8fafc;
+}
+
+body.dark-mode .back-btn-report:hover {
+  background: #475569;
+}
+
+body.dark-mode .download-btn {
+  background: #16a34a;
+}
+
+body.dark-mode .download-btn:hover {
+  background: #15803d;
+}
+
+/* Medicine table */
+body.dark-mode .medicine-table thead {
+  background: #0f172a;
+}
+
+body.dark-mode .medicine-table th {
+  color: #f8fafc;
+  border-bottom-color: #334155;
+}
+
+body.dark-mode .medicine-table td {
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+
+/* Status badge */
+body.dark-mode .medicine-status {
+  background: rgba(22, 163, 74, 0.18);
+  color: #4ade80;
+}
+
+/* Report preview */
+body.dark-mode .report-preview {
+  background: #0f172a;
+}
+
+body.dark-mode .report-card-bottom {
+  background: #1e293b;
+}
+
+body.dark-mode .report-card-bottom button {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .report-card-bottom button:hover {
+  background: #1d4ed8;
+}

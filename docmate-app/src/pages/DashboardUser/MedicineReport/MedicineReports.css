@@ -242,3 +242,62 @@
   }
 
 }
+
+/* =====================================
+   Dark Mode
+===================================== */
+
+body.dark-mode .dashboard-medicine-page,
+body.dark-mode .dashboard-medicine-main {
+  background: #0f172a;
+}
+
+/* Header */
+body.dark-mode .medicine-header h1 {
+  color: #f8fafc;
+}
+
+body.dark-mode .medicine-header p {
+  color: #cbd5e1;
+}
+
+/* Summary cards */
+body.dark-mode .summary-blue {
+  background: #1e3a8a;
+  color: #f8fafc;
+}
+
+body.dark-mode .summary-green {
+  background: #14532d;
+  color: #f8fafc;
+}
+
+/* Medicine list card */
+body.dark-mode .medicine-list-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+/* Medicine items */
+body.dark-mode .record-blue {
+  background: #1e3a8a;
+}
+
+body.dark-mode .record-pink {
+  background: #4c1d3d;
+}
+
+body.dark-mode .medicine-item h3 {
+  color: #f8fafc;
+}
+
+body.dark-mode .medicine-item p,
+body.dark-mode .medicine-item span {
+  color: #cbd5e1;
+}
+
+/* Status badge */
+body.dark-mode .status-badge.completed {
+  background: #334155;
+  color: #f8fafc;
+}

@@ -114,3 +114,78 @@
   padding: 50px;
   font-size: 20px;
 }
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark-mode .doctor-detail-page {
+  background: #111827;
+}
+
+body.dark-mode .doctor-detail-container {
+  background: #111827;
+}
+
+body.dark-mode .detail-header h2 {
+  color: #f3f4f6;
+}
+
+body.dark-mode .detail-card {
+  background: #1f2937;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .detail-card h3 {
+  color: #f3f4f6;
+}
+
+body.dark-mode .detail-grid p {
+  color: #d1d5db;
+}
+
+body.dark-mode .detail-grid strong {
+  color: #f9fafb;
+}
+
+body.dark-mode .document-card {
+  background: #111827;
+  border: 1px solid #374151;
+}
+
+body.dark-mode .document-card h4 {
+  color: #f3f4f6;
+}
+
+body.dark-mode .document-card img {
+  border: 1px solid #374151;
+}
+
+body.dark-mode .back-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .back-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .approve-btn {
+  background: #16a34a;
+}
+
+body.dark-mode .approve-btn:hover {
+  background: #15803d;
+}
+
+body.dark-mode .reject-btn {
+  background: #dc2626;
+}
+
+body.dark-mode .reject-btn:hover {
+  background: #b91c1c;
+}
+
+body.dark-mode .loading {
+  color: #f3f4f6;
+}

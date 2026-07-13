@@ -497,3 +497,141 @@
   }
 
 }
+
+/* ==================================
+   DARK MODE
+================================== */
+
+body.dark-mode .admin-doctor-page,
+body.dark-mode .admin-doctor-main {
+  background: var(--bg-color);
+}
+
+body.dark-mode .admin-doctor-content {
+  background: var(--bg-color);
+}
+
+body.dark-mode .admin-doctor-header h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .admin-doctor-header p {
+  color: #94a3b8;
+}
+
+body.dark-mode .admin-doctor-card {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 14px 35px var(--shadow-color);
+}
+
+body.dark-mode .admin-doctor-card-header h3 {
+  color: var(--text-color);
+}
+
+body.dark-mode .doctor-table thead {
+  background: #1f2937;
+}
+
+body.dark-mode .doctor-table th {
+  color: #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .doctor-table td {
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .doctor-table tbody tr:hover {
+  background: #243247;
+}
+
+body.dark-mode .doctor-table-img {
+  background: #334155;
+}
+
+body.dark-mode .doctor-table-placeholder {
+  background: #334155;
+  color: #93c5fd;
+}
+
+/* Status Button */
+
+body.dark-mode .doctor-status-toggle.active {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+body.dark-mode .doctor-status-toggle.active:hover {
+  background: #166534;
+}
+
+body.dark-mode .doctor-status-toggle.inactive {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .doctor-status-toggle.inactive:hover {
+  background: #991b1b;
+}
+
+/* Action Buttons */
+
+body.dark-mode .view-doctor-btn {
+  background: #1e3a5f;
+  color: #7dd3fc;
+}
+
+body.dark-mode .view-doctor-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .edit-doctor-btn {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+body.dark-mode .edit-doctor-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .delete-doctor-btn {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .delete-doctor-btn:hover {
+  background: #991b1b;
+  color: #fff;
+}
+
+/* Pagination */
+
+body.dark-mode .doctor-pagination button {
+  background: #1e293b;
+  color: #fff;
+}
+
+body.dark-mode .doctor-pagination button:hover:not(:disabled) {
+  background: var(--primary-color);
+}
+
+body.dark-mode .doctor-pagination .active-page {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+body.dark-mode .doctor-pagination button:disabled {
+  background: #334155;
+  color: #94a3b8;
+}
+
+/* Loading */
+
+body.dark-mode .doctor-loading,
+body.dark-mode .doctor-empty {
+  color: #94a3b8;
+}

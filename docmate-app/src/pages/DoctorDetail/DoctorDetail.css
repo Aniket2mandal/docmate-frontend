@@ -625,3 +625,108 @@
   }
 
 }
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+body.dark-mode .doctor-detail-page,
+body.dark-mode .doctor-detail-main {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+body.dark-mode .doctor-profile-card,
+body.dark-mode .doctor-info-card,
+body.dark-mode .doctor-about-section,
+body.dark-mode .doctor-rating-section,
+body.dark-mode .document-item {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: none;
+}
+
+body.dark-mode .doctor-profile-left {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+}
+
+body.dark-mode .doctor-specialization,
+body.dark-mode .schedule-chip {
+  background: #1e3a8a;
+  color: #bfdbfe;
+}
+
+body.dark-mode .doctor-profile-right h1,
+body.dark-mode .doctor-info-card h3,
+body.dark-mode .doctor-about-section h3,
+body.dark-mode .doctor-rating-section h3,
+body.dark-mode .document-item h4 {
+  color: #f8fafc;
+}
+
+body.dark-mode .doctor-qualification,
+body.dark-mode .doctor-about-section p,
+body.dark-mode .info-row span,
+body.dark-mode .rating-box p,
+body.dark-mode .schedule-chip p {
+  color: #cbd5e1;
+}
+
+body.dark-mode .doctor-stats div {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+body.dark-mode .doctor-stats h3 {
+  color: #60a5fa;
+}
+
+body.dark-mode .doctor-stats p {
+  color: #cbd5e1;
+}
+
+body.dark-mode .info-row {
+  border-bottom-color: #334155;
+}
+
+body.dark-mode .info-row p {
+  color: #f8fafc;
+}
+
+body.dark-mode .back-btn {
+  color: #60a5fa;
+}
+
+body.dark-mode .back-btn:hover {
+  color: #93c5fd;
+}
+
+body.dark-mode .book-btn {
+  background: #2563eb;
+}
+
+body.dark-mode .book-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .rate-btn {
+  background: #f59e0b;
+}
+
+body.dark-mode .rate-btn:hover {
+  background: #d97706;
+}
+
+body.dark-mode .doctor-document-image {
+  border-color: #475569;
+}
+
+body.dark-mode .no-document {
+  background: #0f172a;
+  border: 1px dashed #475569;
+  color: #94a3b8;
+}
+
+body.dark-mode .error-text {
+  color: #f87171;
+}

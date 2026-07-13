@@ -162,3 +162,62 @@ body.dark-mode .doctor-schedule-input-group input {
     width: 100%;
   }
 }
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark-mode .doctor-schedule-page,
+body.dark-mode .doctor-schedule-main,
+body.dark-mode .doctor-schedule-content {
+  background: #111827;
+}
+
+body.dark-mode .doctor-schedule-header h2,
+body.dark-mode .doctor-schedule-input-group label {
+  color: #f3f4f6;
+}
+
+body.dark-mode .doctor-schedule-header p {
+  color: #9ca3af;
+}
+
+body.dark-mode .doctor-schedule-card {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .doctor-schedule-input-group input {
+  background: #111827;
+  border: 1px solid #4b5563;
+  color: #f3f4f6;
+}
+
+body.dark-mode .doctor-schedule-input-group input::placeholder {
+  color: #9ca3af;
+}
+
+body.dark-mode .doctor-schedule-input-group input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+body.dark-mode .doctor-schedule-submit-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark-mode .doctor-schedule-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .doctor-schedule-error {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .doctor-schedule-success {
+  background: #064e3b;
+  color: #6ee7b7;
+}
