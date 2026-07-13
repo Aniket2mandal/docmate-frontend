@@ -144,3 +144,29 @@ body,
   }
 
 }
+
+/* ======================
+   Dark Mode
+====================== */
+
+.dashboard {
+  background: var(--bg-color);
+}
+
+.bodyPart {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.main-content {
+  background: var(--bg-color);
+}
+
+.welcome-back {
+  color: var(--text-color);
+}
+
+/* user-name remains blue */
+.user-name {
+  color: var(--primary-color);
+}

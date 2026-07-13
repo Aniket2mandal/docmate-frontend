@@ -420,3 +420,76 @@
   outline: none;
   box-shadow: none;
 }
+
+/* ===========================
+   Dark Mode
+=========================== */
+
+body.dark-mode .sidebar {
+  background: var(--sidebar-color);
+  color: var(--text-color);
+  box-shadow: 6px 0 15px var(--shadow-color);
+}
+
+body.dark-mode .logo {
+  color: var(--primary-color);
+}
+
+body.dark-mode .menu li,
+body.dark-mode .history li,
+body.dark-mode .version li,
+body.dark-mode .dashboard-link,
+body.dark-mode .menu-text,
+body.dark-mode .sub,
+body.dark-mode .icon,
+body.dark-mode .arrow-icon {
+  color: var(--text-color);
+}
+
+body.dark-mode .menu > li:hover,
+body.dark-mode .history li:hover {
+  background: #2f80ed;
+  color: #fff;
+}
+
+body.dark-mode .active {
+  background: #2f80ed;
+  color: #fff;
+}
+
+body.dark-mode .dropdown {
+  background: var(--card-color);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+body.dark-mode .dropdown p:hover {
+  background: var(--hover-color);
+}
+
+body.dark-mode .dropdown p a {
+  color: var(--primary-color) !important;
+}
+
+body.dark-mode .appointment .dropdown,
+body.dark-mode .appointment .dropdown * {
+  color: var(--primary-color) !important;
+}
+
+body.dark-mode .historyHr,
+body.dark-mode .versionHr {
+  border-color: var(--border-color);
+  opacity: 0.5;
+}
+
+body.dark-mode .sidebar-toggle {
+  background: var(--card-color);
+  border-color: var(--border-color);
+  color: var(--primary-color);
+}
+
+body.dark-mode .sidebar-toggle:hover {
+  background: #2f80ed;
+  color: #fff;
+  border-color: #2f80ed;
+}

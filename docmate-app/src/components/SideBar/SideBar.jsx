@@ -18,6 +18,7 @@ import {
   FaBars,
 } from "react-icons/fa";
 import "./SideBar.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -65,34 +66,34 @@ const Sidebar = () => {
             <li className="active">
               <FaHome className="icon" />
               {!collapsed && (
-                <a href="/dashboard/user" className="dashboard-link">
+                <Link to="/dashboard/user" className="dashboard-link">
                   <div className="menu-text">
                     <span>Dashboard</span>
                     <span className="sub">Overview and stats</span>
                   </div>
-                </a>
+                </Link>
               )}
             </li>
 
             <li>
               <FaUserMd className="icon" />
-              <a href="/dashboard/user/find-doctors" className="dashboard-link">
+              <Link to="/dashboard/user/find-doctors" className="dashboard-link">
                 {!collapsed && <span>Find Doctors</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaFileMedical className="icon" />
-              <a href="/dashboard/user/medical-records" className="dashboard-link">
+              <Link to="/dashboard/user/medical-records" className="dashboard-link">
                 {!collapsed && <span>Medical Record</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaCapsules className="icon" />
-              <a href="/dashboard/user/medicine-reports" className="dashboard-link">
+              <Link to="/dashboard/user/medicine-reports" className="dashboard-link">
                 {!collapsed && <span>Medicine Report</span>}
-              </a>
+              </Link>
             </li>
 
             {!collapsed && (
@@ -113,21 +114,19 @@ const Sidebar = () => {
                 {open && (
                   <div className="dropdown">
                     <p>
-                      <a
-                        href="/dashboard/user/upcoming-appointments"
+                      <Link to="/dashboard/user/upcoming-appointments"
                         className="dashboard-link"
                       >
                         Upcoming Appointment
-                      </a>
+                      </Link>
                     </p>
 
                     <p>
-                      <a
-                        href="/dashboard/user/previous-appointments"
+                      <Link to="/dashboard/user/previous-appointments"
                         className="dashboard-link"
                       >
                         Previous Appointment
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 )}
@@ -143,9 +142,9 @@ const Sidebar = () => {
 
               {!collapsed && (
                 <div className="menu-text">
-                  <a href="/dashboard/doctor" className="dashboard-link">
+                  <Link to="/dashboard/doctor" className="dashboard-link">
                     <span>Doctor Dashboard</span>
-                  </a>
+                  </Link>
                   <span className="sub">Doctor overview</span>
                 </div>
               )}
@@ -154,17 +153,17 @@ const Sidebar = () => {
             <li>
               <FaCalendarPlus className="icon" />
 
-              <a href="/dashboard/doctor/schedule" className="dashboard-link">
+              <Link to="/dashboard/doctor/schedule" className="dashboard-link">
                 {!collapsed && <span>Create Schedule</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaCalendarAlt className="icon" />
 
-              <a href="/dashboard/doctor/schedule-list" className="dashboard-link">
+              <Link to="/dashboard/doctor/schedule-list" className="dashboard-link">
                 {!collapsed && <span>View Schedule</span>}
-              </a>
+              </Link>
             </li>
           </>
         )}
@@ -176,9 +175,9 @@ const Sidebar = () => {
 
               {!collapsed && (
                 <div className="menu-text">
-                  <a href="/dashboard/admin" className="dashboard-link">
+                  <Link to="/dashboard/admin" className="dashboard-link">
                     <span>Admin Dashboard</span>
-                  </a>
+                  </Link>
                   <span className="sub">Admin overview</span>
                 </div>
               )}
@@ -186,37 +185,37 @@ const Sidebar = () => {
 
             <li>
               <FaUserInjured className="icon" />
-              <a href="/dashboard/admin/patients" className="dashboard-link">
+              <Link to="/dashboard/admin/patients" className="dashboard-link">
                 {!collapsed && <span>Patients</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaUserMd className="icon" />
-              <a href="/dashboard/admin/doctors" className="dashboard-link">
+              <Link to="/dashboard/admin/doctors" className="dashboard-link">
                 {!collapsed && <span>Doctors</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaHourglassHalf className="icon" />
-              <a href="/dashboard/admin/doctor-requests" className="dashboard-link">
+              <Link to="/dashboard/admin/doctor-requests" className="dashboard-link">
                 {!collapsed && <span>Doctor Request</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaAward className="icon" />
-              <a href="/dashboard/admin/roles" className="dashboard-link">
+              <Link to="/dashboard/admin/roles" className="dashboard-link">
                 {!collapsed && <span>Role</span>}
-              </a>
+              </Link>
             </li>
 
             <li>
               <FaUsers className="icon" />
-              <a href="/dashboard/admin/users" className="dashboard-link">
+              <Link to="/dashboard/admin/users" className="dashboard-link">
                 {!collapsed && <span>All Users</span>}
-              </a>
+              </Link>
             </li>
 
           </>
@@ -229,9 +228,9 @@ const Sidebar = () => {
         {isPatient && (
           <li>
             <FaHistory className="icon" />
-            <a href="/dashboard/history" className="dashboard-link">
+            <Link to="/dashboard/history" className="dashboard-link">
               <span>History</span>
-            </a>
+            </Link>
           </li>
         )}
 
@@ -241,9 +240,9 @@ const Sidebar = () => {
 
         <li>
           <FaCog className="icon" />
-          <a href="/dashboard/settings" className="dashboard-link">
+          <Link to="/dashboard/settings" className="dashboard-link">
             <span>Settings</span>
-          </a>
+          </Link>
         </li>
       </ul>
 

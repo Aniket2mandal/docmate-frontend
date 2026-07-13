@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import {
   FaBell,
   FaSun,
@@ -25,8 +25,14 @@ const Navbar = () => {
   const userEmail = localStorage.getItem("email") || "User";
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.className = darkMode ? "light-mode" : "dark-mode";
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+
+    if (newDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
   };
 
   const toggleMenu = () => {
@@ -96,8 +102,7 @@ const Navbar = () => {
           <div className="profile-dropdown">
             <div className="dropdown-header">{userEmail}</div>
 
-            <a
-              href="/profile"
+            <Link to="/profile"
               style={{
                 textDecoration: "none",
                 color: "inherit",
@@ -108,7 +113,7 @@ const Navbar = () => {
                 <FaUser className="dropdown-icon" />
                 <span>Profile</span>
               </div>
-            </a>
+            </Link>
 
             <div className="dropdown-item">
               <FaCog className="dropdown-icon" />
