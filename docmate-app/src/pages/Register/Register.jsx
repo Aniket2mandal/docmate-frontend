@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
 import { registerUser } from "../../api/BackendApi";
 import Swal from "sweetalert2";
@@ -69,6 +69,7 @@ const Register = () => {
                 gender: formData.gender,
                 phone: formData.phone,
                 address: formData.address,
+                province:formData.province,
                 status: formData.status
             },
             age: Number(formData.age),
@@ -201,6 +202,29 @@ const Register = () => {
                                     <span className="field-error">{fieldErrors.height}</span>
                                 )}
                             </div>
+                        </div>
+
+                        <div className="register-input-group">
+                            <label>Province</label>
+                            <select
+                                name="province"
+                                value={formData.province}
+                                onChange={handleChange}
+                            >
+                                <option value="" disabled>Province</option>
+                                <option value="Koshi">Koshi Province</option>
+                                <option value="Madhesh">Madhesh Province</option>
+                                <option value="Bagmati">Bagmati Province</option>
+                                <option value="Gandaki">Gandaki Province</option>
+                                <option value="Lumbini">Lumbini Province</option>
+                                <option value="Karnali">Karnali Province</option>
+                                <option value="Sudurpashchim">Sudurpashchim Province</option>
+                            </select>
+                            {fieldErrors.specialization && (
+                                <span className="field-error">
+                                    {fieldErrors.specialization}
+                                </span>
+                            )}
                         </div>
 
                         <div className="register-input-group">
