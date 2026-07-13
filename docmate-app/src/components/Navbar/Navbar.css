@@ -102,6 +102,12 @@
   color: red;
 }
 
+.logout.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* body.light-mode {
   background-color: #f7f9fc;
   color: #1a1a1a;

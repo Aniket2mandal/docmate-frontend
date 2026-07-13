@@ -6,28 +6,34 @@ const ProfileContext = createContext();
 export const ProfileProvider = ({ children }) => {
   const [profile, setProfile] = useState(null);
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      const token = localStorage.getItem("token");
+  const loadProfile = async () => {
+    const token = localStorage.getItem("token");
 
-      if (!token) return;
+    if (!token) return;
 
-      try {
-        const response = await getUserProfile();
+    try {
+      const response = await getUserProfile();
 
-        if (response.data?.status) {
-          setProfile(response.data.data);
-        }
-      } catch (e) {
-        console.error(e);
+      if (response.data.status) {
+        setProfile(response.data.data);
       }
-    };
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  useEffect(() => {
     loadProfile();
   }, []);
 
   return (
-    <ProfileContext.Provider value={{ profile, setProfile }}>
+    <ProfileContext.Provider
+      value={{
+        profile,
+        setProfile,
+        loadProfile,
+      }}
+    >
       {children}
     </ProfileContext.Provider>
   );

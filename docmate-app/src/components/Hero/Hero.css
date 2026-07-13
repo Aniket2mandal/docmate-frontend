@@ -103,3 +103,130 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(26, 110, 245, 0.45);
 }
+
+/* ==========================
+   Large Tablet (1024px)
+========================== */
+@media (max-width: 1024px) {
+
+  .hero {
+    padding: 70px 40px 80px;
+  }
+
+  .hero h1 {
+    font-size: 3.2rem;
+    max-width: 100%;
+  }
+
+  .hero p {
+    width: 100%;
+    max-width: 750px;
+  }
+
+}
+
+/* ==========================
+   Tablet (768px)
+========================== */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 60px 24px 70px;
+  }
+
+  .hero h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    max-width: 100%;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+
+  .btn-container {
+    gap: 14px;
+  }
+
+  .hero-btn,
+  .hero-btn2 {
+    padding: 14px 34px;
+    font-size: 15px;
+  }
+
+}
+
+/* ==========================
+   Mobile (480px)
+========================== */
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 50px 16px 60px;
+  }
+
+  .hero h2 {
+    font-size: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
+
+  .hero p {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 26px;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-btn,
+  .hero-btn2 {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+}
+
+/* ==========================
+   Small Mobile (360px)
+========================== */
+@media (max-width: 360px) {
+
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero h2 {
+    font-size: 0.95rem;
+  }
+
+  .hero p {
+    font-size: 13px;
+  }
+
+  .hero-btn,
+  .hero-btn2 {
+    font-size: 14px;
+    padding: 13px;
+  }
+
+}

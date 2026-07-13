@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { loginUser } from "../../api/BackendApi";
 import Swal from "sweetalert2";
+import { useProfile } from "../../contexts/ProfileContext";
 
 const Login = () => {
 
@@ -15,6 +16,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
+  const { loadProfile } = useProfile();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ const Login = () => {
           localStorage.setItem("token", response.data.data.accessToken);
         }
 
-        if(response.data.data?.refreshToken) {
+        if (response.data.data?.refreshToken) {
           localStorage.setItem("refreshToken", response.data.data.refreshToken);
         }
 
@@ -53,7 +55,7 @@ const Login = () => {
           localStorage.setItem("userId", response.data.data.userId);
         }
 
-         if (response.data.data?.email) {
+        if (response.data.data?.email) {
           localStorage.setItem("email", response.data.data.email);
         }
 
@@ -65,18 +67,24 @@ const Login = () => {
           localStorage.setItem("doctorId", response.data.data.doctorId);
         }
 
-        if(response.data.data?.name) {
+        if (response.data.data?.name) {
           localStorage.setItem("name", response.data.data.name);
+        }
+
+        try {
+          await loadProfile();
+        } catch (e) {
+          console.error("Profile load failed:", e);
         }
 
         // redirect
         // window.location.href = "/dashboard";
-        if(response.data.data.role === "DOCTOR") {
+        if (response.data.data.role === "DOCTOR") {
           navigate("/dashboard/doctor", { state: response.data });
-        } else if(response.data.data.role === "PATIENT") {
-        navigate("/dashboard/user", { state: response.data });
-        }else if(response.data.data.role === "ADMIN"){
-          navigate("/dashboard/admin",{state: response.data});
+        } else if (response.data.data.role === "PATIENT") {
+          navigate("/dashboard/user", { state: response.data });
+        } else if (response.data.data.role === "ADMIN") {
+          navigate("/dashboard/admin", { state: response.data });
         }
 
       }
@@ -142,7 +150,7 @@ const Login = () => {
 
             <button type="submit" className="login-btn2" disabled={loading}>
               {/* Login */}
-               {loading ? "Login..." : "Login"}
+              {loading ? "Login..." : "Login"}
             </button>
           </form>
 

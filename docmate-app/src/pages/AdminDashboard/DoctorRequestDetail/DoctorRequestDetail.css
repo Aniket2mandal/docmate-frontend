@@ -97,6 +97,14 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+  
+}
+
+
+.approve-btn:disabled {
+  background: #92e6b1;
+  color: #16a34a;
+  cursor: not-allowed;
 }
 
 .reject-btn {
@@ -107,6 +115,12 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.reject-btn:disabled {
+  background: #ec8484;
+  color: #dc2626;
+  cursor: not-allowed;
 }
 
 .loading {

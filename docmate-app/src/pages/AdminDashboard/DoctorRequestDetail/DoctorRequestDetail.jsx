@@ -16,6 +16,9 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
 
     const [doctor, setDoctor] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [aprbtnloading, setAprbtnloading] = useState(false);
+     const [rejbtnloading, setRejbtnloading] = useState(false);
+
 
     useEffect(() => {
         fetchDoctor();
@@ -45,6 +48,8 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
 
         if (!result.isConfirmed) return;
 
+        setAprbtnloading(true);
+
         try {
             const response = await approveDoctorRequestApi(doctorRequestId);
 
@@ -66,38 +71,46 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
                 text: err.response?.data?.message || "Something went wrong.",
             });
         }
+        finally {
+            setAprbtnloading(false);
+        }
     };
 
-  const rejectDoctor = async () => {
-    const { value: reason } = await Swal.fire({
-        title: "Reject Doctor",
-        input: "textarea",
-        inputPlaceholder: "Enter rejection reason",
-        showCancelButton: true,
-    });
-
-    if (!reason) return;
-
-    try {
-        const response = await rejectDoctorRequestApi(doctorRequestId, reason);
-
-        if (response.data.status) {
-            await Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: response.data.message,
-            });
-
-            navigate("/dashboard/admin/doctor-requests");
-        }
-    } catch (err) {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: err.response?.data?.message || "Something went wrong.",
+    const rejectDoctor = async () => {
+        const { value: reason } = await Swal.fire({
+            title: "Reject Doctor",
+            input: "textarea",
+            inputPlaceholder: "Enter rejection reason",
+            showCancelButton: true,
         });
-    }
-};
+
+        if (!reason) return;
+
+         setRejbtnloading(true);
+
+        try {
+            const response = await rejectDoctorRequestApi(doctorRequestId, reason);
+
+            if (response.data.status) {
+                await Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: response.data.message,
+                });
+
+                navigate("/dashboard/admin/doctor-requests");
+            }
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: err.response?.data?.message || "Something went wrong.",
+            });
+        }
+         finally {
+            setRejbtnloading(false);
+        }
+    };
 
     if (loading) return <p className="loading">Loading...</p>;
 
@@ -213,15 +226,19 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
                             <button
                                 className="approve-btn"
                                 onClick={approveDoctor}
+                                disabled={aprbtnloading}
                             >
-                                Approve
+                                {/* Approve */}
+                                {aprbtnloading ? "Approving..." : "Approve"}
                             </button>
 
                             <button
                                 className="reject-btn"
                                 onClick={rejectDoctor}
+                                disabled={rejbtnloading}
                             >
-                                Reject
+                                {/* Reject */}
+                                {rejbtnloading ? "Rejecting..." : "Reject"}
                             </button>
                         </div>
 

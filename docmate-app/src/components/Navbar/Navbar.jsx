@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   FaBell,
   FaSun,
@@ -16,6 +16,7 @@ import { useProfile } from "../../contexts/ProfileContext";
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const { profile } = useProfile();
 
@@ -40,6 +41,11 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
+
+    if (logoutLoading) return;
+
+    setLogoutLoading(true);
+
     try {
       await logoutUser();
 
@@ -59,6 +65,9 @@ const Navbar = () => {
       localStorage.clear();
 
       navigate("/login");
+    }
+    finally {
+      setLogoutLoading(false);
     }
   };
 
@@ -122,9 +131,12 @@ const Navbar = () => {
 
             <div className="dropdown-divider"></div>
 
-            <div className="dropdown-item logout" onClick={handleLogout}>
+            <div
+              className={`dropdown-item logout ${logoutLoading ? "disabled" : ""}`}
+              onClick={!logoutLoading ? handleLogout : undefined}
+            >
               <FaSignOutAlt className="dropdown-icon" />
-              <span>Logout</span>
+              <span>{logoutLoading ? "Logging out..." : "Logout"}</span>
             </div>
           </div>
         )}
