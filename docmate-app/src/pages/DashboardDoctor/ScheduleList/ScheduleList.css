@@ -375,3 +375,145 @@ body.dark-mode .delete-schedule-btn:disabled {
   background: #334155;
   color: #64748b;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+/* Laptop */
+@media (max-width: 1200px) {
+
+  .schedule-list-content {
+    padding: 24px;
+  }
+
+  .schedule-list-card {
+    padding: 20px;
+  }
+
+  .schedule-table {
+    min-width: 760px;
+  }
+
+  .schedule-action-buttons {
+    width: auto;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+  .schedule-list-main {
+    min-width: 0;
+  }
+
+  .schedule-list-content {
+    padding: 20px 16px;
+  }
+
+  .schedule-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .schedule-list-header h2 {
+    font-size: 28px;
+  }
+
+  .schedule-list-header p {
+    font-size: 15px;
+  }
+
+  .schedule-list-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .all-schedule-btn,
+  .available-slot-btn {
+    width: 100%;
+  }
+
+  .schedule-list-card {
+    padding: 18px;
+  }
+
+  .schedule-table {
+    min-width: 720px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .schedule-action-buttons {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .create-consultation-btn,
+  .view-consultation-btn {
+    width: 140px;
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .delete-schedule-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+  .schedule-list-content {
+    padding: 16px 12px;
+  }
+
+  .schedule-list-header h2 {
+    font-size: 24px;
+  }
+
+  .schedule-list-header p {
+    font-size: 13px;
+  }
+
+  .schedule-list-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .schedule-table {
+    min-width: 650px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .schedule-action-buttons {
+    width: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .create-consultation-btn,
+  .view-consultation-btn {
+    width: 100%;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .delete-schedule-btn {
+    width: 100%;
+    height: 36px;
+  }
+}
