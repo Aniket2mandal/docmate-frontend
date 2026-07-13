@@ -155,3 +155,110 @@
     opacity:60%;
 }
 
+/* ===========================
+   Large Tablet
+=========================== */
+
+@media (max-width: 1200px) {
+  .history-cards {
+    gap: 30px;
+    margin: 20px;
+  }
+
+  .history-card,
+  .profile-card {
+    width: calc(50% - 15px);
+  }
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 992px) {
+  .history-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: 20px;
+  }
+
+  .history-card,
+  .profile-card {
+    width: 100%;
+    max-width: 700px;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+  .history-cards {
+    margin: 16px;
+    gap: 20px;
+  }
+
+  .history-card,
+  .profile-card {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .history-one,
+  .history-two,
+  .history-three {
+    padding: 12px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .profile-item {
+    font-size: 13px;
+  }
+
+  .history-card-button,
+  .profile-card-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 480px) {
+  .history-cards {
+    margin: 12px;
+  }
+
+  .history-card,
+  .profile-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .history-card h4,
+  .profile-card h4 {
+    font-size: 18px;
+  }
+
+  .history-card p,
+  .profile-card p {
+    font-size: 14px;
+  }
+
+  .profile-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .history-card-button,
+  .profile-card-button {
+    width: 100%;
+    font-size: 14px;
+  }
+}
