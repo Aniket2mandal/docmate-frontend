@@ -1,4 +1,5 @@
 import axiosInstance from "../service/axiosInstance";
+import axios from "axios";
 
 export const getAllDoctors = (page = 0, size = 9) => {
   return axiosInstance.get(`/public/get-all-doctor?page=${page}&size=${size}`);
@@ -221,5 +222,9 @@ export const loginUser = (username, password) => {
 
 export const registerUser = (userData) => {
   return axiosInstance.post("auth/register-patient", userData);
+};
+
+export const wakeUpServer = () => {
+  return axios.get("https://docmate-ai.onrender.com/health");
 };
 

@@ -27,6 +27,8 @@
 // export default App
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
+import { useEffect } from "react";
+
 
 import Home from './pages/Home/Home';
 import Doctors from './pages/Doctor/Doctors';
@@ -62,6 +64,7 @@ import DoctorRequest from "./pages/DoctorRequest/DoctorRequest";
 import AdminDoctorRequest from "./pages/AdminDashboard/AdminDoctorRequest/AdminDoctorRequest";
 import DoctorRequestDetail from "./pages/AdminDashboard/DoctorRequestDetail/DoctorRequestDetail";
 import { ProfileProvider } from "./contexts/ProfileContext";
+import { wakeUpServer } from "./api/BackendApi";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -78,6 +81,11 @@ const LandingPage = () => {
 };
 
 function App() {
+
+  useEffect(() => {
+    wakeUpServer().catch(console.error);
+  }, []);
+
   return (
     <ProfileProvider>
       <Router>
