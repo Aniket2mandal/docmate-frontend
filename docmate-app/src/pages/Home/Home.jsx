@@ -1,6 +1,7 @@
 import React from "react";
 import "./NavbarLanding.css"
 import Hero from "../../components/Hero/Hero";
+import {Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -11,9 +12,9 @@ const Home = () => {
       <h2 className="logo">Docmate</h2>
 
       <div className="nav-buttons">
-        <a className="login-btn" href="/login">Login</a>
+        <Link to="/login" className="login-btn" >Login</Link>
         {/* <button className="login-btn"><a href="/login">Login</a></button> */}
-        <a className="start-btn" href="/register">Get Started</a>
+        <Link to="/register" className="start-btn" >Get Started</Link>
       </div>
     </nav>
       <Hero />

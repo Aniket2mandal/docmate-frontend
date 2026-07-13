@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import "./Login.css";
 import { loginUser } from "../../api/BackendApi";
 import Swal from "sweetalert2";
@@ -135,9 +135,9 @@ const Login = () => {
                 <span>Remember me</span>
               </label>
 
-              <a href="/" className="forgot-link">
+              <Link to="/" className="forgot-link">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
 
             <button type="submit" className="login-btn2" disabled={loading}>
@@ -147,7 +147,7 @@ const Login = () => {
           </form>
 
           <p className="login-footer-text">
-            Don’t have an account? <a href="/register">Sign Up</a>
+            Don’t have an account? <Link to="/register">Sign Up</Link>
           </p>
         </div>
 

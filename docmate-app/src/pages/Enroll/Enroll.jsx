@@ -1,5 +1,6 @@
 import React from "react";
 import "./Enroll.css";
+import { Link } from "react-router-dom";
 
 const Enroll = () => {
   return (
@@ -14,9 +15,9 @@ const Enroll = () => {
           appointment — all in one platform.
         </p>
 
-        <a className="enroll-btn" href="/register">
+        <Link to="/register" className="enroll-btn" >
           Get Started Free <span>&gt;</span>
-        </a>
+        </Link>
       </div>
     </section>
   );

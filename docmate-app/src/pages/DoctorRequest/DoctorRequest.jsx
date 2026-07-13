@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 // import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
 import { requestDoctorApi } from "../../api/BackendApi";
@@ -174,9 +174,9 @@ const DoctorRequest = ({ darkMode, toggleDarkMode }) => {
       <h2 className="logo">Docmate</h2>
 
       <div className="nav-buttons">
-        <a className="login-btn" href="/login">Login</a>
+        <Link href="/login" className="login-btn" >Login</Link>
         {/* <button className="login-btn"><a href="/login">Login</a></button> */}
-        <a className="start-btn" href="/register">Get Started</a>
+        <Link className="start-btn" href="/register">Get Started</Link>
       </div>
     </nav>
 
