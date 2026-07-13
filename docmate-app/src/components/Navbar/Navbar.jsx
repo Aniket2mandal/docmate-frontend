@@ -1,19 +1,28 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { FaBell, FaSun, FaMoon, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import {
+  FaBell,
+  FaSun,
+  FaMoon,
+  FaUser,
+  FaCog,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import "./Navbar.css";
-import { logoutUser,getUserProfile } from "../../api/BackendApi";
+import { logoutUser } from "../../api/BackendApi";
 import Swal from "sweetalert2";
+import { useProfile } from "../../contexts/ProfileContext";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profile, setProfile] = useState(null);
+
+  const { profile } = useProfile();
+
   const menuRef = useRef(null);
   const navigate = useNavigate();
 
   const userEmail = localStorage.getItem("email") || "User";
-
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -34,7 +43,7 @@ const Navbar = () => {
         icon: "success",
         title: "Logged out",
         text: "You have been logged out successfully.",
-        confirmButtonColor: "#3085d6"
+        confirmButtonColor: "#3085d6",
       });
 
       navigate("/");
@@ -48,8 +57,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    fetchProfile();
-
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
@@ -57,48 +64,27 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-
   }, []);
 
-  const fetchProfile = async () => {
-    try {
-      const response = await getUserProfile();
-
-      if (response.data?.status === true) {
-        // console.log("Profile data:", response.data.data);
-        setProfile(response.data.data);
-       
-      }
-    } catch (error) {
-      console.error("Profile fetch error:", error);
-    }
-  };
-
-  const role = localStorage.getItem("role")?.toUpperCase();
-  console.log(profile);
-  const profileImage =profile?.imageUrl;
-
+  const profileImage = profile?.imageUrl;
 
   return (
     <div className="navbar">
-
       <h2 className="logo-nav">Docmate</h2>
 
-      <input
-        className="search"
-        type="text"
-        placeholder="Search"
-      />
+      <input className="search" type="text" placeholder="Search" />
 
       <div className="profile" ref={menuRef}>
-        {/* Dark/Light Mode Icon */}
         <span className="theme-toggle" onClick={toggleDarkMode}>
           {darkMode ? <FaSun /> : <FaMoon />}
         </span>
+
         <FaBell className="notification-icon" />
+
         <img
           className="profile-img"
           src={profileImage}
@@ -106,17 +92,23 @@ const Navbar = () => {
           onClick={toggleMenu}
         />
 
-
         {menuOpen && (
           <div className="profile-dropdown">
             <div className="dropdown-header">{userEmail}</div>
 
-            <div className="dropdown-item">
-              <FaUser className="dropdown-icon" />
-              <span><a href="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Profile
-              </a></span>
-            </div>
+            <a
+              href="/profile"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "block",
+              }}
+            >
+              <div className="dropdown-item">
+                <FaUser className="dropdown-icon" />
+                <span>Profile</span>
+              </div>
+            </a>
 
             <div className="dropdown-item">
               <FaCog className="dropdown-icon" />
@@ -131,9 +123,7 @@ const Navbar = () => {
             </div>
           </div>
         )}
-
       </div>
-
     </div>
   );
 };

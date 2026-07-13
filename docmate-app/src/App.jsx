@@ -61,6 +61,7 @@ import CreateRole from "./pages/AdminDashboard/CreateRole/CreateRole";
 import DoctorRequest from "./pages/DoctorRequest/DoctorRequest";
 import AdminDoctorRequest from "./pages/AdminDashboard/AdminDoctorRequest/AdminDoctorRequest";
 import DoctorRequestDetail from "./pages/AdminDashboard/DoctorRequestDetail/DoctorRequestDetail";
+import { ProfileProvider } from "./contexts/ProfileContext";
 
 /* Create a combined landing page */
 const LandingPage = () => {
@@ -78,221 +79,223 @@ const LandingPage = () => {
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <ProfileProvider>
+      <Router>
+        <Routes>
 
-        {/* Landing page (all sections together) */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/doctor-request" element={<DoctorRequest/>} />
+          {/* Landing page (all sections together) */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/doctor-request" element={<DoctorRequest />} />
 
-        <Route path="/doctor-detail/:doctorId" element={<DoctorDetail />} />
-        
-
-        {/* Separate page */}
-        <Route
-          path="/dashboard/user"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <User />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/find-doctors"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <Doctor />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/medical-records"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <MedicalRecords />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/medicine-reports"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <MedicineReports />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/upcoming-appointments"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <UpcomingAppointments />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/previous-appointments"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <PreviousAppointments />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/appointment-detail/:appointmentId"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <AppointmentDetail />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/user/medical-record-detail/:medicalRecordId"
-          element={
-            <ProtectedRoute allowedRoles={["PATIENT"]}>
-              <MedicalRecordDetail />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/doctor"
-          element={
-            <ProtectedRoute allowedRoles={["DOCTOR"]}>
-              <DoctorDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/doctor/schedule"
-          element={
-            <ProtectedRoute allowedRoles={["DOCTOR"]}>
-              <CreateSchedule />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/doctor/schedule-list"
-          element={
-            <ProtectedRoute allowedRoles={["DOCTOR"]}>
-              <ScheduleList />
-            </ProtectedRoute>
-          }
-        />
+          <Route path="/doctor-detail/:doctorId" element={<DoctorDetail />} />
 
 
-        <Route
-          path="/dashboard/doctor/create-medical-record/:appointmentId"
-          element={
-            <ProtectedRoute allowedRoles={["DOCTOR"]}>
-              <CreateMedicalRecord />
-            </ProtectedRoute>
-          }
-        />
-
-
-        <Route
-          path="/dashboard/admin"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/patients"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminPatient />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/doctors"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminDoctor />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/doctors/create"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <CreateDoctor />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/doctors/edit/:doctorId"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <UpdateDoctor />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/roles"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminRole />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/dashboard/admin/roles/create"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <CreateRole />
-            </ProtectedRoute>
-          }
-        />
+          {/* Separate page */}
+          <Route
+            path="/dashboard/user"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <User />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
-          path="/dashboard/admin/doctor-requests"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <AdminDoctorRequest />
-            </ProtectedRoute>
-          }
-        />
+            path="/dashboard/user/find-doctors"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <Doctor />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-          path="/dashboard/admin/doctor-request-detail/:doctorRequestId"
-          element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
-              <DoctorRequestDetail />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/dashboard/user/medical-records"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <MedicalRecords />
+              </ProtectedRoute>
+            }
+          />
 
-      </Routes>
-    </Router>
+          <Route
+            path="/dashboard/user/medicine-reports"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <MedicineReports />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/user/upcoming-appointments"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <UpcomingAppointments />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/user/previous-appointments"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <PreviousAppointments />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/user/appointment-detail/:appointmentId"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <AppointmentDetail />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/user/medical-record-detail/:medicalRecordId"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <MedicalRecordDetail />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/doctor"
+            element={
+              <ProtectedRoute allowedRoles={["DOCTOR"]}>
+                <DoctorDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/doctor/schedule"
+            element={
+              <ProtectedRoute allowedRoles={["DOCTOR"]}>
+                <CreateSchedule />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/doctor/schedule-list"
+            element={
+              <ProtectedRoute allowedRoles={["DOCTOR"]}>
+                <ScheduleList />
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
+            path="/dashboard/doctor/create-medical-record/:appointmentId"
+            element={
+              <ProtectedRoute allowedRoles={["DOCTOR"]}>
+                <CreateMedicalRecord />
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
+            path="/dashboard/admin"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/patients"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminPatient />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/doctors"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminDoctor />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/doctors/create"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <CreateDoctor />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/doctors/edit/:doctorId"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <UpdateDoctor />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/roles"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminRole />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/roles/create"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <CreateRole />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/doctor-requests"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <AdminDoctorRequest />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard/admin/doctor-request-detail/:doctorRequestId"
+            element={
+              <ProtectedRoute allowedRoles={["ADMIN"]}>
+                <DoctorRequestDetail />
+              </ProtectedRoute>
+            }
+          />
+
+        </Routes>
+      </Router>
+    </ProfileProvider>
   );
 }
 

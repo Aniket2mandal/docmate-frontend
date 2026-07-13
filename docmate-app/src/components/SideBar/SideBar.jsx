@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaHome,
   FaUserMd,
@@ -21,7 +21,19 @@ import "./SideBar.css";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
+
+  const [collapsed, setCollapsed] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCollapsed(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleDropdown = () => {
     setOpen(!open);
@@ -53,12 +65,12 @@ const Sidebar = () => {
             <li className="active">
               <FaHome className="icon" />
               {!collapsed && (
-                <div className="menu-text">
-                  <a href="/dashboard/user" className="dashboard-link">
+                <a href="/dashboard/user" className="dashboard-link">
+                  <div className="menu-text">
                     <span>Dashboard</span>
-                  </a>
-                  <span className="sub">Overview and stats</span>
-                </div>
+                    <span className="sub">Overview and stats</span>
+                  </div>
+                </a>
               )}
             </li>
 

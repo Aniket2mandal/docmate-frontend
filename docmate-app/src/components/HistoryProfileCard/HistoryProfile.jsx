@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaUserMd, FaArrowRight, FaFileMedical, FaPrescriptionBottleAlt } from "react-icons/fa";
 import "./HistoryProfile.css";
+import { useProfile } from "../../contexts/ProfileContext";
 
 const HistoryProfile = () => {
+
+    const { profile } = useProfile();
+
     return (
         <div className="history-cards">
 
@@ -37,7 +41,7 @@ const HistoryProfile = () => {
 
                 <div className="profile-item">
                     <span className="label">Email</span>
-                    <span className="text-muted">linda@gmail.com</span>
+                    <span className="text-muted">{profile?.email}</span>
                 </div>
 
                 <div className="profile-item">
