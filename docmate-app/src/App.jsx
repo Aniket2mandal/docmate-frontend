@@ -106,7 +106,7 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/reset-password" element={<ResetPassword />} />
 
-          <Route path="//dashboard/settings" element={<Settings />}/>
+          <Route path="/dashboard/settings" element={<Settings />}/>
 
           {/* Separate page */}
           <Route
