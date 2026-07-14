@@ -1,0 +1,171 @@
+.settings-page {
+  padding: 30px;
+  background: #f5f8fc;
+  min-height: 100vh;
+}
+
+.settings-header h2 {
+  color: #173a60;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.settings-header p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.settings-card {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+}
+
+.settings-card h3 {
+  padding: 20px;
+  color: #173a60;
+  font-size: 18px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.settings-item {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #173a60;
+  cursor: pointer;
+  transition: .25s;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 15px;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:hover {
+  background: #f7fbff;
+}
+
+.settings-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.settings-left svg {
+  color: #2f80ed;
+  font-size: 18px;
+}
+
+.logout-btn {
+  font-family: inherit;
+}
+
+.logout-btn .settings-left svg {
+  color: #ef4444;
+}
+
+.settings-version {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 20px;
+  color: #6b7280;
+  font-size: 15px;
+}
+@media (max-width: 992px) {
+  .settings-page {
+    padding: 24px 18px;
+  }
+
+  .settings-header h2 {
+    font-size: 28px;
+  }
+
+  .settings-header p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 18px 14px;
+  }
+
+  .settings-header h2 {
+    font-size: 24px;
+  }
+
+  .settings-card {
+    border-radius: 12px;
+    margin-bottom: 18px;
+  }
+
+  .settings-card h3 {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .settings-item {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .settings-left {
+    gap: 10px;
+  }
+
+  .settings-left svg {
+    font-size: 16px;
+  }
+
+  .settings-version {
+    padding: 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-page {
+    padding: 14px 10px;
+  }
+
+  .settings-header h2 {
+    font-size: 22px;
+  }
+
+  .settings-header p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .settings-card {
+    border-radius: 10px;
+  }
+
+  .settings-card h3 {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .settings-item {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .settings-left span {
+    font-size: 13px;
+  }
+
+  .settings-version {
+    padding: 14px;
+    font-size: 13px;
+  }
+}

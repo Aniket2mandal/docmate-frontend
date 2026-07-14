@@ -224,6 +224,27 @@ export const registerUser = (userData) => {
   return axiosInstance.post("auth/register-patient", userData);
 };
 
+
+export const sendOtp = (email) => {
+  return axiosInstance.post("/public/otp-creator", {
+    email,
+  });
+};
+
+export const verifyOtp = (email, otp) => {
+  return axiosInstance.post("/public/verify-otp", {
+    email,
+    otp,
+  });
+};
+
+export const forgotPassword = (email, newPassword) => {
+  return axiosInstance.post("/public/forgot-password", {
+    email,
+    newPassword,
+  });
+};
+
 export const wakeUpServer = () => {
   return axios.get("https://docmate-ai.onrender.com/health");
 };

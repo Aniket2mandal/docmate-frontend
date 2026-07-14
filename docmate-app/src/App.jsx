@@ -65,7 +65,9 @@ import AdminDoctorRequest from "./pages/AdminDashboard/AdminDoctorRequest/AdminD
 import DoctorRequestDetail from "./pages/AdminDashboard/DoctorRequestDetail/DoctorRequestDetail";
 import { ProfileProvider } from "./contexts/ProfileContext";
 import { wakeUpServer } from "./api/BackendApi";
-
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import VerifyOtp from "./pages/ForgotPassword/VerifyOtp";
+import ResetPassword from "./pages/ForgotPassword/ResetPassword";
 /* Create a combined landing page */
 const LandingPage = () => {
   return (
@@ -98,6 +100,10 @@ function App() {
           <Route path="/doctor-request" element={<DoctorRequest />} />
 
           <Route path="/doctor-detail/:doctorId" element={<DoctorDetail />} />
+
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
 
           {/* Separate page */}
