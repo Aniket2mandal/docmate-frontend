@@ -14,7 +14,10 @@ import Swal from "sweetalert2";
 import { useProfile } from "../../contexts/ProfileContext";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+ const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("darkMode");
+    return saved === "true";
+  });
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
 
@@ -25,20 +28,25 @@ const Navbar = () => {
 
   const userEmail = localStorage.getItem("email") || "User";
 
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-
-    if (newDarkMode) {
+  // Apply dark mode class on initial mount and whenever it changes
+  useEffect(() => {
+    if (darkMode) {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("darkMode", newDarkMode);
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+
+const toggleMenu = () => {
+  setMenuOpen(!menuOpen);
+};
 
   const handleLogout = async () => {
 
