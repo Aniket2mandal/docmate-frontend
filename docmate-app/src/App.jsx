@@ -68,6 +68,7 @@ import { wakeUpServer } from "./api/BackendApi";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import VerifyOtp from "./pages/ForgotPassword/VerifyOtp";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
+import Settings from "./pages/Settings/Settings";
 /* Create a combined landing page */
 const LandingPage = () => {
   return (
@@ -105,6 +106,7 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/reset-password" element={<ResetPassword />} />
 
+          <Route path="//dashboard/settings" element={<Settings />}/>
 
           {/* Separate page */}
           <Route
