@@ -19,7 +19,9 @@ const CreateMedicalRecord = ({ darkMode, toggleDarkMode }) => {
     const [testReportPreviews, setTestReportPreviews] = useState([]);
     const [loading, setLoading] = useState(false);
     const [existingRecordId, setExistingRecordId] = useState(null);
+    const location = useLocation();
     const patientName = location.state?.patientName;
+
 
     const [medications, setMedications] = useState([
         {
