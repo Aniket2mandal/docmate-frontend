@@ -19,7 +19,7 @@ const AdminDoctorRequest = ({ darkMode, toggleDarkMode }) => {
   const [pageNo, setPageNo] = useState(0);
   const [paginationInfo, setPaginationInfo] = useState(null);
 
-  const PAGE_SIZE = 9;
+  const PAGE_SIZE = 5;
 
   useEffect(() => {
     fetchDoctorRequests(0);

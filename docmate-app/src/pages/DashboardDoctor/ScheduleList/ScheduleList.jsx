@@ -115,7 +115,9 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
             return;
         }
 
-        navigate(`/dashboard/doctor/create-medical-record/${schedule.appointmentId}`);
+        navigate(`/dashboard/doctor/create-medical-record/${schedule.appointmentId}`, {
+            state: { patientName: schedule.patientName },
+        });
     };
 
     const handleDeleteSchedule = async (schedule) => {
@@ -226,6 +228,7 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                                     <thead>
                                         <tr>
                                             <th>S.N.</th>
+                                            <th>Patient Name</th>
                                             <th>Day</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
@@ -240,6 +243,7 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                                         {schedules.map((schedule, index) => (
                                             <tr key={schedule.id || index}>
                                                 <td>{index + 1}</td>
+                                                <td>{schedule.patientName || "-"}</td>
                                                 <td>{schedule.availableDay || "-"}</td>
                                                 <td>{schedule.startDate || "-"}</td>
                                                 <td>{schedule.endDate || "-"}</td>

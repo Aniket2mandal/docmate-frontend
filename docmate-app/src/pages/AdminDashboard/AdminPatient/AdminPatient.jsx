@@ -13,7 +13,7 @@ import "./AdminPatient.css";
 const AdminPatient = ({ darkMode, toggleDarkMode }) => {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(false);
-  const PAGE_SIZE = 9;
+  const PAGE_SIZE = 5;
 
   const [pageNo, setPageNo] = useState(0);
   const [paginationInfo, setPaginationInfo] = useState(null);

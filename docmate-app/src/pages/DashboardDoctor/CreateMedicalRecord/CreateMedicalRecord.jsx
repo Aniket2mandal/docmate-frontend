@@ -19,6 +19,7 @@ const CreateMedicalRecord = ({ darkMode, toggleDarkMode }) => {
     const [testReportPreviews, setTestReportPreviews] = useState([]);
     const [loading, setLoading] = useState(false);
     const [existingRecordId, setExistingRecordId] = useState(null);
+    const patientName = location.state?.patientName;
 
     const [medications, setMedications] = useState([
         {
@@ -281,8 +282,8 @@ const CreateMedicalRecord = ({ darkMode, toggleDarkMode }) => {
                             <h3>Medical Record</h3>
 
                             <div className="consultation-form-group">
-                                <label>Appointment ID</label>
-                                <input type="text" value={appointmentId} readOnly />
+                                <label>Patient Name</label>
+                                <input type="text" value={patientName} readOnly />
                             </div>
 
                             <div className="consultation-form-group">
