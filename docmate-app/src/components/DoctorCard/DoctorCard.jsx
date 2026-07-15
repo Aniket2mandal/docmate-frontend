@@ -31,10 +31,10 @@ const DoctorCard = ({ doctor }) => {
     const handleExploreNow = () => {
         const token = localStorage.getItem("token");
 
-        if (!token) {
-            navigate("/login");
-            return;
-        }
+        // if (!token) {
+        //     navigate("/login");
+        //     return;
+        // }
 
         navigate(`/doctor-detail/${doctor.doctorId}`);
     };

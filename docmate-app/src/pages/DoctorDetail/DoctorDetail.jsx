@@ -21,6 +21,9 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     const [showRatingModal, setShowRatingModal] = useState(false);
 
     const role = localStorage.getItem("role");
+    const token = localStorage.getItem("token"); // adjust key name if yours differs
+
+    const isAuthenticated = Boolean(token && role);
 
     const isPatient = role === "PATIENT";
     const isDoctor = role === "DOCTOR";
@@ -88,9 +91,9 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     if (loading) {
         return (
             <div className="doctor-detail-page">
-                <SideBar />
+                {isAuthenticated && <SideBar />}
                 <div className="doctor-detail-main">
-                    <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+                    {isAuthenticated && <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
                     <div className="doctor-detail-content">
                         <p>Loading doctor details...</p>
                     </div>
@@ -102,9 +105,9 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
     if (error) {
         return (
             <div className="doctor-detail-page">
-                <SideBar />
+                {isAuthenticated && <SideBar />}
                 <div className="doctor-detail-main">
-                    <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+                    {isAuthenticated && <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
                     <div className="doctor-detail-content">
                         <p className="error-text">{error}</p>
                     </div>
@@ -118,10 +121,10 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
 
     return (
         <div className="doctor-detail-page">
-            <SideBar />
+            {isAuthenticated && <SideBar />}
 
             <div className="doctor-detail-main">
-                <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+                {isAuthenticated && <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
 
                 <div className="doctor-detail-content">
                     <button className="back-btn" onClick={() => navigate(-1)}>
@@ -167,47 +170,49 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                                 </div>
                             </div>
 
-                            {/* <button className="book-btn">
-                                Book Appointment
-                            </button> */}
+                            {isAuthenticated && (
+                                <div className="doctor-btn-grp">
+                                    {isPatient && (
+                                        <button
+                                            className="book-btn"
+                                            onClick={() => setShowBookingModal(true)}
+                                        >
+                                            Book Appointment
+                                        </button>
+                                    )}
 
-                            <div className="doctor-btn-grp">
-                                {isPatient && (
-                                    <button
-                                        className="book-btn"
-                                        onClick={() => setShowBookingModal(true)}
-                                    >
-                                        Book Appointment
-                                    </button>
-                                )}
+                                    {isPatient && (
+                                        <button className="rate-btn" onClick={() => setShowRatingModal(true)}>
+                                            Rate Doctor
+                                        </button>
+                                    )}
+                                </div>
+                            )}
 
-                                {isPatient && (
-                                    <button className="rate-btn" onClick={() => setShowRatingModal(true)}>
-                                        Rate Doctor
-                                    </button>
-                                )}
-                            </div>
+                            {isAuthenticated && (
+                                <BookAppointmentModal
+                                    isOpen={showBookingModal}
+                                    onClose={() => setShowBookingModal(false)}
+                                    doctorId={doctor?.doctorId}
+                                    doctorName={`Dr. ${fullName}`}
+                                />
+                            )}
 
-                            <BookAppointmentModal
-                                isOpen={showBookingModal}
-                                onClose={() => setShowBookingModal(false)}
-                                doctorId={doctor?.doctorId}
-                                doctorName={`Dr. ${fullName}`}
-                            />
-
-                            <RateDoctorModal
-                                isOpen={showRatingModal}
-                                onClose={() => {
-                                    setShowRatingModal(false);
-                                    window.location.reload();
-                                }
-                                }
-                                doctorId={doctor?.doctorId}
-                                onSuccess={() => {
-                                    setShowRatingModal(false);
-                                    // window.location.reload();
-                                }}
-                            />
+                            {isAuthenticated && (
+                                <RateDoctorModal
+                                    isOpen={showRatingModal}
+                                    onClose={() => {
+                                        setShowRatingModal(false);
+                                        window.location.reload();
+                                    }
+                                    }
+                                    doctorId={doctor?.doctorId}
+                                    onSuccess={() => {
+                                        setShowRatingModal(false);
+                                        // window.location.reload();
+                                    }}
+                                />
+                            )}
 
                         </div>
                     </div>
@@ -237,144 +242,146 @@ const DoctorDetail = ({ darkMode, toggleDarkMode }) => {
                         </div>
                     </div>
 
-                    <div className="doctor-info-grid">
-                        <div className="doctor-info-card">
-                            <h3>Contact Information</h3>
+                    {isAuthenticated && (
+                        <div className="doctor-info-grid">
+                            <div className="doctor-info-card">
+                                <h3>Contact Information</h3>
 
-                            <div className="info-row">
-                                <span>Email</span>
-                                <p>{user?.email || "N/A"}</p>
+                                <div className="info-row">
+                                    <span>Email</span>
+                                    <p>{user?.email || "N/A"}</p>
+                                </div>
+
+                                <div className="info-row">
+                                    <span>Phone</span>
+                                    <p>{user?.phone || "N/A"}</p>
+                                </div>
+
+                                <div className="info-row">
+                                    <span>Address</span>
+                                    <p>{user?.address || "N/A"}</p>
+                                </div>
+
+                                <div className="info-row">
+                                    <span>Gender</span>
+                                    <p>{user?.gender || "N/A"}</p>
+                                </div>
                             </div>
 
-                            <div className="info-row">
-                                <span>Phone</span>
-                                <p>{user?.phone || "N/A"}</p>
-                            </div>
+                            {isAdmin && (
+                                <div className="doctor-info-card">
+                                    <h3>Doctor Verification Documents</h3>
 
-                            <div className="info-row">
-                                <span>Address</span>
-                                <p>{user?.address || "N/A"}</p>
-                            </div>
+                                    <div className="doctor-document-grid">
+                                        <div className="document-item">
+                                            <p>Citizenship Front</p>
+                                            {doctor?.citizenshipFrontUrl ? (
+                                                <a
+                                                    href={doctor.citizenshipFrontUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src={doctor.citizenshipFrontUrl}
+                                                        alt="Citizenship Front"
+                                                        className="doctor-document-image"
+                                                    />
+                                                </a>
+                                            ) : (
+                                                <p>No document uploaded</p>
+                                            )}
+                                        </div>
 
-                            <div className="info-row">
-                                <span>Gender</span>
-                                <p>{user?.gender || "N/A"}</p>
-                            </div>
+                                        <div className="document-item">
+                                            <p>Citizenship Back</p>
+                                            {doctor?.citizenshipBackUrl ? (
+                                                <a
+                                                    href={doctor.citizenshipBackUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src={doctor.citizenshipBackUrl}
+                                                        alt="Citizenship Back"
+                                                        className="doctor-document-image"
+                                                    />
+                                                </a>
+                                            ) : (
+                                                <p>No document uploaded</p>
+                                            )}
+                                        </div>
+
+                                        <div className="document-item">
+                                            <p>Medical License</p>
+                                            {doctor?.doctorLicenseUrl ? (
+                                                <a
+                                                    href={doctor.doctorLicenseUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src={doctor.doctorLicenseUrl}
+                                                        alt="Medical License"
+                                                        className="doctor-document-image"
+                                                    />
+                                                </a>
+                                            ) : (
+                                                <p>No document uploaded</p>
+                                            )}
+                                        </div>
+
+                                        <div className="document-item">
+                                            <p>Education Certificate</p>
+                                            {doctor?.educationCertificateUrl ? (
+                                                <a
+                                                    href={doctor.educationCertificateUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src={doctor.educationCertificateUrl}
+                                                        alt="Education Certificate"
+                                                        className="doctor-document-image"
+                                                    />
+                                                </a>
+                                            ) : (
+                                                <p>No document uploaded</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {isPatient && (
+                                <div className="doctor-info-card">
+                                    <h3>Available Schedule</h3>
+
+                                    <div className="schedule-days">
+                                        {availableSchedules.length > 0 ? (
+                                            availableSchedules.map((schedule) => (
+                                                <div key={schedule.id} className="schedule-chip">
+                                                    <strong>{schedule.availableDay}</strong>
+
+                                                    <p>
+                                                        {schedule.startDate}
+                                                        {schedule.startDate !== schedule.endDate &&
+                                                            ` - ${schedule.endDate}`}
+                                                    </p>
+
+                                                    <p>
+                                                        {schedule.startTime?.slice(0, 5)} -{" "}
+                                                        {schedule.endTime?.slice(0, 5)}
+                                                    </p>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p>No schedule available</p>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                         </div>
-
-                        {isAdmin && (
-                            <div className="doctor-info-card">
-                                <h3>Doctor Verification Documents</h3>
-
-                                <div className="doctor-document-grid">
-                                    <div className="document-item">
-                                        <p>Citizenship Front</p>
-                                        {doctor?.citizenshipFrontUrl ? (
-                                            <a
-                                                href={doctor.citizenshipFrontUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    src={doctor.citizenshipFrontUrl}
-                                                    alt="Citizenship Front"
-                                                    className="doctor-document-image"
-                                                />
-                                            </a>
-                                        ) : (
-                                            <p>No document uploaded</p>
-                                        )}
-                                    </div>
-
-                                    <div className="document-item">
-                                        <p>Citizenship Back</p>
-                                        {doctor?.citizenshipBackUrl ? (
-                                            <a
-                                                href={doctor.citizenshipBackUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    src={doctor.citizenshipBackUrl}
-                                                    alt="Citizenship Back"
-                                                    className="doctor-document-image"
-                                                />
-                                            </a>
-                                        ) : (
-                                            <p>No document uploaded</p>
-                                        )}
-                                    </div>
-
-                                    <div className="document-item">
-                                        <p>Medical License</p>
-                                        {doctor?.doctorLicenseUrl ? (
-                                            <a
-                                                href={doctor.doctorLicenseUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    src={doctor.doctorLicenseUrl}
-                                                    alt="Medical License"
-                                                    className="doctor-document-image"
-                                                />
-                                            </a>
-                                        ) : (
-                                            <p>No document uploaded</p>
-                                        )}
-                                    </div>
-
-                                    <div className="document-item">
-                                        <p>Education Certificate</p>
-                                        {doctor?.educationCertificateUrl ? (
-                                            <a
-                                                href={doctor.educationCertificateUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    src={doctor.educationCertificateUrl}
-                                                    alt="Education Certificate"
-                                                    className="doctor-document-image"
-                                                />
-                                            </a>
-                                        ) : (
-                                            <p>No document uploaded</p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {isPatient && (
-                            <div className="doctor-info-card">
-                                <h3>Available Schedule</h3>
-
-                                <div className="schedule-days">
-                                    {availableSchedules.length > 0 ? (
-                                        availableSchedules.map((schedule) => (
-                                            <div key={schedule.id} className="schedule-chip">
-                                                <strong>{schedule.availableDay}</strong>
-
-                                                <p>
-                                                    {schedule.startDate}
-                                                    {schedule.startDate !== schedule.endDate &&
-                                                        ` - ${schedule.endDate}`}
-                                                </p>
-
-                                                <p>
-                                                    {schedule.startTime?.slice(0, 5)} -{" "}
-                                                    {schedule.endTime?.slice(0, 5)}
-                                                </p>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p>No schedule available</p>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    )}
                 </div>
             </div>
         </div>
