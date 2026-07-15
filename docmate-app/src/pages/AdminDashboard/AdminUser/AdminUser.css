@@ -1,0 +1,354 @@
+.admin-user-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.admin-user-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #f5f8fc;
+}
+
+.admin-user-content {
+  padding: 32px 34px 60px;
+}
+
+.admin-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.admin-user-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.admin-user-header p {
+  margin: 8px 0 0;
+  color: #7b8797;
+  font-size: 16px;
+}
+
+.admin-user-card {
+  background: #ffffff;
+  border: 1px solid #dbe7f4;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.admin-user-card-header {
+  margin-bottom: 18px;
+}
+
+.admin-user-card-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #111827;
+}
+
+.user-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.user-table thead {
+  background: #f1f6ff;
+}
+
+.user-table th {
+  text-align: left;
+  padding: 14px 16px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 800;
+  border-bottom: 1px solid #dbe7f4;
+  white-space: nowrap;
+}
+
+.user-table td {
+  padding: 15px 16px;
+  color: #111827;
+  font-size: 14px;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.user-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+/* Action buttons */
+.user-action-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.delete-user-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.delete-user-btn:hover {
+  background: #fecaca;
+}
+
+.user-loading,
+.user-empty {
+  color: #7b8797;
+  font-size: 15px;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 800px) {
+  .admin-user-content {
+    padding: 24px 18px 40px;
+  }
+
+  .admin-user-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================
+   Laptop
+========================== */
+@media (max-width: 1200px) {
+
+  .admin-user-content {
+    padding: 28px 24px 50px;
+  }
+
+  .admin-user-card {
+    padding: 20px;
+  }
+
+  .user-table {
+    min-width: 650px;
+  }
+
+}
+
+/* ==========================
+   Tablet
+========================== */
+@media (max-width: 992px) {
+
+  .admin-user-content {
+    padding: 24px 20px 40px;
+  }
+
+  .admin-user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .admin-user-header h2 {
+    font-size: 28px;
+  }
+
+  .admin-user-header p {
+    font-size: 15px;
+  }
+
+  .admin-user-card {
+    padding: 18px;
+  }
+
+  .user-table {
+    min-width: 600px;
+  }
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+@media (max-width: 768px) {
+
+  .admin-user-page {
+    display: flex;
+  }
+
+  .admin-user-main {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-user-content {
+    padding: 18px 14px 35px;
+  }
+
+  .admin-user-header h2 {
+    font-size: 24px;
+  }
+
+  .admin-user-header p {
+    font-size: 14px;
+  }
+
+  .admin-user-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .user-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .user-table {
+    min-width: 550px;
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .delete-user-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+@media (max-width: 480px) {
+
+  .admin-user-content {
+    padding: 15px 10px 25px;
+  }
+
+  .admin-user-header h2 {
+    font-size: 22px;
+  }
+
+  .admin-user-header p {
+    font-size: 13px;
+  }
+
+  .admin-user-card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .user-table {
+    min-width: 500px;
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .delete-user-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+}
+
+/* ==================================
+   DARK MODE
+================================== */
+
+body.dark-mode .admin-user-page,
+body.dark-mode .admin-user-main {
+  background: var(--bg-color);
+}
+
+body.dark-mode .admin-user-content {
+  background: var(--bg-color);
+}
+
+body.dark-mode .admin-user-header h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .admin-user-header p {
+  color: #94a3b8;
+}
+
+body.dark-mode .admin-user-card {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 14px 35px var(--shadow-color);
+}
+
+body.dark-mode .admin-user-card-header h3 {
+  color: var(--text-color);
+}
+
+body.dark-mode .user-table thead {
+  background: #1f2937;
+}
+
+body.dark-mode .user-table th {
+  color: #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .user-table td {
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .user-table tbody tr:hover {
+  background: #243247;
+}
+
+/* Action Buttons */
+
+body.dark-mode .delete-user-btn {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+body.dark-mode .delete-user-btn:hover {
+  background: #991b1b;
+  color: #ffffff;
+}
+
+/* Loading */
+
+body.dark-mode .user-loading,
+body.dark-mode .user-empty {
+  color: #94a3b8;
+}

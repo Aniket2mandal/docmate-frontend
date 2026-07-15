@@ -180,6 +180,14 @@ export const deleteRoleApi = (roleId) => {
   return axiosInstance.delete(`/delete/role/${roleId}`);
 };
 
+export const getAllUsersApi = (page = 0, size = 9) => {
+  return axiosInstance.get(`/admin/get-all-users?page=${page}&size=${size}`);
+};
+
+export const deleteUserApi = (userId) => {
+  return axiosInstance.delete(`/admin/delete-user/${userId}`);
+};
+
 export const searchDoctorApi = (data, page = 0, size = 9) => {
   return axiosInstance.post(
     `/public/search-doctor?page=${page}&size=${size}`,
