@@ -52,11 +52,33 @@ const CreateSchedule = ({ darkMode, toggleDarkMode }) => {
                 endTime: "",
             });
         } catch (err) {
-            setError(
-                err?.response?.data?.message ||
-                "Something went wrong while creating schedule."
-            );
-        } finally {
+            const data = err?.response?.data;
+
+            if (data?.validationErrMap) {
+                const validationErrors = Object.values(data.validationErrMap).join("\n");
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Validation Error",
+                    text: validationErrors,
+                });
+
+                setError(validationErrors);
+            } else {
+                const errorMessage =
+                    data?.message ||
+                    "Something went wrong while creating schedule.";
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: errorMessage,
+                });
+
+                setError(errorMessage);
+            }
+        }
+        finally {
             setLoading(false);
         }
     };
