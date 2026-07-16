@@ -93,6 +93,7 @@ const PreviousAppointments = () => {
                     <th>Doctor</th>
                     <th>Hospital</th>
                     <th>Date</th>
+                    <th>Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
