@@ -203,3 +203,41 @@ body.dark-mode .reject-btn:hover {
 body.dark-mode .loading {
   color: #f3f4f6;
 }
+
+.pdf-card {
+    height: 220px;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 60px;
+    color: #e53935;
+}
+
+.pdf-card p {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #444;
+    font-weight: 600;
+}
+
+.pdf-card:hover {
+    background: #f8fafc;
+}
+
+body.dark-mode .pdf-card {
+    border-color: #4b5563;
+    background: #1f2937;
+}
+
+body.dark-mode .pdf-card p {
+    color: #f3f4f6;
+}
+
+body.dark-mode .pdf-card:hover {
+    background: #374151;
+}

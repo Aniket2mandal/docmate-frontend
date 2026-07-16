@@ -17,7 +17,7 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
     const [doctor, setDoctor] = useState(null);
     const [loading, setLoading] = useState(true);
     const [aprbtnloading, setAprbtnloading] = useState(false);
-     const [rejbtnloading, setRejbtnloading] = useState(false);
+    const [rejbtnloading, setRejbtnloading] = useState(false);
 
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
 
         if (!reason) return;
 
-         setRejbtnloading(true);
+        setRejbtnloading(true);
 
         try {
             const response = await rejectDoctorRequestApi(doctorRequestId, reason);
@@ -107,7 +107,7 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
                 text: err.response?.data?.message || "Something went wrong.",
             });
         }
-         finally {
+        finally {
             setRejbtnloading(false);
         }
     };
@@ -172,52 +172,104 @@ const DoctorRequestDetail = ({ darkMode, toggleDarkMode }) => {
 
                         <div className="document-grid">
 
+                            {/* Citizenship Front */}
                             <div className="document-card">
                                 <h4>Citizenship Front</h4>
 
-                                <img
-                                    src={doctor.citizenshipFrontUrl}
-                                    alt="Citizenship Front"
-                                    onClick={() =>
-                                        window.open(doctor.citizenshipFrontUrl, "_blank")
-                                    }
-                                />
+                                {doctor.citizenshipFrontUrl?.toLowerCase().endsWith(".pdf") ? (
+                                    <div
+                                        className="pdf-card"
+                                        onClick={() =>
+                                            window.open(doctor.citizenshipFrontUrl, "_blank")
+                                        }
+                                    >
+                                        📄
+                                        <p>View PDF</p>
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={doctor.citizenshipFrontUrl}
+                                        alt="Citizenship Front"
+                                        onClick={() =>
+                                            window.open(doctor.citizenshipFrontUrl, "_blank")
+                                        }
+                                    />
+                                )}
                             </div>
 
+                            {/* Citizenship Back */}
                             <div className="document-card">
                                 <h4>Citizenship Back</h4>
 
-                                <img
-                                    src={doctor.citizenshipBackUrl}
-                                    alt="Citizenship Back"
-                                    onClick={() =>
-                                        window.open(doctor.citizenshipBackUrl, "_blank")
-                                    }
-                                />
+                                {doctor.citizenshipBackUrl?.toLowerCase().endsWith(".pdf") ? (
+                                    <div
+                                        className="pdf-card"
+                                        onClick={() =>
+                                            window.open(doctor.citizenshipBackUrl, "_blank")
+                                        }
+                                    >
+                                        📄
+                                        <p>View PDF</p>
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={doctor.citizenshipBackUrl}
+                                        alt="Citizenship Back"
+                                        onClick={() =>
+                                            window.open(doctor.citizenshipBackUrl, "_blank")
+                                        }
+                                    />
+                                )}
                             </div>
 
+                            {/* Doctor License */}
                             <div className="document-card">
                                 <h4>Medical License</h4>
 
-                                <img
-                                    src={doctor.doctorLicenseUrl}
-                                    alt="Doctor License"
-                                    onClick={() =>
-                                        window.open(doctor.doctorLicenseUrl, "_blank")
-                                    }
-                                />
+                                {doctor.doctorLicenseUrl?.toLowerCase().endsWith(".pdf") ? (
+                                    <div
+                                        className="pdf-card"
+                                        onClick={() =>
+                                            window.open(doctor.doctorLicenseUrl, "_blank")
+                                        }
+                                    >
+                                        📄
+                                        <p>View PDF</p>
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={doctor.doctorLicenseUrl}
+                                        alt="Doctor License"
+                                        onClick={() =>
+                                            window.open(doctor.doctorLicenseUrl, "_blank")
+                                        }
+                                    />
+                                )}
                             </div>
 
+                            {/* Education Certificate */}
                             <div className="document-card">
                                 <h4>Education Certificate</h4>
 
-                                <img
-                                    src={doctor.educationCertificateUrl}
-                                    alt="Education Certificate"
-                                    onClick={() =>
-                                        window.open(doctor.educationCertificateUrl, "_blank")
-                                    }
-                                />
+                                {doctor.educationCertificateUrl?.toLowerCase().endsWith(".pdf") ? (
+                                    <div
+                                        className="pdf-card"
+                                        onClick={() =>
+                                            window.open(doctor.educationCertificateUrl, "_blank")
+                                        }
+                                    >
+                                        📄
+                                        <p>View PDF</p>
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={doctor.educationCertificateUrl}
+                                        alt="Education Certificate"
+                                        onClick={() =>
+                                            window.open(doctor.educationCertificateUrl, "_blank")
+                                        }
+                                    />
+                                )}
                             </div>
 
                         </div>
