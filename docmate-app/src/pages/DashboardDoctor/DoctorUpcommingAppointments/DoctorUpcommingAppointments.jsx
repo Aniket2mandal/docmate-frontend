@@ -11,7 +11,7 @@ const DoctorUpcomingAppointments = () => {
  const [appointments, setAppointments] = useState([]);
  const [loading, setLoading] = useState(true);
 
-  const patientId = localStorage.getItem("doctorId"); 
+  const doctorId = localStorage.getItem("doctorId"); 
 
     useEffect(() => {
 

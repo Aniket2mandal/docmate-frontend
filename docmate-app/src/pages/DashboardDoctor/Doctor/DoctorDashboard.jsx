@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
-import { getDoctorUpcomingAppointments } from "../../../api/BackendApi";
+import {
+  getDoctorUpcomingAppointments,
+  getDoctorPreviousAppointments,
+} from "../../../api/BackendApi";
 import "./DoctorDashboard.css";
 
 const DoctorDashboard = () => {
@@ -11,29 +14,43 @@ const DoctorDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [todayAppointments, setTodayAppointments] = useState([]);
 
+  const [todayCount, setTodayCount] = useState(0);
+  const [upcomingCount, setUpcomingCount] = useState(0);
+  const [previousCount, setPreviousCount] = useState(0);
+
   useEffect(() => {
     fetchAppointments();
   }, []);
 
   const fetchAppointments = async () => {
     try {
-      const response = await getDoctorUpcomingAppointments(doctorId);
+      const [upcomingResponse, previousResponse] = await Promise.all([
+        getDoctorUpcomingAppointments(doctorId),
+        getDoctorPreviousAppointments(doctorId),
+      ]);
 
-      if (response.data.status) {
-        const data = response.data.data;
+      if (upcomingResponse.data.status) {
+        const upcomingData = upcomingResponse.data.data;
 
-        setAppointments(data);
+        setAppointments(upcomingData);
 
         const today = new Date().toISOString().split("T")[0];
 
-        const todayData = data.filter(
-          (item) => item.appointmentDate === today
+        const todayData = upcomingData.filter(
+          (appointment) => appointment.appointmentDate === today
         );
 
         setTodayAppointments(todayData);
+
+        setTodayCount(todayData.length);
+        setUpcomingCount(upcomingData.length);
       }
-    } catch (err) {
-      console.log(err);
+
+      if (previousResponse.data.status) {
+        setPreviousCount(previousResponse.data.data.length);
+      }
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
     }
   };
 
@@ -45,7 +62,6 @@ const DoctorDashboard = () => {
         <Navbar />
 
         <div className="bodyPart">
-
           <div className="welcome">
             <h2 className="welcome-back">Welcome back,</h2>
             <h2 className="user-name">Dr. {name} 👋</h2>
@@ -54,23 +70,25 @@ const DoctorDashboard = () => {
           {/* Dashboard Cards */}
 
           <div className="dashboard-cards">
+            <div className="dashboard-card">
+              <h3>Today's Appointments</h3>
+              <h1>{todayCount}</h1>
+            </div>
 
             <div className="dashboard-card">
               <h3>Upcoming Appointments</h3>
-              <h1>{appointments.length}</h1>
+              <h1>{upcomingCount}</h1>
             </div>
 
             <div className="dashboard-card">
               <h3>Previous Appointments</h3>
-              <h1>0</h1>
+              <h1>{previousCount}</h1>
             </div>
-
           </div>
 
-          {/* Today's Appointments */}
+          {/* Today's Appointment List */}
 
           <div className="today-card">
-
             <h2>Today's Appointments</h2>
 
             {todayAppointments.length === 0 ? (
@@ -88,10 +106,12 @@ const DoctorDashboard = () => {
                     </h3>
 
                     <p>
+                      <strong>Time:</strong>{" "}
                       {appointment.appointmentTime.slice(0, 5)}
                     </p>
 
                     <p>
+                      <strong>Reason:</strong>{" "}
                       {appointment.reasonForVisit || "No reason provided"}
                     </p>
                   </div>
@@ -102,9 +122,7 @@ const DoctorDashboard = () => {
                 </div>
               ))
             )}
-
           </div>
-
         </div>
       </div>
     </div>
