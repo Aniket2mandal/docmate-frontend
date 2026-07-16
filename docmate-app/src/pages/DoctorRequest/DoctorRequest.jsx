@@ -295,7 +295,7 @@ const DoctorRequest = ({ darkMode, toggleDarkMode }) => {
                   )}
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label>Status</label>
                   <select
                     name="status"
@@ -305,7 +305,7 @@ const DoctorRequest = ({ darkMode, toggleDarkMode }) => {
                     <option value="ACTIVE">Active</option>
                     <option value="INACTIVE">Inactive</option>
                   </select>
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <label>Province</label>

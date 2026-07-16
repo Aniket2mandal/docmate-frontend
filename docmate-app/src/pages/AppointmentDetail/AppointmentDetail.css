@@ -136,21 +136,42 @@
 }
 
 .primary-btn,
-.secondary-btn {
+.secondary-btn,
+.create-consultation-btn,
+.view-consultation-btn {
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   transition: .25s;
+  font-size: 15px;
+  font-weight: 600;
 }
 
-.primary-btn {
+.primary-btn,
+.create-consultation-btn {
   background: #2d6cdf;
   color: #fff;
 }
 
-.primary-btn:hover {
+.primary-btn:hover,
+.create-consultation-btn:hover:not(:disabled) {
   background: #1b4fbf;
+}
+
+.view-consultation-btn {
+  background: #16a34a;
+  color: #fff;
+}
+
+.view-consultation-btn:hover {
+  background: #15803d;
+}
+
+.create-consultation-btn:disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
 .secondary-btn {
@@ -219,7 +240,9 @@
 }
 
 .primary-btn,
-.secondary-btn{
+.secondary-btn,
+.create-consultation-btn,
+.view-consultation-btn{
     width:100%;
 }
 
@@ -262,7 +285,9 @@
 }
 
 .primary-btn,
-.secondary-btn{
+.secondary-btn,
+.create-consultation-btn,
+.view-consultation-btn{
     padding:12px;
     font-size:14px;
 }
@@ -317,13 +342,29 @@ body.dark-mode .status.booked {
   color: #93c5fd;
 }
 
-body.dark-mode .primary-btn {
+body.dark-mode .primary-btn,
+body.dark-mode .create-consultation-btn {
   background: #2563eb;
   color: #fff;
 }
 
-body.dark-mode .primary-btn:hover {
+body.dark-mode .primary-btn:hover,
+body.dark-mode .create-consultation-btn:hover:not(:disabled) {
   background: #1d4ed8;
+}
+
+body.dark-mode .view-consultation-btn {
+  background: #16a34a;
+  color: #fff;
+}
+
+body.dark-mode .view-consultation-btn:hover {
+  background: #15803d;
+}
+
+body.dark-mode .create-consultation-btn:disabled {
+  background: #4b5563;
+  color: #9ca3af;
 }
 
 body.dark-mode .secondary-btn {

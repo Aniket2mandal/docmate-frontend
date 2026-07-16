@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, Link,useNavigate  } from "react-router-dom";
 import "./AppointmentDetail.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
 import { getAppointmentDetails } from "../../api/BackendApi";
 import BookAppointmentModal from "../../components/BookModal/BookAppointmentModal";
+import Swal from "sweetalert2";
 
 const AppointmentDetail = () => {
   const { state } = useLocation();
@@ -14,6 +15,7 @@ const AppointmentDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const navigate = useNavigate();
 
   const appointmentId =
     appointmentIdFromParams ||
@@ -53,6 +55,29 @@ const AppointmentDetail = () => {
 
     fetchAppointmentDetails();
   }, [appointmentId]);
+
+  const handleCreateConsultation = () => {
+  if (!appointmentId) {
+    Swal.fire({
+      icon: "warning",
+      title: "Appointment not found",
+      text: "Consultation can be created only for a booked appointment.",
+    });
+    return;
+  }
+
+  navigate(`/dashboard/doctor/create-medical-record/${appointmentId}`, {
+    state: {
+      patientName: `${patient?.firstName} ${patient?.lastName}`,
+    },
+  });
+};
+
+
+const role = localStorage.getItem("role");
+
+const isPatient = role === "PATIENT";
+const isDoctor = role === "DOCTOR";
 
   const doctor = appt?.doctor?.user;
   const patient = appt?.patient?.user;
@@ -154,37 +179,65 @@ const AppointmentDetail = () => {
                 </div>
 
                 <div className="action-buttons">
-                  {/* <button className="primary-btn">Book Again</button> */}
 
-                  <button className="primary-btn" onClick={() => setShowBookingModal(true)}>
-                    Book Again
-                  </button>
-                  <BookAppointmentModal
-                    isOpen={showBookingModal}
-                    onClose={() => setShowBookingModal(false)}
-                    doctorId={appt?.doctor?.doctorId}
-                    doctorName={`Dr. ${fullName}`}
-                  />
+                  {isPatient && (
+                    <>
+                      <button
+                        className="primary-btn"
+                        onClick={() => setShowBookingModal(true)}
+                      >
+                        Book Again
+                      </button>
 
-                  <Link
-                    to={`/dashboard/user/medical-records`}
-                    style={{
-                      textDecoration: "none",
-                      color: "inherit",
-                    }}
-                  >
-                    <button className="secondary-btn">Medical Record</button>
-                  </Link>
+                      <BookAppointmentModal
+                        isOpen={showBookingModal}
+                        onClose={() => setShowBookingModal(false)}
+                        doctorId={appt?.doctor?.doctorId}
+                        doctorName={`Dr. ${fullName}`}
+                      />
 
-                  <Link
-                    to={`/dashboard/user/medicine-reports`}
-                    style={{
-                      textDecoration: "none",
-                      color: "inherit",
-                    }}
-                  >
-                    <button className="secondary-btn">Medication</button>
-                  </Link>
+                      <Link
+                        to="/dashboard/user/medical-records"
+                        style={{
+                          textDecoration: "none",
+                          color: "inherit",
+                        }}
+                      >
+                        <button className="secondary-btn">
+                          Medical Record
+                        </button>
+                      </Link>
+
+                      <Link
+                        to="/dashboard/user/medicine-reports"
+                        style={{
+                          textDecoration: "none",
+                          color: "inherit",
+                        }}
+                      >
+                        <button className="secondary-btn">
+                          Medication
+                        </button>
+                      </Link>
+                    </>
+                  )}
+
+                  {isDoctor && (
+                    <button
+                      className={
+                        appt?.status === "COMPLETED"
+                          ? "view-consultation-btn"
+                          : "create-consultation-btn"
+                      }
+                      onClick={handleCreateConsultation}
+                      disabled={appt?.status !== "BOOKED" && appt?.status !== "COMPLETED"}
+                    >
+                      {appt?.status === "COMPLETED"
+                        ? "View Consultation"
+                        : "Create Consultation"}
+                    </button>
+                  )}
+
                 </div>
               </div>
 

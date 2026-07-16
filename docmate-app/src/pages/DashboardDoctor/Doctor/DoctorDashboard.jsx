@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../../components/SideBar/SideBar";
 import Navbar from "../../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
 import {
   getDoctorUpcomingAppointments,
   getDoctorPreviousAppointments,
@@ -11,9 +12,7 @@ const DoctorDashboard = () => {
   const name = localStorage.getItem("name") || "User";
   const doctorId = localStorage.getItem("doctorId");
 
-  const [appointments, setAppointments] = useState([]);
   const [todayAppointments, setTodayAppointments] = useState([]);
-
   const [todayCount, setTodayCount] = useState(0);
   const [upcomingCount, setUpcomingCount] = useState(0);
   const [previousCount, setPreviousCount] = useState(0);
@@ -32,8 +31,6 @@ const DoctorDashboard = () => {
       if (upcomingResponse.data.status) {
         const upcomingData = upcomingResponse.data.data;
 
-        setAppointments(upcomingData);
-
         const today = new Date().toISOString().split("T")[0];
 
         const todayData = upcomingData.filter(
@@ -41,7 +38,6 @@ const DoctorDashboard = () => {
         );
 
         setTodayAppointments(todayData);
-
         setTodayCount(todayData.length);
         setUpcomingCount(upcomingData.length);
       }
@@ -95,8 +91,9 @@ const DoctorDashboard = () => {
               <p className="empty-text">No appointments today.</p>
             ) : (
               todayAppointments.map((appointment) => (
-                <div
+                <Link
                   key={appointment.appointmentId}
+                  to={`/dashboard/user/appointment-detail/${appointment.appointmentId}`}
                   className="appointment-item"
                 >
                   <div>
@@ -119,7 +116,7 @@ const DoctorDashboard = () => {
                   <span className="status">
                     {appointment.status}
                   </span>
-                </div>
+                </Link>
               ))
             )}
           </div>

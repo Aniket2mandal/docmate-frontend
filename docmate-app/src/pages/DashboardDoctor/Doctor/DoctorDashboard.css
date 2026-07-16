@@ -11,7 +11,8 @@
     background: white;
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+    transition: .3s;
 }
 
 .dashboard-card h3 {
@@ -29,7 +30,8 @@
     background: white;
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+    transition: .3s;
 }
 
 .today-card h2 {
@@ -43,6 +45,14 @@
     align-items: center;
     padding: 18px 0;
     border-bottom: 1px solid #eee;
+    text-decoration: none;
+    color: inherit;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.appointment-item:hover {
+    transform: translateX(4px);
 }
 
 .appointment-item:last-child {
@@ -66,39 +76,63 @@
     border-radius: 30px;
     font-size: 14px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .empty-text {
     color: gray;
 }
 
-/* Dark mode */
+/* ==========================
+   Dark Mode
+========================== */
 
 .dashboard-card,
 .today-card {
-    background: var(--card-bg, white);
-    color: var(--text-color);
+    background: var(--card-bg-color);
 }
 
 .dashboard-card h3,
-.appointment-item p {
-    color: var(--text-secondary, #666);
+.today-card h2,
+.appointment-item h3,
+.appointment-item p,
+.empty-text {
+    color: var(--text-color);
 }
 
-@media (max-width:768px){
-
-.dashboard-cards{
-    flex-direction:column;
+.appointment-item {
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.appointment-item{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
+.appointment-item:hover {
+    background: rgba(47, 128, 237, 0.08);
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
-.status{
-    align-self:flex-start;
+.status {
+    color: green;
 }
 
+/* ==========================
+   Tablet & Mobile
+========================== */
+
+@media (max-width: 768px) {
+
+    .dashboard-cards {
+        flex-direction: column;
+    }
+
+    .appointment-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .status {
+        align-self: flex-start;
+    }
 }
