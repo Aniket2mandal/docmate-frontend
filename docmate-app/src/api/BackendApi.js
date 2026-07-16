@@ -201,6 +201,18 @@ export const getDoctorRequestsApi = (page = 0, size = 9) => {
   );
 };
 
+export const getDoctorUpcomingAppointments = (doctorId) => {
+  return axiosInstance.get(
+    `/appointment/get-doctor-upcoming-appointment/${doctorId}`
+  );
+};
+
+export const getDoctorPreviousAppointments = (doctorId) => {
+  return axiosInstance.get(
+    `/appointment/get-doctor-previous-appointment/${doctorId}`
+  );
+};
+
 export const getDoctorRequestDetailApi = (doctorRequestId) => {
   return axiosInstance.get(`/admin/get-doctor-request/${doctorRequestId}`);
 };

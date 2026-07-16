@@ -165,6 +165,44 @@ const Sidebar = () => {
                 {!collapsed && <span>View Schedule</span>}
               </Link>
             </li>
+
+            {!collapsed && (
+              <li className="appointment">
+                <div className="appointment-header" onClick={toggleDropdown}>
+                  <div className="appointment-left">
+                    <FaCalendarAlt className="icon" />
+                    <span>Appointment Details</span>
+                  </div>
+
+                  {open ? (
+                    <FaChevronUp className="arrow-icon" />
+                  ) : (
+                    <FaChevronDown className="arrow-icon" />
+                  )}
+                </div>
+
+                {open && (
+                  <div className="dropdown">
+                    <p>
+                      <Link to="/dashboard/doctor/upcoming-appointments"
+                        className="dashboard-link"
+                      >
+                        Upcoming Appointment
+                      </Link>
+                    </p>
+
+                    <p>
+                      <Link to="/dashboard/doctor/previous-appointments"
+                        className="dashboard-link"
+                      >
+                        Previous Appointment
+                      </Link>
+                    </p>
+                  </div>
+                )}
+              </li>
+            )}
+
           </>
         )}
 
