@@ -301,3 +301,109 @@ body.dark-mode .status-badge.completed {
   background: #334155;
   color: #f8fafc;
 }
+
+/* =====================================
+   Pagination
+===================================== */
+
+.doctor-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.doctor-pagination button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dbe7f4;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.doctor-pagination button:hover:not(:disabled) {
+  background: #2f80ed;
+  border-color: #2f80ed;
+  color: #ffffff;
+}
+
+.doctor-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.doctor-pagination .active-page {
+  background: #2f80ed;
+  border-color: #2f80ed;
+  color: #ffffff;
+}
+
+/* =====================================
+   Pagination Responsive
+===================================== */
+
+@media (max-width: 768px) {
+  .doctor-pagination {
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .doctor-pagination button {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .doctor-pagination button {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .doctor-pagination {
+    gap: 4px;
+  }
+
+  .doctor-pagination button {
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+}
+
+/* =====================================
+   Dark Mode Pagination
+===================================== */
+
+body.dark-mode .doctor-pagination button {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+body.dark-mode .doctor-pagination button:hover:not(:disabled) {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode .doctor-pagination .active-page {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
