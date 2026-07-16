@@ -28,11 +28,11 @@ const DoctorUpcomingAppointments = () => {
       }
     };
 
-    if (patientId) {
+    if (doctorId) {
       console.log("Calling API 2nd...");
       fetchAppointments();
     }
-  }, [patientId]);
+  }, [doctorId]);
 
   return (
      <div className="dashboard-upcoming-page">
