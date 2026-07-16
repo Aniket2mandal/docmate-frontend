@@ -71,12 +71,16 @@ const MedicalRecordDetail = () => {
     });
   };
 
-  const formatTime = (time) => {
-    if (!time) {
-      return "-";
-    }
+   const formatTime = (time) => {
+    if (!time) return "-";
 
-    return time.slice(0, 5);
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
   };
 
   const getDoctorName = () => {

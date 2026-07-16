@@ -86,6 +86,18 @@ const isDoctor = role === "DOCTOR";
   console.log("Appointment details:", appt);
 
 
+      const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
   return (
     <div className="dashboard-upcoming-page">
       <SideBar />

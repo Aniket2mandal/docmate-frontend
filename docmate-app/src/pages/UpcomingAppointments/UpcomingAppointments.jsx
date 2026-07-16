@@ -1,41 +1,71 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./UpcomingAppointment.css";
 import SideBar from "../../components/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
 import { getPatientUpcomingAppointments } from "../../api/BackendApi";
 
-
 const UpcomingAppointments = () => {
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
- const [appointments, setAppointments] = useState([]);
- const [loading, setLoading] = useState(true);
+  const patientId = localStorage.getItem("patientId");
 
-  const patientId = localStorage.getItem("patientId"); 
-
-    useEffect(() => {
-
-       console.log("Calling API...");
-      
+  useEffect(() => {
     const fetchAppointments = async () => {
+      console.log("fetchAppointments started");
       try {
         const res = await getPatientUpcomingAppointments(patientId);
         setAppointments(res.data.data || []);
       } catch (err) {
-        console.error("Error fetching appointments", err);
+        console.error("Error fetching appointments:", err);
       } finally {
         setLoading(false);
       }
     };
 
     if (patientId) {
-      console.log("Calling API 2nd...");
       fetchAppointments();
     }
   }, [patientId]);
 
+  const formatDate = (date) => {
+    if (!date) return "-";
+
+    const [year, month, day] = date.split("-");
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    return `${months[Number(month) - 1]} ${Number(day)}, ${year}`;
+  };
+
+  const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
   return (
-     <div className="dashboard-upcoming-page">
+    <div className="dashboard-upcoming-page">
       <SideBar />
 
       <div className="dashboard-upcoming-main">
@@ -58,21 +88,33 @@ const UpcomingAppointments = () => {
                     <th>Doctor</th>
                     <th>Hospital</th>
                     <th>Date</th>
+                    <th>Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   {appointments.length > 0 ? (
-                    appointments.map((appt,index) => (
-                      <tr key={appt.id}>
-                        <td>{index+1}</td>
-                        <td>{appt.doctor?.user?.firstName} {appt.doctor?.user?.lastName}</td>
-                        <td>{appt.hospitalName}</td>
-                        <td>{appt.appointmentDateTime}</td>
+                    appointments.map((appt, index) => {
+                      console.log(appt);
 
-                        <td>
-                        <Link
+                      return (
+                        <tr key={appt.appointmentId}>
+                          <td>{index + 1}</td>
+
+                          <td>
+                            {appt.doctor?.user?.firstName}{" "}
+                            {appt.doctor?.user?.lastName}
+                          </td>
+
+                          <td>{appt.hospitalName || "-"}</td>
+
+                          <td>{formatDate(appt.appointmentDate)}</td>
+
+                          <td>{formatTime(appt.appointmentTime)}</td>
+
+                          <td>
+                            <Link
                               to={`/dashboard/user/appointment-detail/${appt.appointmentId}`}
                               style={{
                                 textDecoration: "none",
@@ -83,19 +125,19 @@ const UpcomingAppointments = () => {
                                 View Details
                               </button>
                             </Link>
-                        </td>
-                      </tr>
-                    ))
+                          </td>
+                        </tr>
+                      );
+                    })
                   ) : (
                     <tr>
-                      <td colSpan="4">No upcoming appointments</td>
+                      <td colSpan="6">No upcoming appointments</td>
                     </tr>
                   )}
                 </tbody>
               </table>
             )}
           </div>
-
         </div>
       </div>
     </div>

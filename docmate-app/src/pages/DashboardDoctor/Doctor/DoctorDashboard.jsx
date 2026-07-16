@@ -50,6 +50,20 @@ const DoctorDashboard = () => {
     }
   };
 
+
+  
+    const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
   return (
     <div className="dashboard">
       <SideBar />
@@ -104,7 +118,7 @@ const DoctorDashboard = () => {
 
                     <p>
                       <strong>Time:</strong>{" "}
-                      {appointment.appointmentTime.slice(0, 5)}
+                      {formatTime(appointment.appointmentTime)}
                     </p>
 
                     <p>

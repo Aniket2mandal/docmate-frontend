@@ -123,6 +123,18 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
         }
     };
 
+      const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
     return createPortal(
         <div className="booking-modal-overlay">
             <div className="booking-modal-box">
@@ -174,8 +186,7 @@ const BookAppointmentModal = ({ isOpen, onClose, doctorId, doctorName }) => {
                                         <span>{schedule.startDate}</span>
 
                                         <span>
-                                            {schedule.startTime?.slice(0, 5)} -{" "}
-                                            {schedule.endTime?.slice(0, 5)}
+                                          {formatTime(schedule.startTime)} - {formatTime(schedule.endTime)}
                                         </span>
                                     </button>
                                 ))}

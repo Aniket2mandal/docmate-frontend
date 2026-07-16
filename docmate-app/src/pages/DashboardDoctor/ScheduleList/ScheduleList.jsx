@@ -184,6 +184,19 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
         }
     };
 
+    
+    const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
     return (
         <div className="schedule-list-page">
             <SideBar />
@@ -247,8 +260,8 @@ const ScheduleList = ({ darkMode, toggleDarkMode }) => {
                                                 <td>{schedule.availableDay || "-"}</td>
                                                 <td>{schedule.startDate || "-"}</td>
                                                 <td>{schedule.endDate || "-"}</td>
-                                                <td>{schedule.startTime?.slice(0, 5) || "-"}</td>
-                                                <td>{schedule.endTime?.slice(0, 5) || "-"}</td>
+                                                <td>{formatTime(schedule.startTime) || "-"}</td>
+                                                <td>{formatTime(schedule.endTime) || "-"}</td>
                                                 <td>
                                                     <span
                                                         className={

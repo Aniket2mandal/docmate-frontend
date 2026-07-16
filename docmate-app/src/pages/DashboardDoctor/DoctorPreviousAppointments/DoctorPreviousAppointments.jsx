@@ -34,6 +34,41 @@ const DoctorPreviousAppointments = () => {
     }
   }, [doctorId]);
 
+    const formatDate = (date) => {
+    if (!date) return "-";
+
+    const [year, month, day] = date.split("-");
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    return `${months[Number(month) - 1]} ${Number(day)}, ${year}`;
+  };
+
+    const formatTime = (time) => {
+    if (!time) return "-";
+
+    const [hour, minute] = time.split(":");
+
+    const h = Number(hour);
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 || 12;
+
+    return `${hour12}:${minute} ${suffix}`;
+  };
+
   return (
     <div className="dashboard-upcoming-page">
       <SideBar />
@@ -58,6 +93,7 @@ const DoctorPreviousAppointments = () => {
                     <th>Doctor</th>
                     <th>Hospital</th>
                     <th>Date</th>
+                    <th>Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -72,8 +108,10 @@ const DoctorPreviousAppointments = () => {
                         <tr key={appt.id}>
                           <td>{index + 1}</td>
                           <td>{appt.doctor?.user?.firstName} {appt.doctor?.user?.lastName}</td>
-                          <td>{appt.hospitalName}</td>
-                          <td>{appt.appointmentDateTime}</td>
+                          <td>{appt.hospitalName || "-"}</td>
+                          <td>{formatDate(appt.appointmentDate)}</td>
+
+                        <td>{formatTime(appt.appointmentTime)}</td>
 
                           <td>
                             {/* <a href="/appointment-detail" style={{ textDecoration: 'none', color: 'inherit' }}><button className="view-btn">
