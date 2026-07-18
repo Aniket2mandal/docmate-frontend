@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import { useProfile } from "../../contexts/ProfileContext";
 
 const Navbar = () => {
- const [darkMode, setDarkMode] = useState(() => {
+  const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved === "true";
   });
@@ -44,9 +44,9 @@ const Navbar = () => {
   };
 
 
-const toggleMenu = () => {
-  setMenuOpen(!menuOpen);
-};
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const handleLogout = async () => {
 
@@ -134,7 +134,9 @@ const toggleMenu = () => {
 
             <div className="dropdown-item">
               <FaCog className="dropdown-icon" />
-              <span>Settings</span>
+              <Link to="/dashboard/settings" className="dashboard-link">
+                <span>Settings</span>
+              </Link>
             </div>
 
             <div className="dropdown-divider"></div>
