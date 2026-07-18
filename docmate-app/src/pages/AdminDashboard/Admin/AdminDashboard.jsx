@@ -34,19 +34,19 @@ const AdminDashboard = () => {
 
       if (doctorRes.data.status) {
         const doctors = doctorRes.data.data;
-        setDoctorCount(doctors.totalElements || doctors.content.length);
+        setDoctorCount(doctorRes.data.data.data.length);
       }
 
       if (patientRes.data.status) {
         const patients = patientRes.data.data;
-        setPatientCount(patients.totalElements || patients.content.length);
+        setPatientCount(patientRes.data.data.data.length);
       }
 
       if (requestRes.data.status) {
         const requests = requestRes.data.data;
 
-        setRequestCount(requests.totalElements || requests.content.length);
-        setPendingRequests(requests.content || []);
+        setRequestCount(requests.paginationInfo.total);
+        setPendingRequests(requests.data);
       }
     } catch (err) {
       console.error(err);
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
 
                 <Link
                   className="view-all"
-                  to="/dashboard/admin/doctor-request"
+                  to="/dashboard/admin/doctor-requests"
                 >
                   View All →
                 </Link>
