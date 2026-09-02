@@ -123,7 +123,7 @@ const AdminDashboard = () => {
                 pendingRequests.map((request) => (
                   <Link
                     key={request.id}
-                    to={`/dashboard/admin/doctor-request/${request.id}`}
+                    to={`/dashboard/admin/doctor-request-detail/${request.id}`}
                     className="appointment-item"
                   >
                     <div>
