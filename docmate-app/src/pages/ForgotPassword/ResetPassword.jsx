@@ -9,6 +9,7 @@ const ResetPassword = () => {
     const navigate = useNavigate();
 
     const email = location.state?.email || "";
+    const resetToken = location.state?.resetToken || "";
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,7 +43,7 @@ const ResetPassword = () => {
         setLoading(true);
 
         try {
-            const response = await forgotPassword(email, newPassword);
+            const response = await forgotPassword(email, newPassword,resetToken);
 
             if (response.data.status) {
 

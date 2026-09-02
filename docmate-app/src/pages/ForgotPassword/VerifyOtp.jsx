@@ -31,16 +31,20 @@ const VerifyOtp = () => {
       const response = await verifyOtp(email, otp);
 
       if (response.data.status) {
+
+        const resetToken=response.data.message;
+
         await Swal.fire({
           icon: "success",
           title: "OTP Verified",
-          text: response.data.message,
+          text: "OTP Verified !",
           confirmButtonColor: "#3085d6",
         });
 
         navigate("/reset-password", {
           state: {
             email,
+            resetToken
           },
         });
       }

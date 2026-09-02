@@ -272,10 +272,11 @@ export const verifyOtp = (email, otp) => {
   });
 };
 
-export const forgotPassword = (email, newPassword) => {
+export const forgotPassword = (email, newPassword,resetToken) => {
   return axiosInstance.post("/public/forgot-password", {
     email,
     newPassword,
+    resetToken
   });
 };
 
