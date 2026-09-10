@@ -283,6 +283,15 @@
   line-height: 1.3;
 }
 
-.google-register-section{
-  margin-top:10px;
+.google-register-section {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.google-register-section > div {
+  width: 100% !important;
+}
+
+.google-register-section iframe {
+  width: 100% !important;
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import { loginUser,loginWithGoogle} from "../../api/BackendApi";
+import { loginUser, loginWithGoogle } from "../../api/BackendApi";
 import { GoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 import { useProfile } from "../../contexts/ProfileContext";
@@ -226,7 +226,7 @@ const Login = () => {
           </form>
 
           <div className="google-login-section">
-        
+
 
             <GoogleLogin
               onSuccess={handleGoogleLogin}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
-import { registerUser,loginWithGoogle } from "../../api/BackendApi";
+import { registerUser, loginWithGoogle } from "../../api/BackendApi";
 import { GoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 
@@ -379,7 +379,7 @@ const Register = () => {
                     </form>
 
                     <div className="google-register-section">
-                      
+
 
                         <GoogleLogin
                             onSuccess={handleGoogleRegister}
