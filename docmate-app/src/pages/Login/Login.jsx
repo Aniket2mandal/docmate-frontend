@@ -237,6 +237,8 @@ const Login = () => {
                   text: "Google authentication failed.",
                 });
               }}
+              width="536"
+              size="large"
             />
           </div>
 

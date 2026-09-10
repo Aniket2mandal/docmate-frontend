@@ -273,15 +273,5 @@
 
 .google-login-section {
   width: 100%;
-  margin-top: 12px;
-}
-
-/* Google generated wrapper */
-.google-login-section > div {
-  width: 100% !important;
-}
-
-/* Google button iframe */
-.google-login-section iframe {
-  width: 100% !important;
+  margin-top: 14px;
 }

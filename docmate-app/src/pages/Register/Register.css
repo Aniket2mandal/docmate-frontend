@@ -285,13 +285,5 @@
 
 .google-register-section {
   width: 100%;
-  margin-top: 12px;
-}
-
-.google-register-section > div {
-  width: 100% !important;
-}
-
-.google-register-section iframe {
-  width: 100% !important;
+  margin-top: 14px;
 }

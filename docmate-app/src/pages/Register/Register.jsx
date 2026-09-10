@@ -390,6 +390,8 @@ const Register = () => {
                                     text: "Google authentication failed.",
                                 });
                             }}
+                            width="628"
+                            size="large"
                         />
                     </div>
 
