@@ -72,6 +72,7 @@ import Settings from "./pages/Settings/Settings";
 import AdminUser from "./pages/AdminDashboard/AdminUser/AdminUser";
 import DoctorPreviousAppointments from "./pages/DashboardDoctor/DoctorPreviousAppointments/DoctorPreviousAppointments";
 import DoctorUpcomingAppointments from "./pages/DashboardDoctor/DoctorUpcommingAppointments/DoctorUpcommingAppointments";
+import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 /* Create a combined landing page */
 const LandingPage = () => {
   return (
@@ -178,7 +179,7 @@ function App() {
           <Route
             path="/dashboard/user/appointment-detail/:appointmentId"
             element={
-              <ProtectedRoute allowedRoles={["PATIENT","DOCTOR"]}>
+              <ProtectedRoute allowedRoles={["PATIENT", "DOCTOR"]}>
                 <AppointmentDetail />
               </ProtectedRoute>
             }
@@ -189,6 +190,15 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={["PATIENT"]}>
                 <MedicalRecordDetail />
+              </ProtectedRoute>
+            }
+          />
+
+             <Route
+            path="/dashboard/profile/update"
+            element={
+              <ProtectedRoute allowedRoles={["PATIENT"]}>
+                <UpdateProfile />
               </ProtectedRoute>
             }
           />
@@ -230,7 +240,7 @@ function App() {
             }
           />
 
-               <Route
+          <Route
             path="/dashboard/doctor/upcoming-appointments"
             element={
               <ProtectedRoute allowedRoles={["DOCTOR"]}>
@@ -333,10 +343,12 @@ function App() {
             path="/dashboard/admin/users"
             element={
               <ProtectedRoute allowedRoles={["ADMIN"]}>
-                <AdminUser/>
+                <AdminUser />
               </ProtectedRoute>
             }
           />
+
+       
 
         </Routes>
       </Router>

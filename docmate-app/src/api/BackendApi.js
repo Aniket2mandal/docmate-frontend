@@ -286,6 +286,16 @@ export const loginWithGoogle = (idToken) => {
   });
 };
 
+export const updatePatientProfile = (
+  patientId,
+  data
+) => {
+  return axiosInstance.put(
+    `/patient/update-patient-profile/${patientId}`,
+    data
+  );
+};
+
 export const wakeUpServer = () => {
   return axios.get("https://docmate-ai.onrender.com/health");
 };
