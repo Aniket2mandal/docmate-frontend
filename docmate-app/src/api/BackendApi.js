@@ -280,6 +280,12 @@ export const forgotPassword = (email, newPassword,resetToken) => {
   });
 };
 
+export const loginWithGoogle = (idToken) => {
+  return axiosInstance.post("/auth/google/patient", {
+    idToken,
+  });
+};
+
 export const wakeUpServer = () => {
   return axios.get("https://docmate-ai.onrender.com/health");
 };

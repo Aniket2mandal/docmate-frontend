@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import { loginUser } from "../../api/BackendApi";
+import { loginUser,loginWithGoogle} from "../../api/BackendApi";
+import { GoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 import { useProfile } from "../../contexts/ProfileContext";
 
@@ -103,6 +104,76 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const idToken = credentialResponse.credential;
+
+      console.log("Google ID Token:", idToken);
+
+      const response = await loginWithGoogle(idToken);
+
+      console.log("Google login response:", response.data);
+
+      if (response.data.status) {
+        const data = response.data.data;
+
+        if (data?.accessToken) {
+          localStorage.setItem("token", data.accessToken);
+        }
+
+        if (data?.refreshToken) {
+          localStorage.setItem("refreshToken", data.refreshToken);
+        }
+
+        if (data?.role) {
+          localStorage.setItem("role", data.role);
+        }
+
+        if (data?.userId) {
+          localStorage.setItem("userId", data.userId);
+        }
+
+        if (data?.patientId) {
+          localStorage.setItem("patientId", data.patientId);
+        }
+
+        if (data?.email) {
+          localStorage.setItem("email", data.email);
+        }
+
+        if (data?.name) {
+          localStorage.setItem("name", data.name);
+        }
+
+        try {
+          await loadProfile();
+        } catch (e) {
+          console.error("Profile load failed:", e);
+        }
+
+        await Swal.fire({
+          icon: "success",
+          title: "Google Login Successful",
+          text: response.data.message || "Welcome!",
+        });
+
+        navigate("/dashboard/user", {
+          state: response.data,
+        });
+      }
+    } catch (error) {
+      console.error("Google login failed:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Google Login Failed",
+        text:
+          error.response?.data?.message ||
+          "Unable to login with Google",
+      });
+    }
+  };
+
   return (
     <section className="login-page">
       <div className="login-card">
@@ -153,6 +224,21 @@ const Login = () => {
               {loading ? "Login..." : "Login"}
             </button>
           </form>
+
+          <div className="google-login-section">
+        
+
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Google Login Failed",
+                  text: "Google authentication failed.",
+                });
+              }}
+            />
+          </div>
 
           <p className="login-footer-text">
             Don’t have an account? <Link to="/register">Sign Up</Link>

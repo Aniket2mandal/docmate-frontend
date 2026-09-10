@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
-import { registerUser } from "../../api/BackendApi";
+import { registerUser,loginWithGoogle } from "../../api/BackendApi";
+import { GoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -69,7 +70,7 @@ const Register = () => {
                 gender: formData.gender,
                 phone: formData.phone,
                 address: formData.address,
-                province:formData.province,
+                province: formData.province,
                 status: formData.status
             },
             age: Number(formData.age),
@@ -135,6 +136,72 @@ const Register = () => {
             }
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleGoogleRegister = async (credentialResponse) => {
+        try {
+            const idToken = credentialResponse.credential;
+
+            console.log("Google ID Token:", idToken);
+
+            const response = await loginWithGoogle(idToken);
+
+            console.log("Google register response:", response.data);
+
+            if (response.data.status) {
+                const data = response.data.data;
+
+                if (data?.accessToken) {
+                    localStorage.setItem("token", data.accessToken);
+                }
+
+                if (data?.refreshToken) {
+                    localStorage.setItem("refreshToken", data.refreshToken);
+                }
+
+                if (data?.role) {
+                    localStorage.setItem("role", data.role);
+                }
+
+                if (data?.userId) {
+                    localStorage.setItem("userId", data.userId);
+                }
+
+                if (data?.patientId) {
+                    localStorage.setItem("patientId", data.patientId);
+                }
+
+                if (data?.email) {
+                    localStorage.setItem("email", data.email);
+                }
+
+                if (data?.name) {
+                    localStorage.setItem("name", data.name);
+                }
+
+                await Swal.fire({
+                    icon: "success",
+                    title: "Registration Successful",
+                    text:
+                        response.data.message ||
+                        "Google account registered successfully!",
+                });
+
+                navigate("/dashboard/user", {
+                    state: response.data,
+                });
+            }
+        } catch (error) {
+            console.error("Google registration failed:", error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Google Registration Failed",
+                text:
+                    error.response?.data?.message ||
+                    "Unable to continue with Google",
+            });
         }
     };
 
@@ -310,6 +377,21 @@ const Register = () => {
                             {loading ? "Creating..." : "Create Account"}
                         </button>
                     </form>
+
+                    <div className="google-register-section">
+                      
+
+                        <GoogleLogin
+                            onSuccess={handleGoogleRegister}
+                            onError={() => {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Google Registration Failed",
+                                    text: "Google authentication failed.",
+                                });
+                            }}
+                        />
+                    </div>
 
                     <p className="register-footer-text">
                         Already have an account? <Link to="/login">Login</Link>
