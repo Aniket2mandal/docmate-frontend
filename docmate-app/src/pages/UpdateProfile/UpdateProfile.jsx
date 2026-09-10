@@ -137,7 +137,7 @@ const UpdateProfile = () => {
           confirmButtonColor: "#2f80ed",
         });
 
-        navigate("/dashboard/profile");
+        navigate("/profile");
       } else {
         Swal.fire({
           icon: "error",
